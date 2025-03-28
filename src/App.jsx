@@ -12,6 +12,9 @@ const routes = createBrowserRouter([
   {path:'auth/login',
     element: <div>Login</div>
   },
+  {path:'auth/sign-up',
+    element: <div>Sign Up</div>
+  },
 ])
 
 const App = () => {
