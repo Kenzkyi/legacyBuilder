@@ -4,7 +4,7 @@ import Home from './pages/kenz/Home'
 
 const routes = createBrowserRouter([
   {path:'*',
-    element: <div>404</div>
+    element: <div>404 error</div>
   },
   {path:'',
     element:<Home/>
