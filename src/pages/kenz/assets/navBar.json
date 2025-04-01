@@ -1,0 +1,27 @@
+[
+    {
+        "name": "HOME",
+        "link": "/",
+        "id" : 1
+    },
+    {
+        "name": "ABOUT US",
+        "link": "/about-us",
+        "id" : 2
+    },
+    {
+        "name": "MOCK EXAM",
+        "link": "/mock-exam",
+        "id" : 3
+    },
+    {
+        "name": "PAST QUESTIONS",
+        "link": "/past-questions",
+        "id" : 4
+    },
+    {
+        "name": "LEADERBOARD",
+        "link": "/leaderboard",
+        "id" : 5
+    }
+]
