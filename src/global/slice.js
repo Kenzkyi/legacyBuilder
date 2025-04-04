@@ -1,20 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit"
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    userToken:''
-}
+  userToken: "",
+};
 
 const slice = createSlice({
-    name:'Legacy Builders',
-    initialState,
-    reducers: {
-        setUserToken: (state,{payload})=>{
-            state.userToken = payload
-        }
-    }
-})
+  name: "Legacy Builders",
+  initialState,
+  reducers: {
+    setUserToken: (state, { payload }) => {
+      state.userToken = payload;
+    },
+  },
+});
 
-export const {setUserToken} = slice.actions
+export const { setUserToken } = slice.actions;
 
-export default slice.reducer
+export default slice.reducer;
