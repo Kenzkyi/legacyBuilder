@@ -5,12 +5,14 @@ import { FcGoogle } from "react-icons/fc";
 import { IoMdArrowBack } from "react-icons/io";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleShowPassword = () => setShowPassword((prev) => !prev);
   const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState({
     fullName: "",
     email: "",
@@ -58,7 +60,7 @@ const SignUp = () => {
     }
 
     if (name === "confirmPassword") {
-      if (value !== input.password) {
+      if (value !== inputValue.password) {
         error = "Passwords do not match";
       }
     }
@@ -67,21 +69,21 @@ const SignUp = () => {
   };
 
   const handleChange = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setInputValue((prev) => ({ ...prev, [name]: value }));
     validateField(name, value);
   };
+  console.log(inputValue);
 
   const handleShowConfirmPassword = () =>
     setShowConfirmPassword((prev) => !prev);
 
-  const validateEmail = (input) => {
+  const validateEmail = (inputValue) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(input);
+    return emailRegex.test(inputValue);
   };
   useEffect(() => {
-    const { fullName, email, username, password, confirmPassword } = inputValue;
+    const { fullName, email, password, confirmPassword } = inputValue;
     if (
       fullName.trim() !== "" &&
       validateEmail(email) &&
@@ -95,6 +97,17 @@ const SignUp = () => {
       setDisabled(true);
     }
   }, [inputValue]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!disabled) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        toast.success("Sign up successful!");
+      }, 3000);
+    }
+  };
   return (
     <div className="signupMain">
       <ToastContainer />
@@ -114,7 +127,7 @@ const SignUp = () => {
           <h1>Sign Up</h1>
           <p>Beat jamb with good grades at one sitting </p>
         </div>
-        <form className="form" onSubmit={handleChange}>
+        <form className="form" onSubmit={handleSubmit}>
           <div className="signinput">
             <label className="signuplabel">Full Name</label>
             <input
@@ -193,7 +206,7 @@ const SignUp = () => {
             disabled={disabled}
             style={{ backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2" }}
           >
-            Join For Free
+            {loading ? "loading..." : "Join For Free"}
           </button>
         </form>
         <span className="or-container">

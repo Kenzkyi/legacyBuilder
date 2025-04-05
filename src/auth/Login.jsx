@@ -1,16 +1,84 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/authCss/auth.css";
 import { FaFacebook } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { IoMdArrowBack } from "react-icons/io";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({
+    email: "",
+    password: "",
+  });
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
+  });
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  const validateField = (name, value) => {
+    let error = "";
+    if (name === "email") {
+      if (!value.trim()) {
+        error = "Email is required";
+      } else if (value.length < 6 || value.length > 60) {
+        error = "Email should be between 6 and 60 characters";
+      } else if (!validateEmail(value)) {
+        error = "Please enter a valid email address";
+      }
+    }
+
+    if (name === "password") {
+      if (!value.trim()) {
+        error = "Password is required";
+      } else if (value.length < 6 || value.length > 60) {
+        error = "Password should be between 6 and 60 characters";
+      }
+    }
+    setErrorMessage((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputValue((prev) => ({ ...prev, [name]: value }));
+    validateField(name, value);
+  };
+  console.log(inputValue);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!disabled) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        toast.success("Login up successful!");
+      }, 3000);
+    }
+  };
+  useEffect(() => {
+    const { email, password } = inputValue;
+    if (
+      validateEmail(email) &&
+      password.trim() !== "" &&
+      password.length >= 6
+    ) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [inputValue]);
+
   return (
     <div className="signupMain">
+      <ToastContainer />
       <div className="circle">
         <div className="innercircle"></div>
       </div>
@@ -26,24 +94,38 @@ const Login = () => {
         <div className="header">
           <h1>MEMBER LOGIN</h1>
         </div>
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <div className="signinput">
             <label className="signuplabel">Email</label>
             <input
               type="email"
+              name="email"
+              onChange={handleChange}
+              value={inputValue.email}
+              onBlur={(e) => validateField(e.target.name, e.target.value)}
               placeholder="Enter Your Email"
               required
               className="signinputmain"
             />
+            {errorMessage.email && (
+              <p className="error">{errorMessage.email}</p>
+            )}
           </div>
           <div className="signinput">
             <label className="signuplabel">Password</label>
             <input
               type={show ? "text" : "password"}
+              name="password"
+              onChange={handleChange}
+              value={inputValue.password}
+              onBlur={(e) => validateField(e.target.name, e.target.value)}
               placeholder="Enter Your Password"
               required
               className="signinputmain"
             />
+            {errorMessage.password && (
+              <p className="error">{errorMessage.password}</p>
+            )}
             <div className="eyeIcon" onClick={handleShow}>
               {show ? <FaRegEye /> : <FaRegEyeSlash />}
             </div>
@@ -54,8 +136,13 @@ const Login = () => {
             </div>
             <label className="rememberlabel">Remember Me</label>
           </div>
-          <button type="submit" className="signupbtn">
-            Sign in
+          <button
+            type="submit"
+            className="signupbtn"
+            disabled={disabled}
+            style={{ backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2" }}
+          >
+            {loading ? "loading..." : "Login"}
           </button>
         </form>
         <span className="or-container">
