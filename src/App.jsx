@@ -9,6 +9,7 @@ import ForgetPassword from "./auth/ForgetPassword";
 import ResetLink from "./auth/ResetLink";
 import ResetPassword from "./auth/welcomeback/ResetPassword";
 import Loading from "./auth/welcomeback/Loading";
+import LearnMore from "./pages/jacob/LearnMore";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -21,6 +22,7 @@ const routes = createBrowserRouter([
   { path: "/resetlink", element: <ResetLink /> },
   { path: "resetpassword", element: <ResetPassword /> },
   { path: "/loading", element: <Loading /> },
+  { path: "/learnmore", element: <LearnMore /> },
 ]);
 
 const App = () => {

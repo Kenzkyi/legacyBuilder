@@ -1,8 +1,7 @@
 import React from "react";
 import "../styles/authCss/auth.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
@@ -61,7 +60,6 @@ const ForgetPassword = () => {
 
   return (
     <div className="signupMain">
-      <ToastContainer />
       <div className="circle">
         <div className="innercircle"></div>
       </div>

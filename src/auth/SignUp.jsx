@@ -5,8 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import { IoMdArrowBack } from "react-icons/io";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -89,6 +89,7 @@ const SignUp = () => {
       validateEmail(email) &&
       password.trim() !== "" &&
       password.length >= 6 &&
+      password.length <= 60 &&
       confirmPassword.trim() !== "" &&
       password === confirmPassword
     ) {
@@ -110,7 +111,6 @@ const SignUp = () => {
   };
   return (
     <div className="signupMain">
-      <ToastContainer />
       <div className="circle">
         <div className="innercircle"></div>
       </div>
@@ -183,22 +183,24 @@ const SignUp = () => {
           </div>
           <div className="signinput">
             <label className="signuplabel">Confirm Password</label>
-            <input
-              name="confirmPassword"
-              onChange={handleChange}
-              value={inputValue.confirmPassword}
-              type={showConfirmPassword ? "text" : "password"}
-              onBlur={(e) => validateField(e.target.name, e.target.value)}
-              placeholder="Confirm Password"
-              required
-              className="signinputmain2"
-            />
+            <div className="inputwrapper">
+              <input
+                name="confirmPassword"
+                onChange={handleChange}
+                value={inputValue.confirmPassword}
+                type={showConfirmPassword ? "text" : "password"}
+                onBlur={(e) => validateField(e.target.name, e.target.value)}
+                placeholder="Confirm Password"
+                required
+                className="signinputmain2"
+              />
+              <div className="eyeIcon1" onClick={handleShowConfirmPassword}>
+                {showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+              </div>
+            </div>
             {errorMessage.confirmPassword && (
               <p className="error">{errorMessage.confirmPassword}</p>
             )}
-            <div className="eyeIcon1" onClick={handleShowConfirmPassword}>
-              {showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-            </div>
           </div>
           <button
             type="submit"

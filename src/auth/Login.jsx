@@ -5,8 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { IoMdArrowBack } from "react-icons/io";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -70,7 +69,8 @@ const Login = () => {
     if (
       validateEmail(email) &&
       password.trim() !== "" &&
-      password.length >= 6
+      password.length >= 6 &&
+      password.length <= 60
     ) {
       setDisabled(false);
     } else {
@@ -80,7 +80,6 @@ const Login = () => {
 
   return (
     <div className="signupMain">
-      <ToastContainer />
       <div className="circle">
         <div className="innercircle"></div>
       </div>
