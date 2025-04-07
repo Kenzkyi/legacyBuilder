@@ -1,4 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap');
 .home{
     height: max-content;
     width: 100%;
+}
+.home-firstLayer{
+    height: 638.33px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .home-firstLayerSmallCircle{
+        height: 43px;
+        width: 43px;
+        position: absolute;
+        top: 513px;
+        left: 70px;
+        border-radius: 100%;
+        background-color: #F2AE30;
+    }
+
+    .home-firstLayerCircle{
+        position: absolute;
+        left: -215px;
+        height: 270px;
+        width: 270px;
+        border-radius: 100%;
+        background-color: #804BF21A;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 60px;
+
+        aside{
+            height: 200px;
+            width: 200px;
+            border-radius: 100%;
+            background-color: white;
+        }
+    }
+
+    .home-firstLayerHolder{
+        width: 88.75%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        main{
+            width: 57.5%;
+            height: 334px;
+            display: flex;
+            flex-direction: column;
+            gap: 43px;
+            
+            section{
+                width: 100%;
+                height: 237px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                h5{
+                    font-size: 45px;
+                    line-height: 64px;
+                    font-weight: 800;
+                    font-family: "Montserrat", sans-serif;
+                }
+
+                p{
+                    font-weight: 400;
+                    font-family: "Sora", sans-serif;
+                    font-size: 19px;
+                    width: 74%;
+                    line-height: 31px;
+                }
+            }
+
+            button{
+                height: 54px;
+                width: 151px;
+                background-color: #804BF2;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                outline: none;
+                border: none;
+                font-size: 14px;
+                font-weight: 700;
+                font-family: "Montserrat", sans-serif;
+            }
+        }
+
+        nav{
+            width: 41.2%;
+            height: 638.33px;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+
+            article{
+                width: 448px;
+                height: 511px;
+                background-color: #804BF2;
+                position: absolute;
+                bottom: 0;
+                right: 10px;
+                z-index: 1;
+
+            }
+
+            img{
+                width: 463.43px;
+                height: 638.33px;
+                z-index: 2;
+            }
+
+            aside{
+                position: absolute;
+                height: 177.84px;
+                width: 177.84px;
+                border-radius: 100%;
+                left: -45px;
+                top: 375px;
+                z-index: 3;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                div{
+                    height: 140px;
+                    width: 140px;
+                    background-color: #F2AE30;
+                    border-radius: 100%;
+                }
+            }
+        }
+    }
 }

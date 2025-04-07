@@ -2,6 +2,7 @@ import React from 'react'
 import '../../styles/header.css'
 import menuBar from './assets/navBar.json'
 import { Link, useLocation } from 'react-router-dom'
+import HeaderLogo from '../../assets/public/legacy_builder_logo.png'
 
 const Header = () => {
   const location = useLocation()
@@ -10,7 +11,7 @@ const Header = () => {
     <div className='header'>
       <div className="header-holder">
         <div className="header-holderImg">
-          <img src="" alt="Legacy Builders" />
+          <img src={HeaderLogo} alt="Legacy Builders" />
         </div>
         <div className="header-holderText">
           <ul>
