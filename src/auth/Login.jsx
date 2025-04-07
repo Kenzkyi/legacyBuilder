@@ -7,8 +7,10 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
   const [disabled, setDisabled] = useState(false);
@@ -113,22 +115,24 @@ const Login = () => {
           </div>
           <div className="signinput">
             <label className="signuplabel">Password</label>
-            <input
-              type={show ? "text" : "password"}
-              name="password"
-              onChange={handleChange}
-              value={inputValue.password}
-              onBlur={(e) => validateField(e.target.name, e.target.value)}
-              placeholder="Enter Your Password"
-              required
-              className="signinputmain"
-            />
+            <div className="inputwrapper">
+              <input
+                name="password"
+                onChange={handleChange}
+                value={inputValue.password}
+                type={show ? "text" : "password"}
+                onBlur={(e) => validateField(e.target.name, e.target.value)}
+                placeholder="Enter Your Password"
+                required
+                className="signinputmain1"
+              />
+              <div className="eyeIcon2" onClick={handleShow}>
+                {show ? <FaRegEye /> : <FaRegEyeSlash />}
+              </div>
+            </div>
             {errorMessage.password && (
               <p className="error">{errorMessage.password}</p>
             )}
-            <div className="eyeIcon" onClick={handleShow}>
-              {show ? <FaRegEye /> : <FaRegEyeSlash />}
-            </div>
           </div>
           <div className="rememberme">
             <div className="checkbox">
@@ -155,7 +159,12 @@ const Login = () => {
           <FcGoogle className="googleIcon" />
         </article>
         <article className="forgotpassworddiv">
-          <p className="forgotpassword">Forgot Password?</p>
+          <p
+            className="forgotpassword"
+            onClick={() => navigate("/forgetpassword")}
+          >
+            Forgot Password?
+          </p>
           <p className="signuptext">
             Don't have an account?
             <span className="signupLink">click here to create one now</span>

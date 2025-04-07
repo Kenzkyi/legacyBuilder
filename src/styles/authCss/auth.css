@@ -139,14 +139,6 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  .eyeIcon {
-    position: absolute;
-    right: 20px;
-    bottom: 11px;
-    font-size: 20px;
-    color: #000;
-    cursor: pointer;
-  }
 
   .signuplabel {
     font-family: "Montserrat", sans-serif;
@@ -155,7 +147,7 @@
 
   .signinputmain {
     width: 100%;
-    height: 50px;
+    height: 45px;
     border: 1px solid #000;
     background: #fff;
     padding-left: 10px;
@@ -173,7 +165,7 @@
 
   .signinputmain1 {
     width: 100%;
-    height: 50px;
+    height: 45px;
     border: 1px solid #000;
     background: #fff;
     padding-left: 10px;
@@ -185,7 +177,7 @@
     position: absolute;
     right: 20px;
     top: 50%;
-    transform: translateY(-5%);
+    transform: translateY(-50%);
     font-size: 20px;
     color: #000;
     cursor: pointer;
@@ -193,7 +185,7 @@
   }
   .signinputmain2 {
     width: 100%;
-    height: 50px;
+    height: 45px;
     border: 1px solid #000;
     background: #fff;
     padding-left: 10px;
