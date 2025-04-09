@@ -10,18 +10,13 @@
         "id" : 2
     },
     {
-        "name": "MOCK EXAM",
-        "link": "/mock-exam",
+        "name": "LEARN MORE",
+        "link": "/learn-more",
         "id" : 3
     },
     {
-        "name": "PAST QUESTIONS",
-        "link": "/past-questions",
+        "name": "PRICING",
+        "link": "/pricing",
         "id" : 4
-    },
-    {
-        "name": "LEADERBOARD",
-        "link": "/leaderboard",
-        "id" : 5
     }
 ]

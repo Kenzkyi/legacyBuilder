@@ -10,10 +10,18 @@ import ResetLink from "./auth/ResetLink";
 import ResetPassword from "./auth/welcomeback/ResetPassword";
 import Loading from "./auth/welcomeback/Loading";
 import LearnMore from "./pages/jacob/LearnMore";
+import MainHolder from "./routes/MainHolder";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
-  { path: "", element: <Home /> },
+  {
+    path: "",
+    element: <MainHolder />,
+    children: [
+      { path: "", element: <Home /> },
+      { path: "learn-more", element: <LearnMore /> },
+    ],
+  },
   { path: "/signup", element: <SignUp /> },
   { path: "/login", element: <Login /> },
   { path: "/welcome", element: <Welcome /> },
@@ -22,7 +30,6 @@ const routes = createBrowserRouter([
   { path: "/resetlink", element: <ResetLink /> },
   { path: "resetpassword", element: <ResetPassword /> },
   { path: "/loading", element: <Loading /> },
-  { path: "/learnmore", element: <LearnMore /> },
 ]);
 
 const App = () => {

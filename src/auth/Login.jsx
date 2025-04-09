@@ -143,7 +143,10 @@ const Login = () => {
             type="submit"
             className="signupbtn"
             disabled={disabled}
-            style={{ backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2" }}
+            style={{
+              backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
+              cursor: disabled ? "not-allowed" : "pointer",
+            }}
           >
             {loading ? "loading..." : "Login"}
           </button>
