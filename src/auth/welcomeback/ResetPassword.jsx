@@ -7,6 +7,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handleShowPassword = () => setShowPassword((prev) => !prev);
 
   const handleShowConfirmPassword = () =>

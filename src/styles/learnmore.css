@@ -531,7 +531,7 @@
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  left: 215px;
+  left: 16%;
 
   .innerzero1container {
     width: 40px;
@@ -558,7 +558,7 @@
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  left: 540px;
+  left: 40%;
 
   .innerzero2container {
     width: 40px;
@@ -584,7 +584,7 @@
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  left: 860px;
+  left: 64%;
 
   .innerzero3container {
     width: 40px;
@@ -611,7 +611,7 @@
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  left: 1190px;
+  left: 88%;
 
   .innerzero4container {
     width: 40px;
