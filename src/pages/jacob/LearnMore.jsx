@@ -33,6 +33,9 @@ const LearnMore = () => {
   ];
   return (
     <main className="learnmoremain">
+      <div className="learnmorecircle">
+        <div className="innercircle"></div>
+      </div>
       <div className="curvedpurpletop">
         <svg
           xmlns="http://www.w3.org/2000/svg"

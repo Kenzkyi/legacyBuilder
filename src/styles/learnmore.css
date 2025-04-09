@@ -17,6 +17,29 @@
   fill: #804bf2;
   z-index: 0;
 }
+
+.learnmorecircle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: #f2ae304d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  left: -200px;
+  top: 70px;
+  z-index: 1;
+
+  .innercircle {
+    width: 175px;
+    height: 175px;
+    background-color: #804bf2;
+    flex-shrink: 0;
+    display: flex;
+    border-radius: 50%;
+  }
+}
 .learnmorecontainer {
   width: 100%;
   min-height: 100vh;
@@ -55,7 +78,7 @@
   }
 }
 .learnmoreheader {
-  width: 100%;
+  width: 90%;
   height: 30vh;
   display: flex;
   flex-direction: column;
@@ -63,11 +86,12 @@
   justify-content: center;
 }
 .learnmoreimage {
-  width: 1136.418px;
+  width: 80%;
   height: 631.699px;
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 
   .learnimg1 {
     width: 360.418px;
@@ -484,157 +508,157 @@
     font-weight: 700;
     line-height: 29.657px;
   }
-  .acccreactionprocess {
-    width: 90%;
-    height: 25vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .line1 {
-    flex: 1;
-    height: 2px;
-    background-color: black;
-    margin: 0 0px;
-  }
-  .circlezero1container {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
+}
+.acccreactionprocess {
+  width: 90%;
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.line1 {
+  flex: 1;
+  height: 2px;
+  background-color: black;
+  margin: 0 0px;
+}
+.circlezero1container {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 215px;
+
+  .innerzero1container {
+    width: 40px;
+    height: 40px;
+    background-color: #f2ae30;
     border-radius: 50%;
-    position: absolute;
-    left: 215px;
-
-    .innerzero1container {
-      width: 40px;
-      height: 40px;
-      background-color: #f2ae30;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-    }
-
-    & h1 {
-      font-size: 25px;
-    }
-  }
-
-  .circlezero2container {
-    width: 50px;
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    position: absolute;
+  }
+
+  & h1 {
+    font-size: 25px;
+  }
+}
+
+.circlezero2container {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 540px;
+
+  .innerzero2container {
+    width: 40px;
+    height: 40px;
+    background-color: #f2ae30;
     border-radius: 50%;
-    position: absolute;
-    left: 540px;
-
-    .innerzero2container {
-      width: 40px;
-      height: 40px;
-      background-color: #f2ae30;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-    }
-
-    & h1 {
-      font-size: 25px;
-    }
-  }
-  .circlezero3container {
-    width: 50px;
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    position: absolute;
+  }
+
+  & h1 {
+    font-size: 25px;
+  }
+}
+.circlezero3container {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 860px;
+
+  .innerzero3container {
+    width: 40px;
+    height: 40px;
+    background-color: #f2ae30;
     border-radius: 50%;
-    position: absolute;
-    left: 860px;
-
-    .innerzero3container {
-      width: 40px;
-      height: 40px;
-      background-color: #f2ae30;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-    }
-
-    & h1 {
-      font-size: 25px;
-    }
-  }
-
-  .circlezero4container {
-    width: 50px;
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    position: absolute;
+  }
+
+  & h1 {
+    font-size: 25px;
+  }
+}
+
+.circlezero4container {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 1190px;
+
+  .innerzero4container {
+    width: 40px;
+    height: 40px;
+    background-color: #f2ae30;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    left: 1190px;
+  }
 
-    .innerzero4container {
-      width: 40px;
-      height: 40px;
-      background-color: #f2ae30;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-    }
-
-    & h1 {
-      font-size: 25px;
-    }
+  & h1 {
+    font-size: 25px;
   }
-  .accdiv {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  .dashdiv {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .examdiv {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .suitdiv {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+}
+.accdiv {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.dashdiv {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.examdiv {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.suitdiv {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .mainprocess {
   width: 90%;
