@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../pages/kenz/Header'
-import Footer from '../pages/kenz/Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { Outlet } from 'react-router-dom'
 
 const MainHolder = () => {

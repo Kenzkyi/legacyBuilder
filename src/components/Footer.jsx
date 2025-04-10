@@ -1,9 +1,10 @@
 import React from 'react'
-import '../../styles/footer.css'
+import '../styles/footer.css'
 import { MdEmail } from 'react-icons/md'
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { AiFillTwitterCircle } from 'react-icons/ai'
-import FooterLogo from '../../assets/public/legacy_builder_logo.png'
+import FooterLogo from '../assets/public/legacy_builder_logo.png'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -15,11 +16,11 @@ const Footer = () => {
           </div>
           <div className="footer-aboutUs">
             <h3>About Us</h3>
-            <p>
-              Mock Exam
-              Past Question
-              Get Started
-            </p>
+            <ul>
+            <Link style={{textDecoration:'none',color:'black',cursor:'pointer'}} to={'/'}>Mock Exam</Link>
+            <Link style={{textDecoration:'none',color:'black',cursor:'pointer'}} to={'/'}>Past Question</Link>
+            <Link style={{textDecoration:'none',color:'black',cursor:'pointer'}} to={'/login'}>Get Started</Link>
+            </ul>
           </div>
           <div className="footer-contactUs">
             <h3>Contact us</h3>
