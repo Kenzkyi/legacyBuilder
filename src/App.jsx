@@ -11,7 +11,12 @@ import ResetPassword from "./auth/welcomeback/ResetPassword";
 import Loading from "./auth/welcomeback/Loading";
 import LearnMore from "./pages/jacob/LearnMore";
 import MainHolder from "./routes/MainHolder";
-import AboutUs from "./pages/jacob/AboutUs";
+import Dashboard from "./pages/kenz/Dashboard";
+import Overview from "./pages/kenz/Overview";
+import Mockexam from "./pages/kenz/Mockexam";
+import PastQuestion from "./pages/kenz/PastQuestion";
+import Profile from "./pages/kenz/Profile";
+import Subscription from "./pages/kenz/Subscription";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -20,8 +25,7 @@ const routes = createBrowserRouter([
     element: <MainHolder />,
     children: [
       { path: "", element: <Home /> },
-      { path: "learn-more", element: <LearnMore /> },
-      { path: "about-us", element: <AboutUs /> },
+      { path: "/learn-more", element: <LearnMore /> },
     ],
   },
   { path: "/signup", element: <SignUp /> },
@@ -32,6 +36,17 @@ const routes = createBrowserRouter([
   { path: "/resetlink", element: <ResetLink /> },
   { path: "resetpassword", element: <ResetPassword /> },
   { path: "/loading", element: <Loading /> },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      { path: "overview", element: <Overview />, index: true },
+      { path: "mock-exam", element: <Mockexam /> },
+      { path: "past-questions", element: <PastQuestion /> },
+      { path: "profile", element: <Profile /> },
+      { path: "subscription", element: <Subscription /> },
+    ],
+  },
 ]);
 
 const App = () => {
