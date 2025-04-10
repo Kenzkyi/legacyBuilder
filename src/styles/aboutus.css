@@ -12,12 +12,12 @@
   align-items: center;
   width: 100%;
   height: auto;
+  padding-bottom: 40px;
 }
 .heroImgContainer {
   object-fit: contain;
   width: 100%;
   height: 45vh;
-  background-color: aqua;
 
   .heroImg {
     width: 100%;
@@ -74,6 +74,8 @@
   min-height: 100vh;
   display: flex;
   gap: 5px;
+  position: relative;
+  overflow: hidden;
 
   .aboutcard {
     width: 33.099%;
@@ -127,8 +129,221 @@
     justify-content: center;
   }
 }
+.eclipse {
+  width: 1488px;
+  height: 144px;
+  flex-shrink: 0;
+  bottom: -30px;
 
+  position: absolute;
+  clip-path: ellipse(60% 90% at 45% 90%);
+  background-color: #fff;
+}
 .aboutthirdsection {
-  width: 100%;
+  width: 90%;
   height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.leftthirdsection {
+  width: 40%;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px;
+
+  .leftcard {
+    width: 48%;
+    height: 50%;
+    object-fit: contain;
+
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.rightthirdsection {
+  width: 60%;
+  height: 100%;
+  padding: 60px 20px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  & h1 {
+    color: #1e1e1e;
+    font-family: Sora;
+    font-size: 43.684px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 67.953px;
+
+    .emsucces {
+      color: var(--purple-primary-color, #804bf2);
+      font-family: Sora;
+      font-size: 43.684px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 67.953px;
+    }
+  }
+  .aboutstudytext {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    & p {
+      color: #1e1e1e;
+      font-family: Sora;
+      font-size: 19.415px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 36.403px;
+    }
+
+    & span {
+      color: #1e1e1e;
+      font-family: Sora;
+      font-size: 19.415px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 36.403px;
+    }
+  }
+}
+
+.bottomheader {
+  width: 68%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  & h1 {
+    color: #804bf2;
+    text-align: center;
+    font-family: Sora;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 55px;
+
+    & em {
+      color: #1e1e1e;
+      font-family: Sora;
+      font-size: 56px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 55px;
+    }
+  }
+
+  & span {
+    color: #1e1e1e;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 35px; /* 175% */
+  }
+}
+
+.teamcarousel {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+
+  .teamdiv {
+    width: 100%;
+    height: 70vh;
+    /* background-color: #f2ae30; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    & img {
+      width: 100%;
+      height: 60vh;
+    }
+    .role {
+      width: 100%;
+      height: 28vh;
+      position: absolute;
+      bottom: 0;
+      border-start-start-radius: 19.771px;
+      border-start-end-radius: 19.771px;
+      background: #d9d9d9;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .abouticons {
+      width: 100%;
+      height: 50%;
+
+      display: flex;
+      justify-content: center;
+      padding-top: 20px;
+      gap: 10px;
+    }
+
+    .aboutmaiinicon {
+      font-size: 30px;
+      border-radius: 50%;
+      border: 2px solid black;
+      padding: 3px;
+    }
+
+    .aboutname {
+      width: 80%;
+      height: 20vh;
+      border-radius: 19.771px;
+      background: #804bf2;
+      position: absolute;
+      bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      left: 30px;
+      z-index: 1;
+
+      & h1 {
+        color: #fff;
+        font-family: Montserrat;
+        font-size: 21.748px;
+        font-style: normal;
+        font-weight: 700;
+        text-align: center;
+        line-height: 29.657px; /* 136.364% */
+      }
+
+      & span {
+        color: #fff;
+        font-family: Montserrat;
+        font-size: 17.794px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 29.657px; /* 166.667% */
+      }
+    }
+  }
 }
