@@ -11,6 +11,7 @@ import ResetPassword from "./auth/welcomeback/ResetPassword";
 import Loading from "./auth/welcomeback/Loading";
 import LearnMore from "./pages/jacob/LearnMore";
 import MainHolder from "./routes/MainHolder";
+import AboutUs from "./pages/jacob/AboutUs";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -20,6 +21,7 @@ const routes = createBrowserRouter([
     children: [
       { path: "", element: <Home /> },
       { path: "learn-more", element: <LearnMore /> },
+      { path: "about-us", element: <AboutUs /> },
     ],
   },
   { path: "/signup", element: <SignUp /> },

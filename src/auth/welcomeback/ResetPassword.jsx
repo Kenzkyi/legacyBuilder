@@ -1,17 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/authCss/resetpassword.css";
 import lock from "../../assets/uim_padlock.svg";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const handleShowPassword = () => setShowPassword((prev) => !prev);
-
   const handleShowConfirmPassword = () =>
     setShowConfirmPassword((prev) => !prev);
+
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({
+    password: "",
+    confirmPassword: "",
+  });
+  const [inputValue, setInputValue] = useState({
+    password: "",
+    confirmPassword: "",
+  });
+
+  const validateField = (name, value) => {
+    let error = "";
+    if (name === "password") {
+      if (!value.trim()) {
+        error = "Password is required";
+      } else if (value.length < 6 || value.length > 60) {
+        error = "Password should be between 6 and 60 characters";
+      }
+    }
+
+    if (name === "confirmPassword") {
+      if (!value.trim()) {
+        error = "Confirm Password is required";
+      } else if (value !== inputValue.password) {
+        error = "Passwords do not match";
+      }
+    }
+    setErrorMessage((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputValue((prev) => ({ ...prev, [name]: value }));
+    validateField(name, value);
+  };
+  console.log(inputValue);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!disabled) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        toast.success("Password reset successful!");
+      }, 3000);
+    }
+  };
+
+  useEffect(() => {
+    const { password, confirmPassword } = inputValue;
+    if (
+      password.trim() !== "" &&
+      password.length >= 6 &&
+      password.length <= 60 &&
+      confirmPassword.trim() !== "" &&
+      password === confirmPassword
+    ) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [inputValue]);
+
   return (
     <main className="ResetPasswordmain">
       <div className="ResetPasswordcircle">
@@ -27,42 +93,70 @@ const ResetPassword = () => {
           <img src={lock} alt="" className="ResetPasswordplogo" />
         </div>
         <div className="ResetPasswordheader">
-          <h1>Create a new account</h1>
+          <h1>Create a new password</h1>
           <p>
-            Your new account must be different from previously used password
+            Your new password must be different from previously used password
           </p>
         </div>
-        <div className="resetinputdiv">
+        <form className="resetinputdiv" onSubmit={handleSubmit}>
           <div className="resetinput">
             <label className="resetlabel">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              onClick={handleShowPassword}
-              placeholder="Enter Your Password"
-              required
-              className="resetinputmain"
-            />
-            <div className="reseteyeIcon" onClick={handleShowPassword}>
-              {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            <div className="inputwrapper">
+              <input
+                name="password"
+                onChange={handleChange}
+                value={inputValue.password}
+                type={showPassword ? "text" : "password"}
+                onBlur={(e) => validateField(e.target.name, e.target.value)}
+                placeholder="Enter Your Password"
+                required
+                className="resetinputmain"
+              />
+              <div className="reseteyeIcon" onClick={handleShowPassword}>
+                {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+              </div>
             </div>
+            {errorMessage.password && (
+              <p className="error">{errorMessage.password}</p>
+            )}
           </div>
           <div className="resetinput">
             <label className="resetlabel">Confirm Password</label>
-            <input
-              type={showConfirmPassword ? "text" : "password"}
-              onClick={handleShowConfirmPassword}
-              placeholder="Confirm Password"
-              required
-              className="resetinputmain"
-            />
-            <div className="reseteyeIcon1" onClick={handleShowConfirmPassword}>
-              {showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            <div className="inputwrapper">
+              <input
+                name="confirmPassword"
+                onChange={handleChange}
+                value={inputValue.confirmPassword}
+                type={showConfirmPassword ? "text" : "password"}
+                onBlur={(e) => validateField(e.target.name, e.target.value)}
+                placeholder="Confirm Password"
+                required
+                className="resetinputmain"
+              />
+              <div
+                className="reseteyeIcon1"
+                onClick={handleShowConfirmPassword}
+              >
+                {showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+              </div>
             </div>
+            {errorMessage.confirmPassword && (
+              <p className="error">{errorMessage.confirmPassword}</p>
+            )}
           </div>
-          <button type="submit" className="resetbtn">
-            Next
+          <button
+            type="submit"
+            className="resetbtn"
+            disabled={disabled}
+            style={{
+              backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
+              cursor: disabled ? "not-allowed" : "pointer",
+            }}
+            onClick={() => navigate("/login")}
+          >
+            {loading ? "Loading..." : "Reset Password"}
           </button>
-        </div>
+        </form>
       </section>
     </main>
   );
