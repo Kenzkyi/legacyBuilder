@@ -3,14 +3,19 @@
     width: 100%;
     display: flex;
     background-color: white;
+    justify-content: flex-end;
 }
 .dashboard-left{
     width: 248px;
-    height: fit-content;
+    height: 100vh;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
 
     .dashboard-leftImg{
         height: 150px;
@@ -25,7 +30,7 @@
     }
 
     .dashboard-navBar{
-        width: 239px;
+        width: 95%;
         height: 45px;
         padding-inline: 20px;
         display: flex;
@@ -164,7 +169,7 @@
 
     .dashboard-rightHolder{
         width: 1145px;
-        height: 84vh;
+        height: fit-content;
         background-color: #804BF233;
     }
 }
