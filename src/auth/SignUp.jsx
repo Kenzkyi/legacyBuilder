@@ -105,15 +105,16 @@ const SignUp = () => {
     if (!disabled) {
       try {
         const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/student`,data)
-        console.log(res)
+        if(res?.status === 201){
+          toast.success('Signup Successful, Please check your email to verify')
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 3000);
+        }
       } catch (error) {
         console.log(error)
       }
-      // setLoading(true);
-      // setTimeout(() => {
-      //   setLoading(false);
-      //   toast.success("Sign up successful!");
-      // }, 3000);
     }
   };
 

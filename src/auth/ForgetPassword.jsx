@@ -3,6 +3,7 @@ import "../styles/authCss/auth.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
@@ -36,17 +37,26 @@ const ForgetPassword = () => {
     setInputValue((prev) => ({ ...prev, [name]: value }));
     validateField(name, value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e,data) => {
     e.preventDefault();
     if (!disabled) {
       setLoading(true);
+      try {
+        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/forgot_password/student`,data)
+      console.log(res)
+      if(res?.status === 200){
+        toast.info("Password reset link sent to your email!");
+        
+      }
       setTimeout(() => {
         setLoading(false);
-        toast.info("Password reset link sent to your email!");
       }, 3000);
-      setTimeout(() => {
-        navigate("/resetlink");
-      }, 10000);
+      } catch (error) {
+        console.log(error)
+      }
+      // setTimeout(() => {
+      //   navigate("/resetlink");
+      // }, 10000);
     }
   };
   React.useEffect(() => {
@@ -75,7 +85,7 @@ const ForgetPassword = () => {
         <div className="header">
           <h1>FORGET PASSWORD</h1>
         </div>
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={(e)=>handleSubmit(e,inputValue )}>
           <div className="signinput">
             <label className="signuplabel">Email</label>
             <input
