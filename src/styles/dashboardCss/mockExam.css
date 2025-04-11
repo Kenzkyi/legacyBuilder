@@ -1,0 +1,93 @@
+.mockExam{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    position: relative;
+
+    h2{
+        font-weight: 800;
+        font-family: "Sora", sans-serif;
+        font-size: 36px;
+        line-height: 45px;
+    }
+
+    h5{
+        font-size: 21.6px;
+        line-height: 42px;
+        font-weight: 400;
+        font-family: "Montserrat", sans-serif;
+    }
+}
+
+.mockExam-holder{
+    margin-top: 30px;
+    min-height: 873px;
+    width: 990px;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+    .mockExam-holderSubject{
+        min-height: 70.5px;
+        width: 100%;
+        border-radius: 12px;
+        border: 1.8px solid #804BF2;
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: column;
+        
+        
+        article{
+            cursor: pointer;
+            height: 70.5px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding-inline: 20px;
+            justify-content: space-between;
+        }
+        
+        section{
+            padding-inline: 10px;
+            border-top: 1.8px solid #804BF2;
+            border-radius: 12px;
+            height: 70.3px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            button{
+                height: 37px;
+                width: 133px;
+                background-color: #804BF2;
+                border-radius: 133px;
+                font-size: 13.3px;
+                color: white;
+                line-height: 31px;
+                font-weight: 700;
+                font-family: "Montserrat", sans-serif;
+                cursor: pointer;
+                border: none;
+                outline: none;
+            }
+        }
+
+        p{
+            font-size: 24px;
+            line-height: 42px;
+            font-weight: 600;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        h6{
+            font-size: 36px;
+            color: #804BF2;
+            line-height: 42px;
+            font-weight: 800;
+            font-family: "Montserrat", sans-serif;
+        }
+    }
+}
