@@ -66,7 +66,7 @@ const Login = () => {
           toast.success("Login successful!");
           setLoading(false);
           setTimeout(() => {
-            navigate('/dashboard/overview')
+             navigate('/dashboard/overview')
           }, 3000);
         }
       } catch (error) {
@@ -160,7 +160,6 @@ const Login = () => {
               backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
               cursor: disabled ? "not-allowed" : "pointer",
             }}
-            onClick={() => navigate("/dashboard/overview")}
           >
             {loading ? "loading..." : "Login"}
           </button>
