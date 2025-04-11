@@ -140,9 +140,9 @@ const AboutUs = () => {
             spaceBetween={10}
             slidesPerView={4}
             autoplay={{
-              delay: 3000,
               disableOnInteraction: false,
             }}
+            speed={8000}
             loop={true}
           >
             <SwiperSlide>

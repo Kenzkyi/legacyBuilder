@@ -130,7 +130,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 .signinput {
@@ -266,6 +266,31 @@
   font-family: "Sora", sans-serif;
   cursor: pointer;
 }
+.alreadyhaveaccount {
+  height: 10%;
+  width: 80%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & h1 {
+    color: #1e1e1e;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+
+    & em {
+      color: var(--purple-primary-color, #804bf2);
+      font-family: Montserrat;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+}
 .forgetbtn {
   width: 60%;
   padding: 15px;
@@ -281,20 +306,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 70%;
   gap: 10px;
 }
 
 .or {
-  display: flex;
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  line-height: 30px;
+  color: #1e1e1e;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32.555px; /* 203.471% */
 }
 .line {
   flex: 1;
   height: 1px;
-  background-color: black;
+  background-color: #804bf2;
   margin: 0 0px;
 }
 
@@ -327,24 +355,30 @@
   cursor: pointer;
 
   .forgotpassword {
-    display: flex;
-    justify-content: flex-start;
-    font-family: "Montserrat", sans-serif;
+    color: var(--purple-primary-color, #804bf2);
+    font-family: Montserrat;
     font-size: 16px;
-    color: black;
-    color: #88ddff;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32.555px;
   }
 
   .signuptext {
-    display: flex;
-    gap: 10px;
-    font-family: "Montserrat", sans-serif;
+    color: #1e1e1e;
+    text-align: center;
+    font-family: Montserrat;
     font-size: 16px;
-    color: black;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32.555px;
   }
 
   .signupLink {
-    cursor: pointer;
-    color: #88ddff;
+    color: var(--purple-primary-color, #804bf2);
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32.555px;
   }
 }
