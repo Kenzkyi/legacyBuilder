@@ -1,0 +1,175 @@
+.dashboard{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    justify-content: flex-end;
+}
+.dashboard-left{
+    width: 248px;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    .dashboard-leftImg{
+        height: 150px;
+        width: 197px;
+        margin-bottom: 20px;
+
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .dashboard-navBar{
+        width: 95%;
+        height: 45px;
+        padding-inline: 20px;
+        display: flex;
+        gap: 6px;
+        background-color: #804BF233;
+        align-items: center;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 21px;
+        cursor: pointer;
+        margin-bottom: 10px;
+
+        nav{
+            height: 35px;
+            width: 35px;
+
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .dashboard-subscription{
+        width: 172.2px;
+        height: 145.4px;
+        border-radius: 15.3px;
+        margin-top: 20px;
+        background-color: #804BF233;
+        position: relative;
+        padding: 28px;
+        padding-top: 27px;
+        display: flex;
+        margin-bottom: 20px;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .dashboard-markIcon{
+            position: absolute;
+            left: 37%;
+            top: -25px;
+            height: 50px;
+            width: 50px;
+            border: 3px solid #804BF233;
+            background-color: white;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #804BF233;
+            font-size: 30px;
+        }
+
+        h5{
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            font-size: 11.5px;
+            text-align: center;
+        }
+
+        p{
+            font-family: "Montserrat", sans-serif;
+            font-weight: 400;
+            text-align: center;
+            font-size: 11.5px;
+            line-height: 15px;
+        }
+
+        button{
+            width: 111px;
+            height: 30.7px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 11.5px;
+            outline: none;
+            border: none;
+            background-color: #804BF299;
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
+
+.dashboard-right{
+    height: fit-content;
+    width: 83%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    .dashboard-header{
+        width: 100%;
+        height: 101px;
+        margin-top: 4px;
+        padding-inline: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3{
+            font-family: "sora", sans-serif;
+            font-weight: 600;
+            font-size: 36px;
+        }
+
+        nav{
+            height: 60px;
+            width: 60px;
+            background-color: #804BF2;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 100%;
+            }
+
+            p{
+                font-family: "Montserrat", sans-serif;
+                font-weight: 600;
+                font-size: 24px;
+            }
+        }
+    }
+
+    .dashboard-rightHolder{
+        width: 1145px;
+        height: fit-content;
+        background-color: #804BF233;
+    }
+}

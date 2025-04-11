@@ -13,10 +13,5 @@
         "name": "LEARN MORE",
         "link": "/learn-more",
         "id" : 3
-    },
-    {
-        "name": "PRICING",
-        "link": "/pricing",
-        "id" : 4
     }
 ]
