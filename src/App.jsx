@@ -13,7 +13,7 @@ import MainHolder from "./routes/MainHolder";
 import Dashboard from "./pages/kenz/Dashboard";
 import Overview from "./pages/kenz/Overview";
 import Mockexam from "./pages/kenz/Mockexam";
-import PastQuestion from "./pages/kenz/PastQuestion";
+import PastQuestion from "./pages/jacob/PastQuestion";
 import Profile from "./pages/kenz/Profile";
 import Subscription from "./pages/kenz/Subscription";
 import AboutUs from "./pages/jacob/AboutUs";
