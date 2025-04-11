@@ -7,6 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -54,14 +55,26 @@ const Login = () => {
     validateField(name, value);
   };
   console.log(inputValue);
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e,data) => {
     e.preventDefault();
+    setLoading(true);
     if (!disabled) {
-      setLoading(true);
-      setTimeout(() => {
+      try {
+        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/student/login`,data)
+        console.log(res)
+        if(res?.status === 200){
+          toast.success("Login successful!");
+          setLoading(false);
+          setTimeout(() => {
+             navigate('/dashboard/overview')
+          }, 3000);
+        }
+      } catch (error) {
         setLoading(false);
-        toast.success("Login up successful!");
-      }, 3000);
+        toast.error(error?.response?.data?.message)
+        console.log(error)
+      }
+
     }
   };
   useEffect(() => {
@@ -95,7 +108,7 @@ const Login = () => {
         <div className="header">
           <h1>MEMBER LOGIN</h1>
         </div>
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={(e)=>handleSubmit(e,inputValue)}>
           <div className="signinput">
             <label className="signuplabel">Email</label>
             <input
@@ -147,7 +160,6 @@ const Login = () => {
               backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
               cursor: disabled ? "not-allowed" : "pointer",
             }}
-            onClick={() => navigate("/dashboard/overview")}
           >
             {loading ? "loading..." : "Login"}
           </button>

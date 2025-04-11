@@ -22,6 +22,7 @@ import home18 from '../../assets/public/home-uni.png'
 import home19 from '../../assets/public/fome-ilorin.png'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -45,7 +46,9 @@ const responsive = {
   }
 };
 
+
 const Home = () => {
+  const nav = useNavigate()
   return (
     <div className='home'>
       <div className="home-firstLayer">
@@ -61,7 +64,7 @@ const Home = () => {
                   and track your progress to unlock your 
                   best JAMB score yet!</p>
             </section>
-            <button>LEARN MORE</button>
+            <button onClick={()=>nav('/signup')}>GET STARTED</button>
           </main>
           <nav>
             <aside>
@@ -239,8 +242,8 @@ const Home = () => {
             /* responsive={responsive} */
             ssr={true}
             infinite={true}
-            autoPlay={ false} 
-            autoPlaySpeed={1000}
+            autoPlay={ true} 
+            autoPlaySpeed={8000}
             keyBoardControl={true}
             customTransition="all .5"
             transitionDuration={500}
