@@ -36,7 +36,7 @@ const routes = createBrowserRouter([
   { path: "/congratulation", element: <Congratulation /> },
   { path: "/forgetpassword", element: <ForgetPassword /> },
   { path: "/resetlink", element: <ResetLink /> },
-  { path: "resetpassword", element: <ResetPassword /> },
+  { path: "resetpassword/:token", element: <ResetPassword /> },
   { path: "/loading", element: <Loading /> },
   {
     path: "/dashboard",

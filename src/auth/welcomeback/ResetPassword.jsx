@@ -4,7 +4,8 @@ import lock from "../../assets/uim_padlock.svg";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -21,13 +22,15 @@ const ResetPassword = () => {
     confirmPassword: "",
   });
   const [inputValue, setInputValue] = useState({
-    password: "",
+    newPassword: "",
     confirmPassword: "",
   });
 
+  const token = useParams()
+
   const validateField = (name, value) => {
     let error = "";
-    if (name === "password") {
+    if (name === "newPassword") {
       if (!value.trim()) {
         error = "Password is required";
       } else if (value.length < 6 || value.length > 60) {
@@ -52,25 +55,35 @@ const ResetPassword = () => {
   };
   console.log(inputValue);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e,data) => {
     e.preventDefault();
+    setLoading(true);
     if (!disabled) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        toast.success("Password reset successful!");
-      }, 3000);
+      try {
+        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/`,data,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+      // setTimeout(() => {
+      //   setLoading(false);
+      //   toast.success("Password reset successful!");
+      // }, 3000);
     }
   };
 
   useEffect(() => {
-    const { password, confirmPassword } = inputValue;
+    const { newPassword, confirmPassword } = inputValue;
     if (
-      password.trim() !== "" &&
-      password.length >= 6 &&
-      password.length <= 60 &&
+      newPassword.trim() !== "" &&
+      newPassword.length >= 6 &&
+      newPassword.length <= 60 &&
       confirmPassword.trim() !== "" &&
-      password === confirmPassword
+      newPassword === confirmPassword
     ) {
       setDisabled(false);
     } else {
@@ -98,14 +111,14 @@ const ResetPassword = () => {
             Your new password must be different from previously used password
           </p>
         </div>
-        <form className="resetinputdiv" onSubmit={handleSubmit}>
+        <form className="resetinputdiv" onSubmit={(e)=>handleSubmit(e,inputValue)}>
           <div className="resetinput">
             <label className="resetlabel">Password</label>
             <div className="inputwrapper">
               <input
-                name="password"
+                name="newPassword"
                 onChange={handleChange}
-                value={inputValue.password}
+                value={inputValue.newPassword}
                 type={showPassword ? "text" : "password"}
                 onBlur={(e) => validateField(e.target.name, e.target.value)}
                 placeholder="Enter Your Password"
