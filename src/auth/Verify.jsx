@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Verify = () => {
   const [isVerify, setIsVerify] = useState(false);
-  const token = useParams();
+  const {token} = useParams();
 
   const handleVerify = async () => {
     try {
