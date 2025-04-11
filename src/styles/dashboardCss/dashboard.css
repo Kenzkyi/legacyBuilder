@@ -164,7 +164,7 @@
 
   .dashboard-rightHolder {
     width: 1145px;
-    height: 84vh;
+    height: max-content;
     background-color: #804bf233;
   }
 }
