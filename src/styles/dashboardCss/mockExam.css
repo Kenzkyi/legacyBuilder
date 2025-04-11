@@ -24,7 +24,7 @@
 .mockExam-holder {
   margin-top: 30px;
   min-height: 873px;
-  width: 990px;
+  width: 90%;
   /* background-color: aqua; */
   display: flex;
   flex-direction: column;

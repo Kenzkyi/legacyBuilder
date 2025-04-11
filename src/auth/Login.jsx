@@ -27,6 +27,12 @@ const Login = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+
+  function validatePassword(inputValue) {
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+    return passwordRegex.test(inputValue);
+  }
   const validateField = (name, value) => {
     let error = "";
     if (name === "email") {
@@ -44,6 +50,9 @@ const Login = () => {
         error = "Password is required";
       } else if (value.length < 6 || value.length > 60) {
         error = "Password should be between 6 and 60 characters";
+      } else if (!validatePassword(value)) {
+        error =
+          "Your password must contain an upper case, a lowercase, a special character and a number";
       }
     }
     setErrorMessage((prev) => ({ ...prev, [name]: error }));
@@ -55,32 +64,35 @@ const Login = () => {
     validateField(name, value);
   };
   console.log(inputValue);
-  const handleSubmit = async(e,data) => {
+  const handleSubmit = async (e, data) => {
     e.preventDefault();
     setLoading(true);
     if (!disabled) {
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/student/login`,data)
-        console.log(res)
-        if(res?.status === 200){
+        const res = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}api/v1/student/login`,
+          data
+        );
+        console.log(res);
+        if (res?.status === 200) {
           toast.success("Login successful!");
           setLoading(false);
           setTimeout(() => {
-             navigate('/dashboard/overview')
+            navigate("/dashboard/overview");
           }, 3000);
         }
       } catch (error) {
         setLoading(false);
-        toast.error(error?.response?.data?.message)
-        console.log(error)
+        toast.error(error?.response?.data?.message);
+        console.log(error);
       }
-
     }
   };
   useEffect(() => {
     const { email, password } = inputValue;
     if (
       validateEmail(email) &&
+      validatePassword(password) &&
       password.trim() !== "" &&
       password.length >= 6 &&
       password.length <= 60
@@ -108,7 +120,7 @@ const Login = () => {
         <div className="header">
           <h1>MEMBER LOGIN</h1>
         </div>
-        <form className="form" onSubmit={(e)=>handleSubmit(e,inputValue)}>
+        <form className="form" onSubmit={(e) => handleSubmit(e, inputValue)}>
           <div className="signinput">
             <label className="signuplabel">Email</label>
             <input
