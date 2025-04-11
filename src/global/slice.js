@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userToken: "",
   user: {},
+  mockSubject:'',
 };
 
 const slice = createSlice({
@@ -15,9 +16,12 @@ const slice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload;
     },
+    setMockSubject: (state,{payload}) =>{
+      state.mockSubject = payload
+    }
   },
 });
 
-export const { setUserToken, setUser } = slice.actions;
+export const { setUserToken, setUser, setMockSubject } = slice.actions;
 
 export default slice.reducer;
