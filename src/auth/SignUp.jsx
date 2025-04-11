@@ -105,20 +105,20 @@ const SignUp = () => {
   const handleSubmit = async (e, data) => {
     e.preventDefault();
     if (!disabled) {
+      setLoading(true);
       try {
-        const res = await axios.post(
-          `${import.meta.env.VITE_BASE_URL}api/v1/student`,
-          data
-        );
-        console.log(res);
+        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/student`,data)
+        if(res?.status === 201){
+          toast.success('Signup Successful, Please check your email to verify')
+          setLoading(false);
+          setTimeout(() => {
+            navigate('/login')
+          }, 3000);
+        }
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        toast.success("Sign up successful!");
-      }, 3000);
     }
   };
 
@@ -252,7 +252,6 @@ const SignUp = () => {
               backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
               cursor: disabled ? "not-allowed" : "pointer",
             }}
-            onClick={() => navigate("/login")}
           >
             {loading ? "loading..." : "Join For Free"}
           </button>
