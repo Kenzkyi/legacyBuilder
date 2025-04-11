@@ -242,11 +242,12 @@
     width: 100%;
     height: fit-content;
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     margin-bottom: 50px;
 
     .overview-secondLayerLeft{
-        width: 288.5px;
+        width: 30%;
         height: 259px;
         position: relative;
 
@@ -268,7 +269,7 @@
     }
 
     .overview-secondLayerRight{
-        width: 734.8px;
+        width: 70%;
         height: 259px;
         border-radius: 7.58px;
         background-color: #804BF233;
