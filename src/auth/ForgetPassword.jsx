@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/authCss/auth.css";
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { IoMdArrowBack } from "react-icons/io";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -79,7 +79,7 @@ const ForgetPassword = () => {
       <div className="goldsmallcircle"></div>
       <div className="goldsmallcircle1"></div>
       <div className="closeicondiv">
-        <IoCloseCircleOutline className="closeIcon" />
+        <IoMdArrowBack className="closeIcon" />
       </div>
       <div className="signupForm">
         <div className="header">

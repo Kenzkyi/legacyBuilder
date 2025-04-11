@@ -21,7 +21,8 @@
     "react-router-dom": "^7.4.0",
     "react-spinner": "^0.2.7",
     "react-toastify": "^11.0.5",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

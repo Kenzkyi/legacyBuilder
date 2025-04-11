@@ -160,13 +160,14 @@ const Login = () => {
               backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
               cursor: disabled ? "not-allowed" : "pointer",
             }}
+            onClick={() => navigate("/dashboard/overview")}
           >
             {loading ? "loading..." : "Login"}
           </button>
         </form>
         <span className="or-container">
           <div className="line"></div>
-          <span className="or">or</span>
+          <span className="or">Other login options</span>
           <div className="line"></div>
         </span>
         <article className="socials">
@@ -182,7 +183,9 @@ const Login = () => {
           </p>
           <p className="signuptext">
             Don't have an account?
-            <span className="signupLink">click here to create one now</span>
+            <span className="signupLink" onClick={() => navigate("/signup")}>
+              click here to create one now
+            </span>
           </p>
         </article>
       </div>

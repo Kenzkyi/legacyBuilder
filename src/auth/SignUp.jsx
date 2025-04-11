@@ -7,8 +7,10 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleShowPassword = () => setShowPassword((prev) => !prev);
@@ -100,10 +102,11 @@ const SignUp = () => {
     }
   }, [inputValue]);
 
-  const handleSubmit = async(e,data) => {
+  const handleSubmit = async (e, data) => {
     e.preventDefault();
     if (!disabled) {
       try {
+<<<<<<< HEAD
         const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/student`,data)
         if(res?.status === 201){
           toast.success('Signup Successful, Please check your email to verify')
@@ -112,29 +115,48 @@ const SignUp = () => {
             setLoading(false);
           }, 3000);
         }
+=======
+        const res = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}api/v1/student`,
+          data
+        );
+        console.log(res);
+>>>>>>> e847c5c5378b539d0600b4796573b60580373fed
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
+<<<<<<< HEAD
+=======
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        toast.success("Sign up successful!");
+      }, 3000);
+>>>>>>> e847c5c5378b539d0600b4796573b60580373fed
     }
   };
 
-  const googleIcon = async()=>{
+  const googleIcon = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}googleAuthenticate`)
-      console.log(res)
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
+      );
+      console.log(res);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
-  const facebookIcon = async()=>{
+  const facebookIcon = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}facebookAuthenticate`)
-      console.log(res)
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`
+      );
+      console.log(res);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   return (
     <div className="signupMain">
       <div className="circle">
@@ -153,7 +175,7 @@ const SignUp = () => {
           <h1>Sign Up</h1>
           <p>Beat jamb with good grades at one sitting </p>
         </div>
-        <form className="form" onSubmit={(e)=>handleSubmit(e,inputValue)}>
+        <form className="form" onSubmit={(e) => handleSubmit(e, inputValue)}>
           <div className="signinput">
             <label className="signuplabel">Full Name</label>
             <input
@@ -228,6 +250,14 @@ const SignUp = () => {
               <p className="error">{errorMessage.confirmPassword}</p>
             )}
           </div>
+          <div className="alreadyhaveaccount">
+            <h1>
+              Already have an account?{" "}
+              <em onClick={() => navigate("/login")}>
+                click here to login now
+              </em>
+            </h1>
+          </div>
           <button
             type="submit"
             className="signupbtn"
@@ -236,6 +266,7 @@ const SignUp = () => {
               backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
               cursor: disabled ? "not-allowed" : "pointer",
             }}
+            onClick={() => navigate("/login")}
           >
             {loading ? "loading..." : "Join For Free"}
           </button>
@@ -247,7 +278,7 @@ const SignUp = () => {
         </span>
         <article className="socials">
           <FaFacebook className="facebookIcon" onClick={facebookIcon} />
-          <FcGoogle className="googleIcon" onClick={googleIcon}/>
+          <FcGoogle className="googleIcon" onClick={googleIcon} />
         </article>
       </div>
     </div>

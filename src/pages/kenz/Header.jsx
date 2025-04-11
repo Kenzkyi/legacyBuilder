@@ -1,13 +1,12 @@
 import React from "react";
-import "../styles/header.css";
-import menuBar from "../assets/navBar.json";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import HeaderLogo from "../assets/public/legacy_builder_logo.png";
+import "../../styles/header.css";
+import menuBar from "./assets/navBar.json";
+import { Link, useLocation } from "react-router-dom";
+import HeaderLogo from "../../assets/public/legacy_builder_logo.png";
 
 const Header = () => {
   const location = useLocation();
-  const nav = useNavigate();
-
+  console.log(location);
   return (
     <div className="header">
       <div className="header-holder">
@@ -34,12 +33,8 @@ const Header = () => {
             ))}
           </ul>
           <aside>
-            <button className="header-signup" onClick={() => nav("/signup")}>
-              SIGN UP
-            </button>
-            <button className="header-login" onClick={() => nav("/login")}>
-              LOGIN
-            </button>
+            <button className="header-signup">SIGN UP</button>
+            <button className="header-login">LOGIN</button>
           </aside>
         </div>
       </div>
