@@ -17,6 +17,7 @@ import Mockexam from "./pages/kenz/Mockexam";
 import PastQuestion from "./pages/kenz/PastQuestion";
 import Profile from "./pages/kenz/Profile";
 import Subscription from "./pages/kenz/Subscription";
+import AboutUs from "./pages/jacob/AboutUs";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -26,6 +27,7 @@ const routes = createBrowserRouter([
     children: [
       { path: "", element: <Home /> },
       { path: "/learn-more", element: <LearnMore /> },
+      { path: "about-us", element: <AboutUs /> },
     ],
   },
   { path: "/signup", element: <SignUp /> },
