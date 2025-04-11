@@ -77,7 +77,53 @@ const Overview = () => {
           <img src={image2} alt="" />
           <p>60%</p>
         </div>
-        <div className="overview-secondLayerRight"></div>
+        <div className="overview-secondLayerRight">
+          <div className="overview-secondLayerRightHolder">
+            <ul>
+              <h5>Subject</h5>
+              <li>English Lang</li>
+              <li>Mathematics</li>
+              <li>Physics</li>
+              <li>Chemistry</li>
+            </ul>
+            <ul>
+              <h5>Performance</h5>
+              <li>60%</li>
+              <li>70%</li>
+              <li>80%</li>
+              <li>70%</li>
+            </ul>
+            <ul>
+              <h5>Duration</h5>
+              <li>4 Weeks</li>
+              <li>3 Weeks</li>
+              <li>4 Weeks</li>
+              <li>4 Weeks</li>
+            </ul>
+            <ul>
+              <h5>Completed?</h5>
+              <li>No</li>
+              <li>Yes</li>
+              <li>Yes</li>
+              <li>No</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="overview-thirdLayer">
+        <div className="overview-thirdLayerHolder">
+          <h6>How to Improve on your academic performance.</h6>
+          <ol>
+            <li>Set Clear Goals – Know what grades you’re aiming for and create a plan to reach them.</li>
+            <li>Manage Your Time – Use a study schedule to balance school, revision, and rest.</li>
+            <li>Stay Consistent – Study regularly, not just before exams.</li>
+            <li>Practice with Past Questions – Especially for JAMB, this helps you understand the pattern.</li>
+            <li>Take Mock Tests – Simulate real exam conditions to build confidence.</li>
+            <li>Ask for Help – Don’t hesitate to ask teachers or peers if you’re stuck.</li>
+            <li>Stay Healthy – Eat well, sleep enough, and take short breaks to stay sharp.</li>
+            <li>Avoid Distractions – Stay focused during study time—put your phone away if needed.</li>
+        </ol>
+        </div>
       </div>
     </div>
   )
