@@ -1,6 +1,6 @@
 import React from "react";
-import "../../styles/authCss/loading.css";
-import loading from "../../assets/loading.svg";
+import "../../src/styles/authCss/loading.css";
+import loading from "../assets/loading.svg";
 const Loading = () => {
   return (
     <div className="loadingmain">
@@ -22,10 +22,6 @@ const Loading = () => {
         <div className="loadingtext2">
           <p>Just a moment</p>
         </div>
-        <button className="done">Done</button>
-      </section>
-      <section className="loadingfooter">
-        <span>© 2025 Legacy Builders | All rights reserved</span>
       </section>
     </div>
   );

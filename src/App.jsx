@@ -8,7 +8,6 @@ import Congratulation from "./auth/welcomeback/Congratulation";
 import ForgetPassword from "./auth/ForgetPassword";
 import ResetLink from "./auth/ResetLink";
 import ResetPassword from "./auth/welcomeback/ResetPassword";
-import Loading from "./auth/welcomeback/Loading";
 import LearnMore from "./pages/jacob/LearnMore";
 import MainHolder from "./routes/MainHolder";
 import Dashboard from "./pages/kenz/Dashboard";
@@ -18,6 +17,7 @@ import PastQuestion from "./pages/kenz/PastQuestion";
 import Profile from "./pages/kenz/Profile";
 import Subscription from "./pages/kenz/Subscription";
 import AboutUs from "./pages/jacob/AboutUs";
+import Verify from "./auth/Verify";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -36,8 +36,8 @@ const routes = createBrowserRouter([
   { path: "/congratulation", element: <Congratulation /> },
   { path: "/forgetpassword", element: <ForgetPassword /> },
   { path: "/resetlink", element: <ResetLink /> },
-  { path: "resetpassword/:token", element: <ResetPassword /> },
-  { path: "/loading", element: <Loading /> },
+  { path: "/resetpassword/:token", element: <ResetPassword /> },
+  { path: "/verify/:token", element: <Verify /> },
   {
     path: "/dashboard",
     element: <Dashboard />,
