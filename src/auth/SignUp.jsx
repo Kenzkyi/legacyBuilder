@@ -59,6 +59,9 @@ const SignUp = () => {
         error = "Password is required";
       } else if (value.length < 6 || value.length > 60) {
         error = "Password should be between 6 and 60 characters";
+      } else if (!validatePassword(value)) {
+        error =
+          "Your password must contain an upper case, a lowercase, a special character and a number";
       }
     }
 
@@ -85,11 +88,18 @@ const SignUp = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(inputValue);
   };
+
+  function validatePassword(inputValue) {
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+    return passwordRegex.test(inputValue);
+  }
   useEffect(() => {
     const { fullName, email, password, confirmPassword } = inputValue;
     if (
       fullName.trim() !== "" &&
       validateEmail(email) &&
+      validatePassword(password) &&
       password.trim() !== "" &&
       password.length >= 6 &&
       password.length <= 60 &&
@@ -107,12 +117,15 @@ const SignUp = () => {
     if (!disabled) {
       setLoading(true);
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/student`,data)
-        if(res?.status === 201){
-          toast.success('Signup Successful, Please check your email to verify')
+        const res = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}api/v1/student`,
+          data
+        );
+        if (res?.status === 201) {
+          toast.success("Signup Successful, Please check your email to verify");
           setLoading(false);
           setTimeout(() => {
-            navigate('/login')
+            navigate("/login");
           }, 3000);
         }
       } catch (error) {
@@ -132,6 +145,12 @@ const SignUp = () => {
       console.log(error);
     }
   };
+
+  function validatePassword(password) {
+    const regex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+    return regex.test(password);
+  }
 
   const facebookIcon = async () => {
     try {
