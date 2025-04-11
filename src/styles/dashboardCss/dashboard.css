@@ -1,12 +1,12 @@
 .dashboard {
-  min-height: 100vh;
+  height: fit-content;
   width: 100%;
   display: flex;
   background-color: white;
 }
 .dashboard-left {
-  width: 100%;
-  height: 100vh;
+  width: 248px;
+  height: fit-content;
   background-color: white;
   display: flex;
   flex-direction: column;
