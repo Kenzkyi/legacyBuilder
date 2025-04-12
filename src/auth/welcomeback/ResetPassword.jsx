@@ -60,11 +60,7 @@ const ResetPassword = () => {
     setLoading(true);
     if (!disabled) {
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/`,data,{
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
+        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/${token}`,data)
         setLoading(false);
         console.log(res)
       } catch (error) {
@@ -168,7 +164,6 @@ const ResetPassword = () => {
               backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
               cursor: disabled ? "not-allowed" : "pointer",
             }}
-            onClick={() => navigate("/login")}
           >
             {loading ? "Loading..." : "Reset Password"}
           </button>
