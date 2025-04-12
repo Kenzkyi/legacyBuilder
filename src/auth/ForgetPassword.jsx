@@ -48,9 +48,7 @@ const ForgetPassword = () => {
         toast.info("Password reset link sent to your email!");
         
       }
-      setTimeout(() => {
-        setLoading(false);
-      }, 3000);
+      setLoading(false);
     } catch (error) {
       toast.error(error?.response?.data?.message)
       setLoading(false);

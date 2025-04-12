@@ -41,7 +41,7 @@ const ResetPassword = () => {
     if (name === "confirmPassword") {
       if (!value.trim()) {
         error = "Confirm Password is required";
-      } else if (value !== inputValue.password) {
+      } else if (value !== inputValue.newPassword) {
         error = "Passwords do not match";
       }else {
         error = ''
@@ -64,6 +64,12 @@ const ResetPassword = () => {
       try {
         const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/${token}`,data)
         setLoading(false);
+        if(res?.status === 200){
+          toast.success(res?.data?.message)
+          setTimeout(() => {
+            navigate('/login')
+          }, 3000);
+        }
         console.log(res)
       } catch (error) {
         toast.error(error?.response?.data?.message)
