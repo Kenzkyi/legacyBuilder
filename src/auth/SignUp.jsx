@@ -130,20 +130,21 @@ const SignUp = () => {
         }
       } catch (error) {
         setLoading(false);
-        console.log(error);
+        toast.error(error?.response?.data?.message)
       }
     }
   };
 
   const googleIcon = async () => {
-    try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
-      );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
+    // try {
+    //   const res = await axios.get(
+    //     `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
+    //   );
+    //   console.log(res);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   function validatePassword(password) {
@@ -153,14 +154,16 @@ const SignUp = () => {
   }
 
   const facebookIcon = async () => {
-    try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`
-      );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
+
+    // try {
+    //   const res = await axios.get(
+    //     `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`
+    //   );
+    //   console.log(res);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <div className="signupMain">
