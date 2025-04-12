@@ -65,8 +65,11 @@ const ResetPassword = () => {
             Authorization: `Bearer ${token}`
           }
         })
+        setLoading(false);
         console.log(res)
       } catch (error) {
+        toast.error(error?.response?.data?.message)
+        setLoading(false);
         console.log(error)
       }
       // setTimeout(() => {

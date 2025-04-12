@@ -51,12 +51,10 @@ const ForgetPassword = () => {
       setTimeout(() => {
         setLoading(false);
       }, 3000);
-      } catch (error) {
-        console.log(error)
+    } catch (error) {
+      toast.error(error?.response?.data?.message)
+      setLoading(false);
       }
-      // setTimeout(() => {
-      //   navigate("/resetlink");
-      // }, 10000);
     }
   };
   React.useEffect(() => {
