@@ -8,16 +8,15 @@ const Verify = () => {
   const [isVerify, setIsVerify] = useState(false);
   const {token} = useParams();
   const nav = useNavigate()
-  console.log(token)
 
   const handleVerify = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/verify/student/${token}`);
-      setIsVerify(true);
-      console.log(res);
+      if(res?.status === 200){
+        setIsVerify(true);
+      }
     } catch (error) {
-      console.log(error);
-      toast.error(error?.data?.message)
+      toast.error(error?.response?.data?.message)
       setTimeout(() => {
         nav('/login')
       }, 3000);
