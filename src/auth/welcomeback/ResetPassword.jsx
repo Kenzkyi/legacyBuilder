@@ -26,7 +26,7 @@ const ResetPassword = () => {
     confirmPassword: "",
   });
 
-  const token = useParams()
+  const {token} = useParams()
 
   const validateField = (name, value) => {
     let error = "";
@@ -41,8 +41,10 @@ const ResetPassword = () => {
     if (name === "confirmPassword") {
       if (!value.trim()) {
         error = "Confirm Password is required";
-      } else if (value !== inputValue.password) {
+      } else if (value !== inputValue.newPassword) {
         error = "Passwords do not match";
+      }else {
+        error = ''
       }
     }
     setErrorMessage((prev) => ({ ...prev, [name]: error }));
@@ -60,12 +62,14 @@ const ResetPassword = () => {
     setLoading(true);
     if (!disabled) {
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/`,data,{
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
+        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/${token}`,data)
         setLoading(false);
+        if(res?.status === 200){
+          toast.success(res?.data?.message)
+          setTimeout(() => {
+            navigate('/login')
+          }, 3000);
+        }
         console.log(res)
       } catch (error) {
         toast.error(error?.response?.data?.message)
@@ -168,7 +172,6 @@ const ResetPassword = () => {
               backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
               cursor: disabled ? "not-allowed" : "pointer",
             }}
-            onClick={() => navigate("/login")}
           >
             {loading ? "Loading..." : "Reset Password"}
           </button>
