@@ -26,7 +26,7 @@ const ResetPassword = () => {
     confirmPassword: "",
   });
 
-  const token = useParams()
+  const {token} = useParams()
 
   const validateField = (name, value) => {
     let error = "";
@@ -43,6 +43,8 @@ const ResetPassword = () => {
         error = "Confirm Password is required";
       } else if (value !== inputValue.password) {
         error = "Passwords do not match";
+      }else {
+        error = ''
       }
     }
     setErrorMessage((prev) => ({ ...prev, [name]: error }));
