@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ForgetPassword = () => {
-  const navigate = useNavigate();
   const [disabled, setDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState({
@@ -37,21 +36,23 @@ const ForgetPassword = () => {
     setInputValue((prev) => ({ ...prev, [name]: value }));
     validateField(name, value);
   };
-  const handleSubmit = async(e,data) => {
+  const handleSubmit = async (e, data) => {
     e.preventDefault();
     if (!disabled) {
       setLoading(true);
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/forgot_password/student`,data)
-      console.log(res)
-      if(res?.status === 200){
-        toast.info("Password reset link sent to your email!");
-        
-      }
-      setLoading(false);
-    } catch (error) {
-      toast.error(error?.response?.data?.message)
-      setLoading(false);
+        const res = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}api/v1/forgot_password/student`,
+          data
+        );
+        console.log(res);
+        if (res?.status === 200) {
+          toast.info("Password reset link sent to your email!");
+        }
+        setLoading(false);
+      } catch (error) {
+        toast.error(error?.response?.data?.message);
+        setLoading(false);
       }
     }
   };
@@ -81,7 +82,7 @@ const ForgetPassword = () => {
         <div className="header">
           <h1>FORGET PASSWORD</h1>
         </div>
-        <form className="form" onSubmit={(e)=>handleSubmit(e,inputValue )}>
+        <form className="form" onSubmit={(e) => handleSubmit(e, inputValue)}>
           <div className="signinput">
             <label className="signuplabel">Email</label>
             <input
