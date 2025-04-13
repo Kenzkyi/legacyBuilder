@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const ResetPassword = () => {
+  const token = useParams();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -18,7 +19,7 @@ const ResetPassword = () => {
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState({
-    password: "",
+    newPassword: "",
     confirmPassword: "",
   });
   const [inputValue, setInputValue] = useState({
@@ -26,8 +27,11 @@ const ResetPassword = () => {
     confirmPassword: "",
   });
 
-  const {token} = useParams()
-
+  function validatePassword(inputValue) {
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+    return passwordRegex.test(inputValue);
+  }
   const validateField = (name, value) => {
     let error = "";
     if (name === "newPassword") {
@@ -35,16 +39,15 @@ const ResetPassword = () => {
         error = "Password is required";
       } else if (value.length < 6 || value.length > 60) {
         error = "Password should be between 6 and 60 characters";
+      } else if (!validatePassword(value)) {
+        error =
+          "Your password must contain an upper case, a lowercase, a special character and a number";
       }
     }
 
     if (name === "confirmPassword") {
-      if (!value.trim()) {
-        error = "Confirm Password is required";
-      } else if (value !== inputValue.newPassword) {
+      if (value !== inputValue.newPassword) {
         error = "Passwords do not match";
-      }else {
-        error = ''
       }
     }
     setErrorMessage((prev) => ({ ...prev, [name]: error }));
@@ -57,21 +60,26 @@ const ResetPassword = () => {
   };
   console.log(inputValue);
 
-  const handleSubmit = async(e,data) => {
+  const handleSubmit = async (e, data) => {
     e.preventDefault();
     setLoading(true);
     if (!disabled) {
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/${token}`,data)
+        const res = await axios.post(
+          `${
+            import.meta.env.VITE_BASE_URL
+          }api/v1/reset_password/student/${token}`,
+          data
+        );
         setLoading(false);
-        if(res?.status === 200){
-          toast.success(res?.data?.message)
+        if (res?.status === 200) {
+          toast.success(res?.data?.message);
           setTimeout(() => {
-            navigate('/login')
+            navigate("/login");
           }, 3000);
         }
       } catch (error) {
-        toast.error(error?.response?.data?.message)
+        toast.error(error?.response?.data?.message);
         setLoading(false);
       }
     }
@@ -80,6 +88,7 @@ const ResetPassword = () => {
   useEffect(() => {
     const { newPassword, confirmPassword } = inputValue;
     if (
+      validatePassword(newPassword) &&
       newPassword.trim() !== "" &&
       newPassword.length >= 6 &&
       newPassword.length <= 60 &&
@@ -112,7 +121,10 @@ const ResetPassword = () => {
             Your new password must be different from previously used password
           </p>
         </div>
-        <form className="resetinputdiv" onSubmit={(e)=>handleSubmit(e,inputValue)}>
+        <form
+          className="resetinputdiv"
+          onSubmit={(e) => handleSubmit(e, inputValue)}
+        >
           <div className="resetinput">
             <label className="resetlabel">Password</label>
             <div className="inputwrapper">
@@ -130,8 +142,8 @@ const ResetPassword = () => {
                 {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
               </div>
             </div>
-            {errorMessage.password && (
-              <p className="error">{errorMessage.password}</p>
+            {errorMessage.newPassword && (
+              <p className="error">{errorMessage.newPassword}</p>
             )}
           </div>
           <div className="resetinput">

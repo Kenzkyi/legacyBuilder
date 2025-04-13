@@ -1,0 +1,55 @@
+import React, { useState } from "react";
+import "../../styles/dashboardCss/subscription.css";
+import MonthlyPayment from "../../components/MonthlyPayment";
+import YearlyPayment from "../../components/YearlyPayment";
+const Subscription = () => {
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggle = (isYearly) => {
+    if (toggle !== isYearly) {
+      setToggle(isYearly);
+    }
+  };
+  return (
+    <main className="subscriptionmain">
+      <div className="sebcontainer">
+        <div className="subdivheader">
+          <h1>Payment Plan</h1>
+          <span>
+            Your Path to <em>300+</em> Starts Here: <br /> Select a Plan
+          </span>
+        </div>
+        <div className="togglebutton">
+          <button
+            className={`toggle-btn ${toggle ? "inactive" : "active"}`}
+            onClick={() => handleToggle(false)}
+            style={{ marginRight: "auto" }} // Align to the left
+          >
+            Monthly
+          </button>
+          <button
+            className={`toggle-btn ${toggle ? "active" : "inactive"}`}
+            onClick={() => handleToggle(true)}
+            style={{ marginLeft: "auto" }} // Align to the right
+          >
+            Yearly
+          </button>
+        </div>
+        {toggle ? <MonthlyPayment /> : <YearlyPayment />}
+
+        <div className="subfootercontainer">
+          <div className="subfooter">
+            <span>
+              Try our Basic Plan at no cost, or upgrade to our Exam Ready Plan
+              for the ultimate JAMB prep experience. Get full access to past
+              questions, mock exams, and smart study tools – all at the best
+              value for your money.
+            </span>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Subscription;

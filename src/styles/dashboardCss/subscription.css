@@ -1,0 +1,494 @@
+.subscriptionmain {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(128, 75, 242, 0.2);
+  padding: 30px;
+}
+
+.sebcontainer {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px 150px 30px;
+  justify-content: flex-start;
+  gap: 30px;
+  background-color: #fff;
+
+  .subdivheader {
+    width: 100%;
+    height: 27vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    & h1 {
+      color: #1e1e1e;
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 103%;
+      letter-spacing: -0.57px;
+    }
+
+    & span {
+      color: #1e1e1e;
+      font-family: Montserrat;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 55px;
+
+      & em {
+        color: #804bf2;
+        font-family: Montserrat;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 55px;
+      }
+    }
+  }
+}
+
+.togglebutton {
+  display: flex;
+  width: 233.333px;
+  height: 70px;
+  padding-left: 30px;
+  padding-right: 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 15.556px;
+  flex-shrink: 0;
+  border-radius: 77.778px;
+  background: #804bf2;
+}
+
+.toggle-btn {
+  padding: 10px 20px;
+  border: 1px solid #804bf2;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.toggle-btn.active {
+  background-color: #f2ae30;
+  color: black;
+  display: flex;
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 7.778px;
+
+  font-family: Montserrat;
+  font-size: 15.556px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27.222px;
+}
+
+.toggle-btn.inactive {
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 15.556px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27.222px;
+  background-color: transparent;
+}
+
+.monthlyusub {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .monthlyfreemium {
+    width: 31%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .monthlysubcontainer {
+      width: 100%;
+      height: 90%;
+      border-radius: 20px;
+      border: 5px solid rgba(128, 75, 242, 0.4);
+      background: #fff;
+      padding-top: 30px;
+      padding-left: 15px;
+      padding-right: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & h1 {
+        color: #804bf2;
+        font-family: Sora;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 35px;
+        text-transform: uppercase;
+      }
+      .started {
+        color: #1e1e1e;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 25px;
+        height: 10%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .subofferdiv {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 23vh;
+      justify-content: space-between;
+
+      .suboffer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 30vh;
+        justify-content: space-between;
+
+        .suboffertext {
+          color: #1e1e1e;
+          font-family: Montserrat;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 22px;
+          text-align: left;
+          width: 100%;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+        }
+      }
+    }
+
+    .subiconfirst {
+      width: 39%;
+      font-size: 20px;
+      color: #804bf2;
+    }
+  }
+
+  .subbuttondiv {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .planbutton {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 3px solid #804bf2;
+    background: #fff;
+    color: #804bf2;
+    font-family: Sora;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 35px; /* 175% */
+    text-transform: capitalize;
+  }
+}
+
+.monthlypremium {
+  width: 31%;
+  height: 100vh;
+  .monthlypremiumcontainer {
+    width: 100%;
+    height: 100vh;
+    border-radius: 20px;
+    border: 5px solid rgba(128, 75, 242, 0.1);
+    background: rgba(128, 75, 242, 0.2);
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & h1 {
+      color: #804bf2;
+      font-family: Sora;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 30px;
+      text-transform: uppercase;
+    }
+    & span {
+      color: #1e1e1e;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      height: 10%;
+    }
+  }
+}
+
+.premiumbofferdiv {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  .premiumsuboffer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    & span {
+      color: #1e1e1e;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      text-align: left;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .subiconfirst1 {
+    width: auto;
+    color: #804bf2;
+  }
+
+  .subamountddiv {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .subamount {
+      color: #804bf2;
+      font-family: Sora;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+  }
+
+  .monthlysubtextdiv {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+
+    .monthlysubtext {
+      color: #1e1e1e;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+    }
+  }
+  .subbuttondiv {
+    width: 100%;
+    height: aut0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .planbutton1 {
+      display: flex;
+      width: 100%;
+      height: auto;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      border-radius: 50px;
+      background: rgba(128, 75, 242, 0.99);
+      color: #fff;
+      font-family: Sora;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 35px;
+      border: none;
+      text-transform: capitalize;
+    }
+  }
+}
+.lifesub {
+  width: 31%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .lifesubcontainer {
+    width: 100%;
+    height: 90%;
+    border-radius: 20px;
+    border: 5px solid rgba(128, 75, 242, 0.4);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    .accessmodel {
+      color: #804bf2;
+      text-align: center;
+      font-family: Sora;
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 800;
+
+      text-transform: uppercase;
+    }
+    .onetimepayment {
+      color: #1e1e1e;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
+
+  .lifesuboffertext {
+    width: 100%;
+    height: auto;
+    display: flex;
+
+    & span {
+      color: #1e1e1e;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px; /* 157.143% */
+    }
+  }
+
+  .lifesubamountdiv {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & h1 {
+      color: #804bf2;
+      font-family: Sora;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 57px; /* 118.75% */
+      text-transform: uppercase;
+    }
+  }
+
+  .lifesubtext {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & span {
+      color: #1e1e1e;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 25px;
+    }
+  }
+}
+
+.lifesuboffer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subiconfirst2 {
+  color: #804bf2;
+  font-size: 20px;
+}
+
+.subfootercontainer {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subfooter {
+  display: flex;
+  width: 90%;
+  height: 80%;
+  padding: 16.667px 58.186px 27.333px 55.555px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 46.296px;
+  background: #804bf2;
+
+  & span {
+    color: #fff;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13.667px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27.778px; /* 166.667% */
+  }
+}
+
+.paymentsymboldiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+}
