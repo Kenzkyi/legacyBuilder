@@ -18,6 +18,7 @@ import Profile from "./pages/kenz/Profile";
 import Subscription from "./pages/jacob/Subscription";
 import AboutUs from "./pages/jacob/AboutUs";
 import Verify from "./auth/Verify";
+import ExamBody from "./pages/kenz/ExamBody";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -49,6 +50,7 @@ const routes = createBrowserRouter([
       { path: "subscription", element: <Subscription /> },
     ],
   },
+  {path: ":subject/:subjectId", element: <ExamBody /> }
 ]);
 
 const App = () => {
