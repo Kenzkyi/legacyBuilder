@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../styles/dashboardCss/overview.css'
 import image1 from '../../assets/public/home-firstlayer.png'
 import { FaBook } from 'react-icons/fa6'
 import { PiExamFill } from 'react-icons/pi'
 import image2 from '../../assets/public/1st rating (1).svg'
+import SubjectSelected from './SubjectSelected'
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsOverview } from '../../global/slice'
 
 const Overview = () => {
+  const isOverview = useSelector((state)=>state.isOverview)
+  const dispatch = useDispatch()
   return (
-    <div className='overview'>
+    <>
+      {
+        isOverview ?  
+          <SubjectSelected/>
+        : 
+        <div className='overview'>
       <div className="overview-firstLayer">
         <div className="overview-firstLayerLeft">
           <div className="overview-firstLayerLeftUP">
@@ -36,7 +46,7 @@ const Overview = () => {
                 <p>Maths</p>
                 </aside>
               </nav>
-              <nav style={{backgroundColor:'white',cursor:'pointer'}} >
+              <nav style={{backgroundColor:'white',cursor:'pointer'}} onClick={()=>dispatch(setIsOverview())}>
                 <aside>
                   <div>+</div>
                 <h6>Add Subject</h6>
@@ -126,6 +136,8 @@ const Overview = () => {
         </div>
       </div>
     </div>
+      }
+    </>
   )
 }
 
