@@ -70,16 +70,10 @@ const ResetPassword = () => {
             navigate('/login')
           }, 3000);
         }
-        console.log(res)
       } catch (error) {
         toast.error(error?.response?.data?.message)
         setLoading(false);
-        console.log(error)
       }
-      // setTimeout(() => {
-      //   setLoading(false);
-      //   toast.success("Password reset successful!");
-      // }, 3000);
     }
   };
 

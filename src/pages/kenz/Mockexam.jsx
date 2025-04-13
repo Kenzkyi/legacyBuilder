@@ -1,12 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../styles/dashboardCss/mockExam.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { setMockSubject } from '../../global/slice'
+import { setMockExamQuestion, setMockSubject } from '../../global/slice'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const Mockexam = () => {
     const mySubject = useSelector((state)=>state.mockSubject)
     const dispatch = useDispatch()
+    const nav = useNavigate()
+    const [loading,setLoading] = useState(false)
     const subjects = ['Accounting','Biology','Chemisty','Commerce','English','Government','Literature','Mathematics','Physics']
+
+    const getExamQuestionPerSubject = async (subject) => {
+      setLoading(true)
+      const id = toast.loading('Please wait ...')
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/mock-questions/${subject}`)
+        if(res?.status === 200){
+          dispatch(setMockExamQuestion(res?.data?.data))
+          setTimeout(() => {
+            nav(`/${subject}/1`)
+          }, 500);
+        }
+        toast.dismiss(id)
+        setLoading(false)
+        console.log(res)
+      } catch (error) {
+        setLoading(false)
+        toast.dismiss(id)
+        setTimeout(() => {
+          toast.error(error?.response?.data?.message)
+        }, 500);
+        console.log(error)
+      }
+    }
+
   return (
     <div className='mockExam'>
       <h2><span style={{color:'#804BF2'}}>Mock Exam</span> (Jamb CBT Practice)</h2>
@@ -16,12 +46,12 @@ const Mockexam = () => {
         {
             subjects.map((item,index)=>(
                 <div className="mockExam-holderSubject" key={index}>
-            <article onClick={()=>dispatch(setMockSubject(item))}>
+            <article>
             <p>{item}</p>
-            <h6>{item === mySubject ? '-' : '+'}</h6>
+            <h6 onClick={()=>dispatch(setMockSubject(item))}>{item === mySubject ? '-' : '+'}</h6>
             </article>
             <section style={{display:item === mySubject? 'flex' : 'none'}}>
-                <button>Start Jamb CBT</button>
+                <button style={{cursor:loading? 'not-allowed' : 'pointer',background:loading? '#804BF2CC' : '#804BF2'}} disabled={loading} onClick={()=>getExamQuestionPerSubject(item)}>Start Jamb CBT</button>
             </section>
         </div>
             ))

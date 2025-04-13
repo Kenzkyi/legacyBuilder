@@ -1,0 +1,196 @@
+.examBody{
+    width: 100%;
+    min-height: 820px;
+    background-color: white;
+    padding: 56px;
+    padding-left: 230px;
+
+    h1{
+        font-size: 36px;
+        line-height: 25px;
+        padding-left: 10px;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 40px;
+    }
+}
+
+.examBody-firstLayer{
+    height: 35px;
+    width: 89.7%;
+    /* background-color: red; */
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: space-between;
+
+    h3{
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    aside{
+        width: 42%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p{
+            font-size: 18px;
+            line-height: 20px;
+            font-weight: 500;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        meter{
+            width: 354px;
+            height: 20px;
+
+        }
+
+        meter::-webkit-meter-bar{
+            background: #804BF233;
+        }
+
+        meter::-webkit-meter-optimum-value{
+            background: #804BF2;
+        }
+    }
+
+    section{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 500;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    button{
+        height: 35px;
+        width: 35px;
+        border: 1.5px solid black;
+        outline: none;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 19px;
+        font-weight: 700;
+        font-family: "Sora", sans-serif;
+        background-color: white;
+        cursor: pointer;
+    }
+}
+
+.examBody-secondLayer{
+    width: 81.7%;
+    /* background-color: aqua; */
+    min-height: 511px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .examBody-secondLayerHolder{
+        min-height: 430px;
+        width: 100%;
+        background-color: #804BF233;
+        border-radius: 20px;
+        padding: 33.5px;
+
+        main{
+            width: 620px;
+            max-width: 620px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+
+            h6{
+                font-size: 18px;
+                line-height: 20px;
+                font-weight: 400;
+                font-family: "Montserrat", sans-serif;
+                margin-bottom: 6px;
+            }
+
+            h5{
+                font-size: 18px;
+                line-height: 25px;
+                font-weight: 500;
+                font-family: "Montserrat", sans-serif;
+                margin-bottom: 19.5px;
+            }
+            
+            nav{
+                width: 100%;
+                max-width: 620px;
+                min-height: 40px;
+                display: flex;
+                background-color: white;
+                align-items: center;
+                padding: 10px;
+                padding-left: 57px;
+                padding-right: 24px;
+                margin-bottom: 24px;
+                gap: 20px;
+                justify-content: space-between;
+
+                p,h4{
+                    font-size: 18px;
+                    line-height: 25px;
+                    font-weight: 500;
+                    font-family: "Montserrat", sans-serif;
+                }
+
+                p{
+                    width: 90%;
+                }
+
+                input{
+                    height: 25px;
+                    width: 25px;
+                    accent-color: #804BF2;
+                }
+            }
+        }
+    }
+
+    .examBody-secondLayerButton{
+        height: 41px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        button{
+            height: 41px;
+            width: 137px;
+            border-radius: 30px;
+            border: 1.5px solid #88DDFF;
+            outline: none;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            article{
+                height: 41px;
+                width: 41px;
+                border-radius: 100%;
+                background-color: #88DDFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            h2{
+                font-size: 18px;
+                line-height: 25px;
+                font-weight: 500;
+                margin: 0 auto;
+                font-family: "Montserrat", sans-serif;
+            }
+        }
+    }
+}
