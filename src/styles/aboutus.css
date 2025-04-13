@@ -270,8 +270,8 @@
   gap: 10px;
 
   .teamdiv {
-    width: 100%;
-    height: 70vh;
+    width: 90%;
+    height: 80vh;
     /* background-color: #f2ae30; */
     display: flex;
     flex-direction: column;
@@ -314,7 +314,7 @@
 
     .aboutname {
       width: 80%;
-      height: 20vh;
+      padding: 15px;
       border-radius: 19.771px;
       background: #804bf2;
       position: absolute;

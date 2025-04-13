@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const ResetPassword = () => {
+  const token = useParams();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -18,7 +19,7 @@ const ResetPassword = () => {
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState({
-    password: "",
+    newPassword: "",
     confirmPassword: "",
   });
   const [inputValue, setInputValue] = useState({
@@ -26,22 +27,27 @@ const ResetPassword = () => {
     confirmPassword: "",
   });
 
-  const token = useParams()
+  function validatePassword(inputValue) {
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+    return passwordRegex.test(inputValue);
+  }
 
   const validateField = (name, value) => {
     let error = "";
-    if (name === "newPassword") {
+    if (name === "password") {
       if (!value.trim()) {
         error = "Password is required";
       } else if (value.length < 6 || value.length > 60) {
         error = "Password should be between 6 and 60 characters";
+      } else if (!validatePassword(value)) {
+        error =
+          "Your password must contain an upper case, a lowercase, a special character and a number";
       }
     }
 
     if (name === "confirmPassword") {
-      if (!value.trim()) {
-        error = "Confirm Password is required";
-      } else if (value !== inputValue.password) {
+      if (value !== inputValue.newPassword) {
         error = "Passwords do not match";
       }
     }
@@ -55,19 +61,23 @@ const ResetPassword = () => {
   };
   console.log(inputValue);
 
-  const handleSubmit = async(e,data) => {
+  const handleSubmit = async (e, data) => {
     e.preventDefault();
     setLoading(true);
     if (!disabled) {
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/`,data,{
-          headers: {
-            Authorization: `Bearer ${token}`
+        const res = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}api/v1/reset_password/student/`,
+          data,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        })
-        console.log(res)
+        );
+        console.log(res);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
       // setTimeout(() => {
       //   setLoading(false);
@@ -79,6 +89,7 @@ const ResetPassword = () => {
   useEffect(() => {
     const { newPassword, confirmPassword } = inputValue;
     if (
+      validatePassword(newPassword) &&
       newPassword.trim() !== "" &&
       newPassword.length >= 6 &&
       newPassword.length <= 60 &&
@@ -111,7 +122,10 @@ const ResetPassword = () => {
             Your new password must be different from previously used password
           </p>
         </div>
-        <form className="resetinputdiv" onSubmit={(e)=>handleSubmit(e,inputValue)}>
+        <form
+          className="resetinputdiv"
+          onSubmit={(e) => handleSubmit(e, inputValue)}
+        >
           <div className="resetinput">
             <label className="resetlabel">Password</label>
             <div className="inputwrapper">
@@ -129,7 +143,7 @@ const ResetPassword = () => {
                 {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
               </div>
             </div>
-            {errorMessage.password && (
+            {errorMessage.newPassword && (
               <p className="error">{errorMessage.password}</p>
             )}
           </div>

@@ -15,7 +15,7 @@ import Overview from "./pages/kenz/Overview";
 import Mockexam from "./pages/kenz/Mockexam";
 import PastQuestion from "./pages/jacob/PastQuestion";
 import Profile from "./pages/kenz/Profile";
-import Subscription from "./pages/kenz/Subscription";
+import Subscription from "./pages/jacob/Subscription";
 import AboutUs from "./pages/jacob/AboutUs";
 import Verify from "./auth/Verify";
 

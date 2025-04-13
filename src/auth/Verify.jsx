@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import EmailVerify from "../components/EmailVerify";
 
 const Verify = () => {
   const [isVerify, setIsVerify] = useState(false);
@@ -29,7 +30,7 @@ const Verify = () => {
     handleVerify();
   }, [token]);
 
-  return <>{!isVerify ? <Loading /> : <div>user verified successful</div>}</>;
+  return <>{!isVerify ? <Loading /> : <EmailVerify />}</>;
 };
 
 export default Verify;

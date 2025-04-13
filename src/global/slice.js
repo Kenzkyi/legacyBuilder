@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userToken: "",
   user: {},
-  mockSubject:'',
+  mockSubject: "",
+  exam: "",
+  year: "",
 };
 
 const slice = createSlice({
@@ -16,12 +18,19 @@ const slice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload;
     },
-    setMockSubject: (state,{payload}) =>{
-      state.mockSubject = payload
-    }
+    setMockSubject: (state, { payload }) => {
+      state.mockSubject = payload;
+    },
+    setExam: (state, { payload }) => {
+      state.exam = payload;
+    },
+    setYear: (state, { payload }) => {
+      state.year = payload;
+    },
   },
 });
 
-export const { setUserToken, setUser, setMockSubject } = slice.actions;
+export const { setUserToken, setUser, setMockSubject, setExam, setYear } =
+  slice.actions;
 
 export default slice.reducer;
