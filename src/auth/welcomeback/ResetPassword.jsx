@@ -27,11 +27,14 @@ const ResetPassword = () => {
     confirmPassword: "",
   });
 
-  const { token } = useParams();
-
+  function validatePassword(inputValue) {
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+    return passwordRegex.test(inputValue);
+  }
   const validateField = (name, value) => {
     let error = "";
-    if (name === "password") {
+    if (name === "newPassword") {
       if (!value.trim()) {
         error = "Password is required";
       } else if (value.length < 6 || value.length > 60) {
@@ -43,12 +46,8 @@ const ResetPassword = () => {
     }
 
     if (name === "confirmPassword") {
-      if (!value.trim()) {
-        error = "Confirm Password is required";
-      } else if (value !== inputValue.newPassword) {
+      if (value !== inputValue.newPassword) {
         error = "Passwords do not match";
-      } else {
-        error = "";
       }
     }
     setErrorMessage((prev) => ({ ...prev, [name]: error }));
@@ -144,7 +143,7 @@ const ResetPassword = () => {
               </div>
             </div>
             {errorMessage.newPassword && (
-              <p className="error">{errorMessage.password}</p>
+              <p className="error">{errorMessage.newPassword}</p>
             )}
           </div>
           <div className="resetinput">
