@@ -170,6 +170,7 @@
 
 .pagination-button1 {
   padding-left: 10px;
+  padding-right: 10px;
   width: 140px;
   height: 40px;
   display: flex;
@@ -186,6 +187,7 @@
 
 .pagination-button {
   padding-right: 10px;
+  padding-left: 10px;
   width: 140px;
   height: 40px;
   display: flex;

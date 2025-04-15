@@ -17,7 +17,7 @@ const Loading = () => {
           <h1>Loading...</h1>
         </div>
         <div className="loadingimg">
-          <DotLoader size={100} color="#804BF2" />
+          <DotLoader size={100} color="#804BF2" speedMultiplier={3} />
         </div>
         <div className="loadingtext2">
           <p>Just a moment</p>

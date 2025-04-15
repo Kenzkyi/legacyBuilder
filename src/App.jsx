@@ -21,6 +21,7 @@ import Verify from "./auth/Verify";
 import ExamBody from "./pages/kenz/ExamBody";
 import MakePayment from "./pages/jacob/MakePayment";
 import ViewPastQuestion from "./pages/jacob/ViewPastQuestion";
+import Callback from "./components/Callback";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -41,6 +42,7 @@ const routes = createBrowserRouter([
   { path: "/resetlink", element: <ResetLink /> },
   { path: "/resetpassword/:token", element: <ResetPassword /> },
   { path: "/verify/:token", element: <Verify /> },
+  { path: "/callback/:token", element: <Callback /> },
   {
     element: <Dashboard />,
     children: [
