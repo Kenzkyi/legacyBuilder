@@ -28,7 +28,9 @@ const initialState = {
   },
   logout: false,
   leavingNow: false,
-  filteredArray: []
+  filteredArray: [],
+  year:"",
+  exam:""
 };
 
 const slice = createSlice({
@@ -183,10 +185,16 @@ const slice = createSlice({
     },
     setLeavingNow: (state,{payload})=>{
       state.leavingNow = !state.leavingNow
-    }
+    },
+    setExam: (state, { payload }) => {
+      state.exam = payload
+    },
+    setYear: (state, { payload }) => {
+      state.year = payload
+    },
   },
 });
 
-export const { setUserToken, setLogout, setLeavingNow, setNavState, theExamTimer, setUser, setMockSubject, setIsOverview, setMockExamQuestion, setMockExamOption, cancelExam, previousQuestion, nextQuestion, setExamTimer } = slice.actions;
+export const { setUserToken, setExam, setYear, setLogout, setLeavingNow, setNavState, theExamTimer, setUser, setMockSubject, setIsOverview, setMockExamQuestion, setMockExamOption, cancelExam, previousQuestion, nextQuestion, setExamTimer } = slice.actions;
 
 export default slice.reducer;
