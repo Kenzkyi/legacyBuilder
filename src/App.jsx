@@ -19,6 +19,8 @@ import Subscription from "./pages/jacob/Subscription";
 import AboutUs from "./pages/jacob/AboutUs";
 import Verify from "./auth/Verify";
 import ExamBody from "./pages/kenz/ExamBody";
+import MakePayment from "./pages/jacob/MakePayment";
+import ViewPastQuestion from "./pages/jacob/ViewPastQuestion";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -48,9 +50,14 @@ const routes = createBrowserRouter([
       { path: "past-questions", element: <PastQuestion /> },
       { path: "profile", element: <Profile /> },
       { path: "subscription", element: <Subscription /> },
+      { path: "make-payment", element: <MakePayment /> },
+      {
+        path: "view-pastquestion",
+        element: <ViewPastQuestion />,
+      },
     ],
   },
-  {path: ":subject/:subjectId", element: <ExamBody /> }
+  { path: ":subject/:subjectId", element: <ExamBody /> },
 ]);
 
 const App = () => {

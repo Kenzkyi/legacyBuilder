@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import "../../styles/dashboardCss/pastquestion.css";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { setExam, setYear } from "../../global/slice";
+import { setExam, setYear, setPastQuestions } from "../../global/slice";
+import { useNavigate } from "react-router";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const PastQuestion = () => {
-  const [dropDownSubject, setDropDownSubject] = useState(false);
-  const [selectSubjext, setSelectedSubject] = useState("All");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const [dropDownSubject, setDropDownSubject] = useState(false);
+  const [selectedSubjext, setSelectedSubject] = useState("All");
   const [dropDownYear, setDropDownYear] = useState(false);
   const [selectedYear, setSelectedYear] = useState("All");
-
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const subjects = [
     "Accounting",
@@ -39,16 +43,51 @@ const PastQuestion = () => {
     "2014",
   ];
 
+  const getPastQuestionForYearSubject = async (year, subject) => {
+    if (year === "All" || subject === "All") {
+      toast.error("please select both subject and year.");
+      return;
+    }
+    setLoading(true);
+    const toastId = toast.loading("fecthing questions....");
+    try {
+      const response = await axios.get(
+        `${
+          import.meta.env.VITE_BASE_URL
+        }api/v1/fetch-questions/${year}/${subject}`
+      );
+      toast.update(toastId, {
+        render: "Question fetched succesfully!",
+        type: "success",
+        isLoading: false,
+        autoClose: 2000,
+      });
+      console.log("fetched", response);
+      dispatch(setPastQuestions(response.data.data));
+      navigate("/dashboard/view-pastquestion");
+      setLoading(false);
+    } catch (error) {
+      toast.update(toastId, {
+        render: error?.response?.data?.message || "Failed to fetch questions.",
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
   const handleSubjectClick = (subject) => {
     setSelectedSubject(subject);
     setDropDownSubject(false);
-    dispatch(setYear(subject));
+    dispatch(setExam(subject));
   };
 
   const handleYearClick = (year) => {
     setSelectedYear(year);
     setDropDownSubject(false);
-    dispatch(setExam(year));
+    dispatch(setYear(year));
   };
   return (
     <div className="pastquestionmain">
@@ -60,13 +99,13 @@ const PastQuestion = () => {
         <div className="selectpastquestion">
           <div className="pastleftdiv">
             <span>Exam</span>
-            <div>jamb</div>
+            <div>Jamb</div>
           </div>
           <div className="pastrightdiv">
             <span>Select Subject</span>
 
             <div onClick={() => setDropDownSubject(!dropDownSubject)}>
-              All
+              {selectedSubjext}
               {dropDownSubject ? (
                 <FaChevronUp className="pastdropdown" />
               ) : (
@@ -91,7 +130,7 @@ const PastQuestion = () => {
           <div className="pastrightdiv">
             <span>Select Year</span>
             <div onClick={() => setDropDownYear(!dropDownYear)}>
-              All
+              {selectedYear}
               {dropDownYear ? (
                 <FaChevronUp className="pastdropdown" />
               ) : (
@@ -112,6 +151,16 @@ const PastQuestion = () => {
               )}
             </div>
           </div>
+        </div>
+        <div className="viewpastquestiondiv">
+          <button
+            onClick={() =>
+              getPastQuestionForYearSubject(selectedYear, selectedSubjext)
+            }
+            disabled={loading}
+          >
+            {loading ? "Loading" : "View Past question"}
+          </button>
         </div>
         <div className="pastinstruction1">
           <h1>How to Select a JAMB Past Question</h1>

@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import PastQuestion from "../pages/jacob/PastQuestion";
 
 const initialState = {
   userToken: "",
   user: {},
-
-  mockSubject: "",
   exam: "",
   year: "",
+  pastQuestions: [],
+  pastQuestionsOption: {
+    optionA: false,
+    optionB: false,
+    optionC: false,
+    optionD: false,
+  },
   mockSubject: "",
   isOverview: false,
   mockExamQuestions: [],
@@ -37,6 +43,46 @@ const slice = createSlice({
     },
     setYear: (state, { payload }) => {
       state.year = payload;
+    },
+    setPastQuestions: (state, { payload }) => {
+      state.pastQuestions = payload;
+    },
+    setPastQuestionsOption: (state, { payload }) => {
+      switch (payload) {
+        case "A":
+          state.pastQuestionsOption.optionA = true;
+          state.pastQuestionsOption.optionB = false;
+          state.pastQuestionsOption.optionC = false;
+          state.pastQuestionsOption.optionD = false;
+          break;
+        case "B":
+          state.pastQuestionsOption.optionA = false;
+          state.pastQuestionsOption.optionB = true;
+          state.pastQuestionsOption.optionC = false;
+          state.pastQuestionsOption.optionD = false;
+
+          break;
+        case "C":
+          state.pastQuestionsOption.optionA = false;
+          state.pastQuestionsOption.optionB = false;
+          state.pastQuestionsOption.optionC = true;
+          state.pastQuestionsOption.optionD = false;
+
+          break;
+        case "D":
+          state.pastQuestionsOption.optionA = false;
+          state.pastQuestionsOption.optionB = false;
+          state.pastQuestionsOption.optionC = false;
+          state.pastQuestionsOption.optionD = true;
+          break;
+
+        default:
+          state.pastQuestionsOption.optionA = false;
+          state.pastQuestionsOption.optionB = false;
+          state.pastQuestionsOption.optionC = false;
+          state.pastQuestionsOption.optionD = false;
+          break;
+      }
     },
 
     setMockSubject: (state, { payload }) => {
@@ -107,6 +153,8 @@ export const {
   cancelExam,
   setExam,
   setYear,
+  setPastQuestions,
+  setPastQuestionsOption,
 } = slice.actions;
 
 export default slice.reducer;

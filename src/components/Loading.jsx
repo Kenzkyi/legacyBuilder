@@ -1,6 +1,6 @@
 import React from "react";
 import "../../src/styles/authCss/loading.css";
-import loading from "../assets/loading.svg";
+import { DotLoader } from "react-spinners";
 const Loading = () => {
   return (
     <div className="loadingmain">
@@ -17,7 +17,7 @@ const Loading = () => {
           <h1>Loading...</h1>
         </div>
         <div className="loadingimg">
-          <img src={loading} />
+          <DotLoader size={100} color="#804BF2" />
         </div>
         <div className="loadingtext2">
           <p>Just a moment</p>
