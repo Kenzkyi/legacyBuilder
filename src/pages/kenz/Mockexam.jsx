@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../styles/dashboardCss/mockExam.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { setMockExamQuestion, setMockSubject } from '../../global/slice'
+import { setExamTimer, setMockExamQuestion, setMockSubject } from '../../global/slice'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -20,6 +20,7 @@ const Mockexam = () => {
         const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/mock-questions/${subject}`)
         if(res?.status === 200){
           dispatch(setMockExamQuestion(res?.data?.data))
+          dispatch(setExamTimer('FREEMIUM'))
           setTimeout(() => {
             nav(`/${subject}/1`)
           }, 500);
