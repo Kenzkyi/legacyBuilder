@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userToken: "",
   user: {},
-
-  mockSubject: "",
   exam: "",
   year: "",
   mockSubject: "",
@@ -28,9 +26,7 @@ const initialState = {
   },
   logout: false,
   leavingNow: false,
-  filteredArray: [],
-  year:"",
-  exam:""
+  exam: [],
 };
 
 const slice = createSlice({
@@ -68,30 +64,30 @@ const slice = createSlice({
       state.mockExamQuestions = payload;
     },
     setMockExamOption: (state, { payload }) => {
-      switch (payload) {
+      switch (payload.option) {
         case "A":
-          state.mockExamOptions.optionA = true;
+          state.mockExamOptions.optionA = payload.answer;
           state.mockExamOptions.optionB = false;
           state.mockExamOptions.optionC = false;
           state.mockExamOptions.optionD = false;
           break;
         case "B":
           state.mockExamOptions.optionA = false;
-          state.mockExamOptions.optionB = true;
+          state.mockExamOptions.optionB = payload.answer;
           state.mockExamOptions.optionC = false;
           state.mockExamOptions.optionD = false;
           break;
         case "C":
           state.mockExamOptions.optionA = false;
           state.mockExamOptions.optionB = false;
-          state.mockExamOptions.optionC = true;
+          state.mockExamOptions.optionC = payload.answer;
           state.mockExamOptions.optionD = false;
           break;
         case "D":
           state.mockExamOptions.optionA = false;
           state.mockExamOptions.optionB = false;
           state.mockExamOptions.optionC = false;
-          state.mockExamOptions.optionD = true;
+          state.mockExamOptions.optionD = payload.answer;
           break;
 
         default:
@@ -108,6 +104,7 @@ const slice = createSlice({
       state.mockExamOptions.optionB = false
       state.mockExamOptions.optionC = false
       state.mockExamOptions.optionD = false
+      state.exam = []
 
     },
     previousQuestion: (state,{payload})=>{
@@ -115,10 +112,55 @@ const slice = createSlice({
     },
     nextQuestion: (state,{payload})=>{
       state.examMeter = state.examMeter + 2
+      if(state.mockExamOptions.optionA){
+        const obj = {
+          option: 'A',
+          answer: state.mockExamOptions.optionA,
+          score: state.mockExamOptions.optionA === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }else if(state.mockExamOptions.optionB){
+        const obj = {
+          option: 'B',
+          answer: state.mockExamOptions.optionB,
+          score: state.mockExamOptions.optionB === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+                console.log(obj)
+      }else if(state.mockExamOptions.optionC){
+        const obj = {
+          option: 'C',
+          answer: state.mockExamOptions.optionC,
+          score: state.mockExamOptions.optionC === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }else if(state.mockExamOptions.optionD){
+        const obj = {
+          answer: state.mockExamOptions.optionD,
+          score: state.mockExamOptions.optionD === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }else{
+        const obj = {
+          option: 'none',
+          answer: 'none',
+          score: state.mockExamOptions.optionD === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }
     },
     setExamTimer: (state,{payload})=>{
       state.examMeter = 0
-      if(payload === 'FREEMIUM'){
+      if(payload === 'Freemium'){
         state.examTimerMins = 9
         state.examTimerSecs = 59
       }else{
@@ -183,18 +225,23 @@ const slice = createSlice({
     setLogout: (state,{payload})=>{
       state.logout = !state.logout
     },
+    logoutTheUser: (state,{payload})=>{
+      state.logout = !state.logout
+      state.user = {}
+      state.userToken = ''
+      state.navState.overview = true
+      state.navState.mockExam = false
+      state.navState.pastQuestion = false
+      state.navState.profile = false
+      state.navState.subscription = false
+      state.mockSubject = ''
+    },
     setLeavingNow: (state,{payload})=>{
       state.leavingNow = !state.leavingNow
-    },
-    setExam: (state, { payload }) => {
-      state.exam = payload
-    },
-    setYear: (state, { payload }) => {
-      state.year = payload
     },
   },
 });
 
-export const { setUserToken, setExam, setYear, setLogout, setLeavingNow, setNavState, theExamTimer, setUser, setMockSubject, setIsOverview, setMockExamQuestion, setMockExamOption, cancelExam, previousQuestion, nextQuestion, setExamTimer } = slice.actions;
+export const { setUserToken, setExam, logoutTheUser, setYear, setLogout, setLeavingNow, setNavState, theExamTimer, setUser, setMockSubject, setIsOverview, setMockExamQuestion, setMockExamOption, cancelExam, previousQuestion, nextQuestion, setExamTimer } = slice.actions;
 
 export default slice.reducer;

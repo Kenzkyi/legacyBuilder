@@ -6,16 +6,47 @@ import { PiExamFill } from 'react-icons/pi'
 import image2 from '../../assets/public/1st rating (1).svg'
 import SubjectSelected from './SubjectSelected'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsOverview } from '../../global/slice'
+import { setIsOverview, setUser } from '../../global/slice'
+import { TbTrashX } from 'react-icons/tb'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const Overview = () => {
   const isOverview = useSelector((state)=>state.isOverview)
   const user = useSelector((state)=>state.user)
+  const [showBin,setShowBin] = useState('')
   console.log(user)
   const dispatch = useDispatch()
   const randomCol = ()=>{
     let randomNum = Math.floor(Math.random() * 255)
     return randomNum
+  }
+
+  const removeSubject = async(subject)=>{
+    const id = toast.loading('Removing Subject ...')
+    try {
+      const res = await axios.put(`${import.meta.env.VITE_BASE_URL}api/v1/removeSubject/${user?._id}`,{subject})
+      if(res?.status === 200){
+        toast.dismiss(id)
+        setTimeout(() => {
+          toast.success(res?.data?.message)
+          dispatch(setUser(res?.data?.data))
+        }, 500);
+      }
+    } catch (error) {
+      toast.dismiss(id)
+      setTimeout(() => {
+        toast.error(error?.response?.data?.message)
+      }, 500);
+    }
+  }
+
+  const onMouseEnterToShowBin = (index)=>{
+    if (user?.plan !== 'Freemium') {
+      setShowBin(index)
+      return
+    }
+    setShowBin('')
   }
 
   return (
@@ -42,12 +73,13 @@ const Overview = () => {
             <h4>Subject Selected</h4>
             <main>
               {
-                user?.enrolledSubjects.map((item,index)=>(
-                  <nav key={index} style={{background:`RGB(${randomCol()},${randomCol()},${randomCol()})`}}>
+                user?.enrolledSubjects?.map((item,index)=>(
+                  <nav onMouseEnter={()=>onMouseEnterToShowBin(index)} onMouseLeave={()=>setShowBin('')} key={index} style={{background:`RGB(${randomCol()},${randomCol()},${randomCol()})`}}>
                     <aside>
                       <section style={{background:'black'}}><FaBook fontSize={35} color={`RGB(${randomCol()},${randomCol()},${randomCol()})`}/></section>
                       <p>{item}</p>
                     </aside>
+                    <TbTrashX style={{display:showBin === index? 'flex' : 'none'}} className='overview-trashIcon' onClick={(e)=>{e.stopPropagation(),removeSubject(item)}}/>
                   </nav>
                 ))
               }

@@ -8,10 +8,10 @@ import { toast } from 'react-toastify'
 
 const Mockexam = () => {
     const mySubject = useSelector((state)=>state.mockSubject)
+    const user = useSelector((state)=>state.user)
     const dispatch = useDispatch()
     const nav = useNavigate()
     const [loading,setLoading] = useState(false)
-    const subjects = ['Accounting','Biology','Chemisty','Commerce','English','Government','Literature','Mathematics','Physics']
 
     const getExamQuestionPerSubject = async (subject) => {
       setLoading(true)
@@ -20,7 +20,7 @@ const Mockexam = () => {
         const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/mock-questions/${subject}`)
         if(res?.status === 200){
           dispatch(setMockExamQuestion(res?.data?.data))
-          dispatch(setExamTimer('FREEMIUM'))
+          dispatch(setExamTimer(user?.plan))
           setTimeout(() => {
             nav(`/${subject}/1`)
           }, 500);
@@ -45,7 +45,7 @@ const Mockexam = () => {
       <div className="mockExam-holder">
         <>
         {
-            subjects.map((item,index)=>(
+            user?.enrolledSubjects?.map((item,index)=>(
                 <div className="mockExam-holderSubject" key={index}>
             <article>
             <p>{item}</p>
