@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import "../../styles/dashboardCss/mockExam.css";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  setExamTimer,
+  setMockExamQuestion,
+  setMockSubject,
+} from "../../global/slice";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
+import "../../styles/dashboardCss/mockExam.css";
+import { useDispatch, useSelector } from "react-redux";
 import { setMockExamQuestion, setMockSubject } from "../../global/slice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -32,6 +43,7 @@ const Mockexam = () => {
       );
       if (res?.status === 200) {
         dispatch(setMockExamQuestion(res?.data?.data));
+        dispatch(setExamTimer("FREEMIUM"));
         setTimeout(() => {
           nav(`/${subject}/1`);
         }, 500);
