@@ -3,7 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userToken: "",
   user: {},
-  mockSubject:'',
+
+  mockSubject: "",
+  exam: "",
+  year: "",
+  mockSubject: "",
   isOverview: false,
   mockExamQuestions: [],
   mockExamOptions: {
@@ -37,51 +41,62 @@ const slice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload;
     },
-    setMockSubject: (state,{payload}) =>{
-      if(state.mockSubject === payload){
-        state.mockSubject = ''
-      }else{
-        state.mockSubject = payload
+
+    setMockSubject: (state, { payload }) => {
+      state.mockSubject = payload;
+    },
+    setExam: (state, { payload }) => {
+      state.exam = payload;
+    },
+    setYear: (state, { payload }) => {
+      state.year = payload;
+    },
+
+    setMockSubject: (state, { payload }) => {
+      if (state.mockSubject === payload) {
+        state.mockSubject = "";
+      } else {
+        state.mockSubject = payload;
       }
     },
-    setIsOverview: (state,{payload}) =>{
-      state.isOverview = !state.isOverview
+    setIsOverview: (state, { payload }) => {
+      state.isOverview = !state.isOverview;
     },
-    setMockExamQuestion: (state,{payload})=>{
-      state.mockExamQuestions = payload
+    setMockExamQuestion: (state, { payload }) => {
+      state.mockExamQuestions = payload;
     },
-    setMockExamOption: (state,{payload})=>{
+    setMockExamOption: (state, { payload }) => {
       switch (payload) {
-        case 'A':
-          state.mockExamOptions.optionA = true
-          state.mockExamOptions.optionB = false
-          state.mockExamOptions.optionC = false
-          state.mockExamOptions.optionD = false
+        case "A":
+          state.mockExamOptions.optionA = true;
+          state.mockExamOptions.optionB = false;
+          state.mockExamOptions.optionC = false;
+          state.mockExamOptions.optionD = false;
           break;
-        case 'B':
-          state.mockExamOptions.optionA = false
-          state.mockExamOptions.optionB = true
-          state.mockExamOptions.optionC = false
-          state.mockExamOptions.optionD = false
+        case "B":
+          state.mockExamOptions.optionA = false;
+          state.mockExamOptions.optionB = true;
+          state.mockExamOptions.optionC = false;
+          state.mockExamOptions.optionD = false;
           break;
-        case 'C':
-          state.mockExamOptions.optionA = false
-          state.mockExamOptions.optionB = false
-          state.mockExamOptions.optionC = true
-          state.mockExamOptions.optionD = false
+        case "C":
+          state.mockExamOptions.optionA = false;
+          state.mockExamOptions.optionB = false;
+          state.mockExamOptions.optionC = true;
+          state.mockExamOptions.optionD = false;
           break;
-        case 'D':
-          state.mockExamOptions.optionA = false
-          state.mockExamOptions.optionB = false
-          state.mockExamOptions.optionC = false
-          state.mockExamOptions.optionD = true
+        case "D":
+          state.mockExamOptions.optionA = false;
+          state.mockExamOptions.optionB = false;
+          state.mockExamOptions.optionC = false;
+          state.mockExamOptions.optionD = true;
           break;
-      
+
         default:
-          state.mockExamOptions.optionA = false
-          state.mockExamOptions.optionB = false
-          state.mockExamOptions.optionC = false
-          state.mockExamOptions.optionD = false
+          state.mockExamOptions.optionA = false;
+          state.mockExamOptions.optionB = false;
+          state.mockExamOptions.optionC = false;
+          state.mockExamOptions.optionD = false;
           break;
       }
     },
@@ -170,7 +185,6 @@ const slice = createSlice({
       state.leavingNow = !state.leavingNow
     }
   },
-  
 });
 
 export const { setUserToken, setLogout, setLeavingNow, setNavState, theExamTimer, setUser, setMockSubject, setIsOverview, setMockExamQuestion, setMockExamOption, cancelExam, previousQuestion, nextQuestion, setExamTimer } = slice.actions;
