@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../styles/dashboardCss/overview.css'
 import image1 from '../../assets/public/home-firstlayer.png'
 import { FaBook } from 'react-icons/fa6'
@@ -10,7 +10,14 @@ import { setIsOverview } from '../../global/slice'
 
 const Overview = () => {
   const isOverview = useSelector((state)=>state.isOverview)
+  const user = useSelector((state)=>state.user)
+  console.log(user)
   const dispatch = useDispatch()
+  const randomCol = ()=>{
+    let randomNum = Math.floor(Math.random() * 255)
+    return randomNum
+  }
+
   return (
     <>
       {
@@ -23,7 +30,7 @@ const Overview = () => {
           <div className="overview-firstLayerLeftUP">
             <main>
               <nav>
-                <h5><span style={{color:'#F2AE30'}}>Hello,</span> user</h5>
+                <h5><span style={{color:'#F2AE30'}}>Hello,</span> {user?.fullName}</h5>
                 <p>Welcome to Legacy Builder — your ultimate companion for JAMB success. Let’s help you score 300+ and unlock your dream university!</p>
               </nav>
               <article></article>
@@ -34,18 +41,16 @@ const Overview = () => {
           <div className="overview-firstLayerLeftDown">
             <h4>Subject Selected</h4>
             <main>
-              <nav >
-                <aside>
-                <section><FaBook fontSize={35}/></section>
-                <p>English</p>
-                </aside>
-              </nav>
-              <nav >
-                <aside>
-                <section><FaBook color='#F2AE30' fontSize={35}/></section>
-                <p>Maths</p>
-                </aside>
-              </nav>
+              {
+                user?.enrolledSubjects.map((item,index)=>(
+                  <nav key={index} style={{background:`RGB(${randomCol()},${randomCol()},${randomCol()})`}}>
+                    <aside>
+                      <section style={{background:'black'}}><FaBook fontSize={35} color={`RGB(${randomCol()},${randomCol()},${randomCol()})`}/></section>
+                      <p>{item}</p>
+                    </aside>
+                  </nav>
+                ))
+              }
               <nav style={{backgroundColor:'white',cursor:'pointer'}} onClick={()=>dispatch(setIsOverview())}>
                 <aside>
                   <div>+</div>
@@ -60,7 +65,7 @@ const Overview = () => {
           <main>
             <div><FaBook color='#804BF2' fontSize={35}/></div>
             <nav>
-              <h6>4</h6>
+              <h6>{user?.enrolledSubjects?.length}</h6>
               <p>Subject
               Selected</p>
             </nav>
@@ -68,14 +73,22 @@ const Overview = () => {
           <main style={{backgroundColor:'#F2AE30'}}>
             <div style={{backgroundColor:'black'}}><PiExamFill color='white' fontSize={35}/></div>
             <nav>
-              <h6>25</h6>
+              <h6>
+                {
+                  user?.plan === 'Freemium' ? '10' : '30'
+                }
+              </h6>
               <p>Minutes Mock Exam</p>
             </nav>
           </main>
           <main style={{backgroundColor:'#804BF2'}}>
             <div style={{backgroundColor:'white'}}><FaBook color='#F2AE30' fontSize={35}/></div>
             <nav style={{color:'white'}}>
-              <h6>2</h6>
+              <h6>
+              {
+                  user?.plan === 'Freemium' ? '2' : '12'
+                }
+              </h6>
               <p>Years Pass Questions</p>
             </nav>
           </main>

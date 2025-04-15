@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import "../../styles/dashboardCss/mockExam.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setMockExamQuestion, setMockSubject } from "../../global/slice";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-
+import React, { useState } from 'react'
+import '../../styles/dashboardCss/mockExam.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { setExamTimer, setMockExamQuestion, setMockSubject } from '../../global/slice'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 const Mockexam = () => {
   const mySubject = useSelector((state) => state.mockSubject);
   const dispatch = useDispatch();
@@ -23,15 +22,24 @@ const Mockexam = () => {
     "Physics",
   ];
 
-  const getExamQuestionPerSubject = async (subject) => {
-    setLoading(true);
-    const id = toast.loading("Please wait ...");
-    try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}api/v1/mock-questions/${subject}`
-      );
-      if (res?.status === 200) {
-        dispatch(setMockExamQuestion(res?.data?.data));
+    const getExamQuestionPerSubject = async (subject) => {
+      setLoading(true)
+      const id = toast.loading('Please wait ...')
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/mock-questions/${subject}`)
+        if(res?.status === 200){
+          dispatch(setMockExamQuestion(res?.data?.data))
+          dispatch(setExamTimer('FREEMIUM'))
+          setTimeout(() => {
+            nav(`/${subject}/1`)
+          }, 500);
+        }
+        toast.dismiss(id)
+        setLoading(false)
+        console.log(res)
+      } catch (error) {
+        setLoading(false)
+        toast.dismiss(id)
         setTimeout(() => {
           nav(`/${subject}/1`);
         }, 500);
