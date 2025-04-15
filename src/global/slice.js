@@ -326,18 +326,22 @@ const slice = createSlice({
 
 export const {
   setUserToken,
+  setExam,
+  setYear,
+  setLogout,
+  setLeavingNow,
+  setNavState,
+  theExamTimer,
   setUser,
   setMockSubject,
   setIsOverview,
   setMockExamQuestion,
   setMockExamOption,
   cancelExam,
-  setExam,
-  setYear,
-  setPastQuestions,
-  setPastQuestionsOption,
+  previousQuestion,
   nextQuestion,
   setExamTimer,
+  setPastQuestions,
+  setPastQuestionsOption,
 } = slice.actions;
-
 export default slice.reducer;
