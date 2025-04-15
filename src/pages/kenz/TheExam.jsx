@@ -13,7 +13,7 @@ const TheExam = () => {
     const examTimerMins = useSelector((state)=>state.examTimerMins)
     const examTimerSecs = useSelector((state)=>state.examTimerSecs)
     const exam = useSelector((state)=>state.exam)
-    // console.log(exam)
+    // console.log(mockExamOptions,exam)
     
     
     const dispatch = useDispatch()
@@ -21,8 +21,8 @@ const TheExam = () => {
     const {subject, subjectId} = useParams()
     const num = Number(subjectId)
     // console.log(exam[num -1]?.option,exam[num - 1]?.answer)
-    const currentQuestion = mockExamQuestions?.find((item,index)=>index === parseInt(subjectId) -1)
-    // console.log(mockExamOptions)
+    const currentQuestion = mockExamQuestions?.find((item,index)=>index === num -1)
+    // console.log(currentQuestion)
     useEffect(()=>{
       const interval = setInterval(() => {
         dispatch(theExamTimer())
@@ -32,17 +32,17 @@ const TheExam = () => {
 
     const previousExam = ()=>{
       dispatch(setMockExamOption({option:exam[num - 2]?.option,answer:exam[num - 2]?.answer}))
-      nav(`/${subject}/${parseInt(subjectId) - 1}`)
+      nav(`/mock-exam/${subject}/${num - 1}`)
       dispatch(previousQuestion())}
     
 
     const nextExam = ()=>{
       dispatch(nextQuestion({answer:currentQuestion?.answer,subjectId}))
-      nav(`/${subject}/${parseInt(subjectId) + 1}`)
+      nav(`/mock-exam/${subject}/${parseInt(subjectId) + 1}`)
       if (exam.length > subjectId) {
-        dispatch(setMockExamOption('E'))
-      }else{
         dispatch(setMockExamOption({option:exam[num ]?.option,answer:exam[num ]?.answer}))
+      }else{
+        dispatch(setMockExamOption('E'))
       }
     }
 
