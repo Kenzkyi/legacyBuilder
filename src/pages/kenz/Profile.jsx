@@ -9,7 +9,6 @@ import { setUser } from '../../global/slice'
 
 const Profile = () => {
   const user = useSelector((state)=>state.user)
-  console.log(user)
   const [notEditing,setNotEditing] = useState(true)
   const [notPassword, setNotPassword] = useState(true)
   const [fullName,setFullname] = useState(user?.fullName)
@@ -35,12 +34,28 @@ const Profile = () => {
     }
   }
   
- 
+ const changeFullname = async (fullName) => {
+  const id = toast.loading('Updating')
+  try {
+    const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/studentUpdate/${user?._id}`,{fullName})
+    console.log(res)
+    toast.dismiss(id)
+    setTimeout(() => {
+      toast.success(res?.data?.message)
+      dispatch(setUser(res?.data?.data))
+      setNotEditing(true)
+    }, 500);
+  } catch (error) {
+    toast.dismiss(id)
+    setNotEditing(true)
+    toast.error(error?.response?.data?.message)
+    console.log(error)
+  }
+ }
   
   const setProfilePic = async()=>{
     const formDatas = new FormData()
     formDatas.append('image',image)
-    console.log(image)
     try {
       const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/upload-profileImage/${user?._id}`,formDatas,{
         headers: {
@@ -103,7 +118,7 @@ const Profile = () => {
         <h3>Profile Setting</h3>
         <>
           {
-            notEditing ? <nav  onClick={()=>setNotEditing(false)}><TbEdit fontSize={25}/>Edit</nav> : <nav style={{fontSize:18}}>Update</nav>
+            notEditing ? <nav  onClick={()=>setNotEditing(false)}><TbEdit fontSize={25}/>Edit</nav> : <nav style={{fontSize:18}} onClick={()=>changeFullname(fullName)}>Update</nav>
           }
         </>
       </div>

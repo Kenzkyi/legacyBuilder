@@ -34,9 +34,7 @@ const initialState = {
   },
   logout: false,
   leavingNow: false,
-  filteredArray: [],
-  year: "",
-  exam: "",
+  exam: [],
 };
 
 const slice = createSlice({
@@ -114,30 +112,30 @@ const slice = createSlice({
       state.mockExamQuestions = payload;
     },
     setMockExamOption: (state, { payload }) => {
-      switch (payload) {
+      switch (payload.option) {
         case "A":
-          state.mockExamOptions.optionA = true;
+          state.mockExamOptions.optionA = payload.answer;
           state.mockExamOptions.optionB = false;
           state.mockExamOptions.optionC = false;
           state.mockExamOptions.optionD = false;
           break;
         case "B":
           state.mockExamOptions.optionA = false;
-          state.mockExamOptions.optionB = true;
+          state.mockExamOptions.optionB = payload.answer;
           state.mockExamOptions.optionC = false;
           state.mockExamOptions.optionD = false;
           break;
         case "C":
           state.mockExamOptions.optionA = false;
           state.mockExamOptions.optionB = false;
-          state.mockExamOptions.optionC = true;
+          state.mockExamOptions.optionC = payload.answer;
           state.mockExamOptions.optionD = false;
           break;
         case "D":
           state.mockExamOptions.optionA = false;
           state.mockExamOptions.optionB = false;
           state.mockExamOptions.optionC = false;
-          state.mockExamOptions.optionD = true;
+          state.mockExamOptions.optionD = payload.answer;
           break;
 
         default:
@@ -148,27 +146,74 @@ const slice = createSlice({
           break;
       }
     },
-    cancelExam: (state, { payload }) => {
-      state.mockSubject = "";
-      state.mockExamOptions.optionA = false;
-      state.mockExamOptions.optionB = false;
-      state.mockExamOptions.optionC = false;
-      state.mockExamOptions.optionD = false;
+    cancelExam: (state,{payload})=>{
+      state.mockSubject = ''
+      state.mockExamOptions.optionA = false
+      state.mockExamOptions.optionB = false
+      state.mockExamOptions.optionC = false
+      state.mockExamOptions.optionD = false
+      state.exam = []
+
     },
     previousQuestion: (state, { payload }) => {
       state.examMeter = state.examMeter - 2;
     },
-    nextQuestion: (state, { payload }) => {
-      state.examMeter = state.examMeter + 2;
+    nextQuestion: (state,{payload})=>{
+      state.examMeter = state.examMeter + 2
+      if(state.mockExamOptions.optionA){
+        const obj = {
+          option: 'A',
+          answer: state.mockExamOptions.optionA,
+          score: state.mockExamOptions.optionA === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }else if(state.mockExamOptions.optionB){
+        const obj = {
+          option: 'B',
+          answer: state.mockExamOptions.optionB,
+          score: state.mockExamOptions.optionB === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+                console.log(obj)
+      }else if(state.mockExamOptions.optionC){
+        const obj = {
+          option: 'C',
+          answer: state.mockExamOptions.optionC,
+          score: state.mockExamOptions.optionC === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }else if(state.mockExamOptions.optionD){
+        const obj = {
+          answer: state.mockExamOptions.optionD,
+          score: state.mockExamOptions.optionD === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }else{
+        const obj = {
+          option: 'none',
+          answer: 'none',
+          score: state.mockExamOptions.optionD === payload.answer ? 2 : 0
+        }
+        const num = Number(payload.subjectId) - 1
+        state.exam[num] = obj
+        console.log(obj)
+      }
     },
-    setExamTimer: (state, { payload }) => {
-      state.examMeter = 0;
-      if (payload === "FREEMIUM") {
-        state.examTimerMins = 9;
-        state.examTimerSecs = 59;
-      } else {
-        state.examTimerMins = 29;
-        state.examTimerSecs = 59;
+    setExamTimer: (state,{payload})=>{
+      state.examMeter = 0
+      if(payload === 'Freemium'){
+        state.examTimerMins = 9
+        state.examTimerSecs = 59
+      }else{
+        state.examTimerMins = 29
+        state.examTimerSecs = 59
       }
     },
     theExamTimer: (state, { payload }) => {
@@ -229,119 +274,23 @@ const slice = createSlice({
     setLogout: (state, { payload }) => {
       state.logout = !state.logout;
     },
-    setLeavingNow: (state, { payload }) => {
-      state.leavingNow = !state.leavingNow;
+    logoutTheUser: (state,{payload})=>{
+      state.logout = !state.logout
+      state.user = {}
+      state.userToken = ''
+      state.navState.overview = true
+      state.navState.mockExam = false
+      state.navState.pastQuestion = false
+      state.navState.profile = false
+      state.navState.subscription = false
+      state.mockSubject = ''
     },
-    setExam: (state, { payload }) => {
-      state.exam = payload;
-    },
-    setYear: (state, { payload }) => {
-      state.year = payload;
-    },
-    previousQuestion: (state, { payload }) => {
-      state.examMeter = state.examMeter - 2;
-    },
-    nextQuestion: (state, { payload }) => {
-      state.examMeter = state.examMeter + 2;
-    },
-    setExamTimer: (state, { payload }) => {
-      state.examMeter = 0;
-      if (payload === "FREEMIUM") {
-        state.examTimerMins = 9;
-        state.examTimerSecs = 59;
-      } else {
-        state.examTimerMins = 29;
-        state.examTimerSecs = 59;
-      }
-    },
-    theExamTimer: (state, { payload }) => {
-      if (state.examTimerSecs === 0) {
-        state.examTimerMins--;
-        state.examTimerSecs = 59;
-      } else {
-        state.examTimerSecs--;
-      }
-    },
-    setNavState: (state, { payload }) => {
-      switch (payload) {
-        case "OVERVIEW":
-          state.navState.overview = true;
-          state.navState.mockExam = false;
-          state.navState.pastQuestion = false;
-          state.navState.profile = false;
-          state.navState.subscription = false;
-          break;
-        case "MOCKEXAM":
-          state.navState.overview = false;
-          state.navState.mockExam = true;
-          state.navState.pastQuestion = false;
-          state.navState.profile = false;
-          state.navState.subscription = false;
-          break;
-        case "PASTQUESTION":
-          state.navState.overview = false;
-          state.navState.mockExam = false;
-          state.navState.pastQuestion = true;
-          state.navState.profile = false;
-          state.navState.subscription = false;
-          break;
-        case "PROFILE":
-          state.navState.overview = false;
-          state.navState.mockExam = false;
-          state.navState.pastQuestion = false;
-          state.navState.profile = true;
-          state.navState.subscription = false;
-          break;
-        case "SUBSCRIPTION":
-          state.navState.overview = false;
-          state.navState.mockExam = false;
-          state.navState.pastQuestion = false;
-          state.navState.profile = false;
-          state.navState.subscription = true;
-          break;
-
-        default:
-          state.navState.overview = true;
-          state.navState.mockExam = false;
-          state.navState.pastQuestion = false;
-          state.navState.profile = false;
-          state.navState.subscription = false;
-          break;
-      }
-    },
-    setLogout: (state, { payload }) => {
-      state.logout = !state.logout;
-    },
-    setLeavingNow: (state, { payload }) => {
-      state.leavingNow = !state.leavingNow;
-    },
-    setExam: (state, { payload }) => {
-      state.exam = payload;
-    },
-    setYear: (state, { payload }) => {
-      state.year = payload;
+    setLeavingNow: (state,{payload})=>{
+      state.leavingNow = !state.leavingNow
     },
   },
 });
 
-export const {
-  setUserToken,
-  setExam,
-  setYear,
-  setLogout,
-  setLeavingNow,
-  setNavState,
-  theExamTimer,
-  setUser,
-  setMockSubject,
-  setIsOverview,
-  setMockExamQuestion,
-  setMockExamOption,
-  cancelExam,
-  previousQuestion,
-  nextQuestion,
-  setExamTimer,
-  setPastQuestions,
-  setPastQuestionsOption,
-} = slice.actions;
-export default slice.reducer;
+export const { setUserToken, setPastQuestions, setPastQuestionsOption, setExam, logoutTheUser, setYear, setLogout, setLeavingNow, setNavState, theExamTimer, setUser, setMockSubject, setIsOverview, setMockExamQuestion, setMockExamOption, cancelExam, previousQuestion, nextQuestion, setExamTimer } = slice.actions;
+
+export default slice.reducer

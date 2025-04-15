@@ -5,7 +5,6 @@ import { LuClock2 } from 'react-icons/lu'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { cancelExam, nextQuestion, previousQuestion, setLeavingNow, setMockExamOption, theExamTimer } from '../../global/slice'
-import LeavingNow from './LeavingNow'
 
 const TheExam = () => {
     const mockExamQuestions = useSelector((state)=>state.mockExamQuestions)
@@ -13,18 +12,40 @@ const TheExam = () => {
     const examMeter = useSelector((state)=>state.examMeter)
     const examTimerMins = useSelector((state)=>state.examTimerMins)
     const examTimerSecs = useSelector((state)=>state.examTimerSecs)
+    const exam = useSelector((state)=>state.exam)
+    // console.log(exam)
     
-  
+    
     const dispatch = useDispatch()
     const nav = useNavigate()
     const {subject, subjectId} = useParams()
+    const num = Number(subjectId)
+    // console.log(exam[num -1]?.option,exam[num - 1]?.answer)
     const currentQuestion = mockExamQuestions?.find((item,index)=>index === parseInt(subjectId) -1)
+    // console.log(mockExamOptions)
     useEffect(()=>{
       const interval = setInterval(() => {
         dispatch(theExamTimer())
       }, 1000);
       return ()=> clearInterval(interval)
     },[examTimerSecs])
+
+    const previousExam = ()=>{
+      dispatch(setMockExamOption({option:exam[num - 2]?.option,answer:exam[num - 2]?.answer}))
+      nav(`/${subject}/${parseInt(subjectId) - 1}`)
+      dispatch(previousQuestion())}
+    
+
+    const nextExam = ()=>{
+      dispatch(nextQuestion({answer:currentQuestion?.answer,subjectId}))
+      nav(`/${subject}/${parseInt(subjectId) + 1}`)
+      if (exam.length > subjectId) {
+        dispatch(setMockExamOption('E'))
+      }else{
+        dispatch(setMockExamOption({option:exam[num ]?.option,answer:exam[num ]?.answer}))
+      }
+    }
+
   return (
     <div className='examBody'>
       <div className="examBody-firstLayer">
@@ -45,31 +66,31 @@ const TheExam = () => {
             <nav>
               <h4>A.</h4>
               <p>{currentQuestion?.options[0]}</p>
-              <input type="radio" checked={mockExamOptions.optionA} onChange={()=>dispatch(setMockExamOption('A'))}/>
+              <input type="radio" checked={mockExamOptions.optionA} onChange={()=>dispatch(setMockExamOption({option:'A',answer:currentQuestion?.options[0]}))}/>
             </nav>
             <nav>
               <h4>B.</h4>
               <p>{currentQuestion?.options[1]}</p>
-              <input type="radio" checked={mockExamOptions.optionB} onChange={()=>dispatch(setMockExamOption('B'))}/>
+              <input type="radio" checked={mockExamOptions.optionB} onChange={()=>dispatch(setMockExamOption({option:'B',answer:currentQuestion?.options[1]}))}/>
             </nav>
             <nav>
               <h4>C.</h4>
               <p>{currentQuestion?.options[2]} </p>
-              <input type="radio" checked={mockExamOptions.optionC} onChange={()=>dispatch(setMockExamOption('C'))}/>
+              <input type="radio" checked={mockExamOptions.optionC} onChange={()=>dispatch(setMockExamOption({option:'C',answer:currentQuestion?.options[2]}))}/>
             </nav>
             <nav>
               <h4>D.</h4>
               <p>{currentQuestion?.options[3]}</p>
-              <input type="radio" checked={mockExamOptions.optionD} onChange={()=>dispatch(setMockExamOption('D'))}/>
+              <input type="radio" checked={mockExamOptions.optionD} onChange={()=>dispatch(setMockExamOption({option:'D',answer:currentQuestion?.options[3]}))}/>
             </nav>
           </main>
         </div>
         <div className="examBody-secondLayerButton">
-          <button style={{display:parseInt(subjectId) === 1 ? 'none' : 'flex'}} onClick={()=>{nav(`/${subject}/${parseInt(subjectId) - 1}`),dispatch(previousQuestion())}}>
+          <button style={{display:parseInt(subjectId) === 1 ? 'none' : 'flex'}} onClick={()=>previousExam()}>
             <article><FaArrowLeftLong /></article>
             <h2>Previous</h2>
           </button>
-          <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'none' : 'flex'}} onClick={()=>{nav(`/${subject}/${parseInt(subjectId) + 1}`),dispatch(nextQuestion()),dispatch(setMockExamOption('E'))}}>
+          <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'none' : 'flex'}} onClick={()=>nextExam()}>
           <h2>Next</h2>
           <article><FaArrowRightLong /></article>
           </button>

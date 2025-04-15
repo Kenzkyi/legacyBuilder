@@ -3,7 +3,9 @@ import '../../styles/dashboardCss/subjectSelected.css'
 import image1 from '../../assets/public/home-firstlayer.png'
 import { FaArrowLeftLong, FaBook } from 'react-icons/fa6'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsOverview } from '../../global/slice'
+import { setIsOverview, setUser } from '../../global/slice'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 
 const SubjectSelected = () => {
@@ -25,6 +27,28 @@ const SubjectSelected = () => {
   useEffect(()=>{
     filterArray()
   },[user?.enrolledSubjects])
+
+  const addSubject = async(subject)=>{
+    const id = toast.loading('Adding Subject ...')
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/addSubject/${user?._id}`,{subject})
+      if(res?.status === 200){
+        toast.dismiss(id)
+        setTimeout(() => {
+          toast.success(res?.data?.message)
+          dispatch(setUser(res?.data?.data))
+          dispatch(setIsOverview())
+        }, 500);
+      }
+    } catch (error) {
+      toast.dismiss(id)
+      setTimeout(() => {
+        toast.error(error?.response?.data?.message)
+      }, 500);
+      console.log(error)
+    }
+  }
+
   return (
     <div className='subjectSelected'>
       <div className="subjectSelected-firstLayer">
@@ -64,7 +88,7 @@ const SubjectSelected = () => {
             <article>
            {
               filteredSubjectArr.map((item,index)=>(
-                <nav key={index} onClick={()=>dispatch(setIsOverview())} style={{background:`RGB(${randomCol()},${randomCol()},${randomCol()})`}}>
+                <nav key={index} onClick={()=>addSubject(item)} style={{background:`RGB(${randomCol()},${randomCol()},${randomCol()})`}}>
                   <aside>
                     <section style={{background:'black'}}><FaBook fontSize={35} color={`RGB(${randomCol()},${randomCol()},${randomCol()})`}/></section>
                     <p>{item}</p>

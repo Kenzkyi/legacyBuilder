@@ -2,7 +2,7 @@ import React from 'react'
 import '../../styles/dashboardCss/logout.css'
 import img1 from '../../assets/public/Log out.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLogout } from '../../global/slice'
+import { logoutTheUser, setLogout } from '../../global/slice'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -12,20 +12,32 @@ const Logout = () => {
   const nav = useNavigate()
   const userToken = useSelector((state)=>state.userToken)
   const logoutUser = async()=>{
+    const id = toast.loading('logging out ...')
     try {
       const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/v1/logout`,{},{
         headers : {
           Authorization : `Bearer ${userToken}`
         }
       })
-      toast.success(res?.data?.message)
-      console.log(res)
+      toast.dismiss(id)
+      if(res?.status === 200){
+        setTimeout(() => {
+          toast.success(res?.data?.message)
+          nav('/')
+        }, 500);
+        setTimeout(() => {
+          dispatch(logoutTheUser())
+        }, 1000);
+      }
+      return;
     } catch (error) {
-      toast.error(error?.response?.data?.message)
+      toast.dismiss(id)
+      setTimeout(() => {
+        toast.error(error?.response?.data?.message)
+      }, 500);
       console.log(error)
     }
-    nav('/')
-    dispatch(setLogout())
+    
   }
   return (
     <div className='logout' onClick={()=>dispatch(setLogout())}>
