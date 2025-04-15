@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
-import '../../styles/dashboardCss/mockExam.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { setExamTimer, setMockExamQuestion, setMockSubject } from '../../global/slice'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { toast } from 'react-toastify'
-
+import React, { useState } from "react";
+import "../../styles/dashboardCss/mockExam.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setExamTimer,
+  setMockExamQuestion,
+  setMockSubject,
+} from "../../global/slice";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 const Mockexam = () => {
     const mySubject = useSelector((state)=>state.mockSubject)
     const user = useSelector((state)=>state.user)
@@ -28,19 +31,21 @@ const Mockexam = () => {
         toast.dismiss(id)
         setLoading(false)
         console.log(res)
-      } catch (error) {
-        setLoading(false)
-        toast.dismiss(id)
-        setTimeout(() => {
-          toast.error(error?.response?.data?.message)
-        }, 500);
-        console.log(error)
-      }
+    } catch (error) {
+      setLoading(false);
+      toast.dismiss(id);
+      setTimeout(() => {
+        toast.error(error?.response?.data?.message);
+      }, 500);
+      console.log(error);
     }
+  };
 
   return (
-    <div className='mockExam'>
-      <h2><span style={{color:'#804BF2'}}>Mock Exam</span> (Jamb CBT Practice)</h2>
+    <div className="mockExam">
+      <h2>
+        <span style={{ color: "#804BF2" }}>Mock Exam</span> (Jamb CBT Practice)
+      </h2>
       <h2>Select CBT Subject below to begin!</h2>
       <div className="mockExam-holder">
         <>
@@ -61,7 +66,7 @@ const Mockexam = () => {
       </div>
       <h5>The platform is cbt simulation using real jamb past questions.</h5>
     </div>
-  )
-}
+  );
+};
 
-export default Mockexam
+export default Mockexam;
