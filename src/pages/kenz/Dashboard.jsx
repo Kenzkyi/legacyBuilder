@@ -121,7 +121,7 @@ const Dashboard = () => {
           <h3>Welcome, {user?.fullName}</h3>
           <nav>
             {
-              user.image.imageUrl? <img src={user?.image?.imageUrl} alt="" /> : <h1>{user?.fullName.charAt(0)}</h1>
+              user?.image? <img src={user?.image?.imageUrl} alt="" /> : <h1>{user?.fullName?.charAt(0)}</h1>
             }
           </nav>
         </div>

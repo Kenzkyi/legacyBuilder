@@ -44,22 +44,21 @@ const routes = createBrowserRouter([
   { path: "/verify/:token", element: <Verify /> },
   { path: "/callback/:token", element: <Callback /> },
   {
-    path: "/dashboard",
     element: <Dashboard />,
     children: [
-      { path: "overview", element: <Overview />, index: true },
-      { path: "mock-exam", element: <Mockexam /> },
-      { path: "past-questions", element: <PastQuestion /> },
-      { path: "profile", element: <Profile /> },
-      { path: "subscription", element: <Subscription /> },
-      { path: "make-payment", element: <MakePayment /> },
+      { path: "/dashboard/overview", element: <Overview />, index: true },
+      { path: "/dashboard/mock-exam", element: <Mockexam /> },
+      { path: "/dashboard/past-questions", element: <PastQuestion /> },
+      { path: "/dashboard/profile", element: <Profile /> },
+      { path: "/dashboard/subscription", element: <Subscription /> },
+      { path: "/dashboard/make-payment", element: <MakePayment /> },
       {
-        path: "view-pastquestion",
+        path: "/dashboard/view-pastquestion",
         element: <ViewPastQuestion />,
       },
     ],
   },
-  { path: ":subject/:subjectId", element: <ExamBody /> },
+  { path: "mock-exam/:subject/:subjectId", element: <ExamBody /> },
 ]);
 
 const App = () => {
