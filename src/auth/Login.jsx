@@ -8,6 +8,8 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser, setUserToken } from "../global/slice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -63,6 +65,8 @@ const Login = () => {
     setInputValue((prev) => ({ ...prev, [name]: value }));
     validateField(name, value);
   };
+
+  const dispatch = useDispatch()
   console.log(inputValue);
   const handleSubmit = async (e, data) => {
     e.preventDefault();
@@ -74,6 +78,8 @@ const Login = () => {
           data
         );
         console.log(res);
+        dispatch(setUserToken(res?.data?.token))
+        dispatch(setUser(res?.data?.data))
         if (res?.status === 200) {
           toast.success("Login successful!");
           setLoading(false);

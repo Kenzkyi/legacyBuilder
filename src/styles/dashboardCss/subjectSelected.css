@@ -14,6 +14,14 @@
     display: flex;
     align-items: flex-end;
     margin-bottom: 50px;
+    position: relative;
+
+    aside{
+        position: absolute;
+        top: 30px;
+        font-size: 25px;
+        cursor: pointer;
+    }
 
     img{
         position: absolute;
@@ -107,7 +115,7 @@
         margin-bottom: 30px;
 
         nav{
-            width: 117.3px;
+            width: 120px;
             height: 177px;
             border-radius: 11.5px;
             display: flex;
@@ -135,10 +143,11 @@
                 }
 
                 p{
-                    font-size: 16.7px;
+                    font-size: 15px;
                     font-weight: 500;
                     font-family: "Montserrat", sans-serif;
-                    color: white;
+                    color: black;
+                    text-align: center;
                 }
 
                 h6{
@@ -172,7 +181,7 @@
         margin-bottom: 30px;
 
         nav{
-            width: 117.3px;
+            width: 120px;
             height: 177px;
             border-radius: 11.5px;
             display: flex;
@@ -201,10 +210,11 @@
                 }
 
                 p{
-                    font-size: 16.7px;
+                    font-size: 15px;
                     font-weight: 500;
                     font-family: "Montserrat", sans-serif;
-                    color: white;
+                    color: black;
+                    text-align: center;
                 }
 
                 h6{
