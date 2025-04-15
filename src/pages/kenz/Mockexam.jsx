@@ -25,7 +25,7 @@ const Mockexam = () => {
           dispatch(setMockExamQuestion(res?.data?.data))
           dispatch(setExamTimer(user?.plan))
           setTimeout(() => {
-            nav(`/${subject}/1`)
+            nav(`/mock-exam/${subject}/1`)
           }, 500);
         }
         toast.dismiss(id)

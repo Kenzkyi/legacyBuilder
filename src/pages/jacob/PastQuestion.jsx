@@ -68,7 +68,7 @@ const PastQuestion = () => {
       setLoading(false);
     } catch (error) {
       toast.update(toastId, {
-        render: error?.response?.data?.message || "Failed to fetch questions.",
+        render: "Failed to fetch questions.",
         type: "error",
         isLoading: false,
         autoClose: 3000,

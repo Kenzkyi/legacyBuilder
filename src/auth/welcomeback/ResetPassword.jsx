@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/authCss/resetpassword.css";
 import lock from "../../assets/uim_padlock.svg";
+import logo from "../../assets/public/legacy_builder_logo.png";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -111,6 +112,9 @@ const ResetPassword = () => {
       </div>
       <div className="ResetPasswordgoldsmallcircle"></div>
       <div className="ResetPasswordgoldsmallcircle1"></div>
+      <div className="closeicondiv">
+        <img src={logo} onClick={() => navigate("/")} />
+      </div>
       <section className="ResetPasswordcontainer">
         <div className="ResetPasswordlogocontainer">
           <img src={lock} alt="" className="ResetPasswordplogo" />

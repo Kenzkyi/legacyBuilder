@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/authCss/auth.css";
 import { FaFacebook } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { IoMdArrowBack } from "react-icons/io";
+import logo from "../assets/public/legacy_builder_logo.png";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -130,13 +130,13 @@ const SignUp = () => {
         }
       } catch (error) {
         setLoading(false);
-        toast.error(error?.response?.data?.message)
+        toast.error(error?.response?.data?.message);
       }
     }
   };
 
   const googleIcon = async () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
+    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`;
     // try {
     //   const res = await axios.get(
     //     `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
@@ -154,7 +154,7 @@ const SignUp = () => {
   }
 
   const facebookIcon = async () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
+    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`;
 
     // try {
     //   const res = await axios.get(
@@ -176,7 +176,7 @@ const SignUp = () => {
       <div className="goldsmallcircle"></div>
       <div className="goldsmallcircle1"></div>
       <div className="closeicondiv">
-        <IoMdArrowBack className="closeIcon" />
+        <img src={logo} onClick={() => navigate("/")} />
       </div>
       <div className="signupForm">
         <div className="header">

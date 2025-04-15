@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/authCss/auth.css";
 import { FaFacebook } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { IoMdArrowBack } from "react-icons/io";
+import logo from "../assets/public/legacy_builder_logo.png";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -66,7 +66,7 @@ const Login = () => {
     validateField(name, value);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   console.log(inputValue);
   const handleSubmit = async (e, data) => {
     e.preventDefault();
@@ -78,8 +78,8 @@ const Login = () => {
           data
         );
         console.log(res);
-        dispatch(setUserToken(res?.data?.token))
-        dispatch(setUser(res?.data?.data))
+        dispatch(setUserToken(res?.data?.token));
+        dispatch(setUser(res?.data?.data));
         if (res?.status === 200) {
           toast.success("Login successful!");
           setLoading(false);
@@ -119,7 +119,7 @@ const Login = () => {
       <div className="goldsmallcircle"></div>
       <div className="goldsmallcircle1"></div>
       <div className="closeicondiv">
-        <IoMdArrowBack className="closeIcon" />
+        <img src={logo} onClick={() => navigate("/")} />
       </div>
       <div className="signupForm">
         <div className="header">
