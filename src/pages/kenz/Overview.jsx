@@ -122,6 +122,14 @@ const Overview = () => {
     },
   ]
 
+  const addMoreSubject = ()=>{
+    if (user?.plan === 'Freemium' && user?.enrolledSubjects?.length === 4) {
+      toast.error('Upgrade Plan to add more subject')
+    } else {
+      dispatch(setIsOverview())
+    }
+  }
+
   return (
     <>
       {
@@ -156,7 +164,7 @@ const Overview = () => {
                   </nav>
                 ))
               }
-              <nav style={{backgroundColor:'white',cursor:'pointer'}} onClick={()=>dispatch(setIsOverview())}>
+              <nav style={{backgroundColor:'white',cursor:'pointer'}} onClick={()=>addMoreSubject()}>
                 <aside>
                   <div>+</div>
                 <h6>Add Subject</h6>
