@@ -2,8 +2,10 @@ import React from "react";
 import "../styles/dashboardCss/subscription.css";
 import payment from "../assets/public/paymentsymbol.svg";
 import { FiCheckCircle } from "react-icons/fi";
+import { useNavigate } from "react-router";
 
 const MonthlyPayment = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="monthlyusub">
@@ -34,7 +36,9 @@ const MonthlyPayment = () => {
               </div>
             </div>
             <div className="subbuttondiv">
-              <button className="planbutton">Choose plan</button>
+              <button className="planbutton" disabled={true}>
+                Choose plan
+              </button>
             </div>
           </div>
         </div>
@@ -70,7 +74,12 @@ const MonthlyPayment = () => {
                 <span className="monthlysubtext">Monthly Subscription</span>
               </div>
               <div className="subbuttondiv">
-                <button className="planbutton1">Choose plan</button>
+                <button
+                  className="planbutton1"
+                  onClick={() => navigate("/dashboard/make-payment")}
+                >
+                  Choose plan
+                </button>
               </div>
             </div>
           </div>
@@ -97,7 +106,12 @@ const MonthlyPayment = () => {
               <span>Lifetime Subscription</span>
             </div>
             <div className="subbuttondiv">
-              <button className="planbutton">Choose plan</button>
+              <button
+                className="planbutton"
+                onClick={() => navigate("/dashboard/make-payment")}
+              >
+                Choose plan
+              </button>
             </div>
           </div>
         </div>
