@@ -108,6 +108,14 @@ const Login = () => {
     }
   }, [inputValue]);
 
+  const loginGoogleIcon = async()=>{
+    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`;
+  }
+
+  const loginFacebookIcon = async()=>{
+    window.location.href = `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`;
+  }
+
   return (
     <div className="signupMain">
       <div className="circle">
@@ -187,8 +195,8 @@ const Login = () => {
           <div className="line"></div>
         </span>
         <article className="socials">
-          <FaFacebook className="facebookIcon" />
-          <FcGoogle className="googleIcon" />
+          <FaFacebook className="facebookIcon" onClick={()=>loginFacebookIcon()}/>
+          <FcGoogle className="googleIcon" onClick={()=>loginGoogleIcon()}/>
         </article>
         <article className="forgotpassworddiv">
           <p

@@ -192,6 +192,7 @@ const slice = createSlice({
         console.log(obj);
       } else if (state.mockExamOptions.optionD) {
         const obj = {
+          option: 'D',
           answer: state.mockExamOptions.optionD,
           score: state.mockExamOptions.optionD === payload.answer ? 2 : 0,
         };

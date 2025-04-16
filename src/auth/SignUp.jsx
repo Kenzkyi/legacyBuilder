@@ -132,14 +132,6 @@ const SignUp = () => {
 
   const googleIcon = async () => {
     window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`;
-    // try {
-    //   const res = await axios.get(
-    //     `${import.meta.env.VITE_BASE_URL}googleAuthenticate`
-    //   );
-    //   console.log(res);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   function validatePassword(password) {
@@ -149,16 +141,7 @@ const SignUp = () => {
   }
 
   const facebookIcon = async () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`;
-
-    // try {
-    //   const res = await axios.get(
-    //     `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`
-    //   );
-    //   console.log(res);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    window.location.href = `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`;
   };
   return (
     <div className="signupMain">

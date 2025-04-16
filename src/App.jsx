@@ -42,7 +42,7 @@ const routes = createBrowserRouter([
   { path: "/resetlink", element: <ResetLink /> },
   { path: "/resetpassword/:token", element: <ResetPassword /> },
   { path: "/verify/:token", element: <Verify /> },
-  { path: "/callback/:token", element: <Callback /> },
+  { path: "/callback/:token/:userId", element: <Callback /> },
   {
     element: <Dashboard />,
     children: [
