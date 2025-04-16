@@ -14,8 +14,9 @@ import axios from 'axios'
 const Overview = () => {
   const isOverview = useSelector((state)=>state.isOverview)
   const user = useSelector((state)=>state.user)
+  const userToken = useSelector((state)=>state.userToken)
   const [showBin,setShowBin] = useState('')
-  console.log(user)
+  console.log(userToken)
   const dispatch = useDispatch()
   const randomCol = ()=>{
     let randomNum = Math.floor(Math.random() * 255)

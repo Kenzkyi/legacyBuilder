@@ -88,17 +88,7 @@ const SubjectSelected = () => {
     },
   ]
   const subjectArr = ['English','Mathematics','Physics','Chemistry','Biology','Literature in English','Economics','Geography','Government','History']
-  const [filteredSubjectArr,setFilteredSubjectArr] = useState(subjectArr)
 
-  const filterArray = ()=>{
-    for(let subject of user?.enrolledSubjects){
-        setFilteredSubjectArr(filteredSubjectArr.filter((item)=>item !== subject))
-    }
-  }
-
-  useEffect(()=>{
-    filterArray()
-  },[user?.enrolledSubjects])
 
   const addSubject = async(subject)=>{
     const id = toast.loading('Adding Subject ...')
@@ -150,16 +140,10 @@ const SubjectSelected = () => {
                   </nav>
                 ))
               }
-              {/* <nav style={{backgroundColor:'white',cursor:'pointer'}} >
-                <aside>
-                  <div>+</div>
-                <h6>Add Subject</h6>
-                </aside>
-              </nav> */}
             </main>
             <article>
            {
-              filteredSubjectArr.map((item,index)=>(
+              subjectArr.map((item,index)=>(
                 <nav key={index} onClick={()=>addSubject(item)} style={{background:allSubjectsData.find((items)=>items.subject === item)?.cardColor}}>
                     <aside>
                       <section style={{background:allSubjectsData.find((items)=>items.subject === item)?.divColor}}><FaBook fontSize={35} color={allSubjectsData.find((items)=>items.subject === item)?.iconColor}/></section>
