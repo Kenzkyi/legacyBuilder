@@ -7,8 +7,8 @@ import { useNavigate } from "react-router";
 const MonthlyPayment = () => {
   const navigate = useNavigate();
 
-  const handleChoosePlan = (amount) => {
-    navigate("/dashboard/make-payment", { state: { amount } });
+  const handleChoosePlan = (amount, plan) => {
+    navigate("/dashboard/make-payment", { state: { amount, plan } });
   };
   return (
     <>
@@ -80,7 +80,7 @@ const MonthlyPayment = () => {
               <div className="subbuttondiv">
                 <button
                   className="planbutton1"
-                  onClick={() => handleChoosePlan(500)}
+                  onClick={() => handleChoosePlan(500, "Premium")}
                 >
                   Choose plan
                 </button>
@@ -112,7 +112,7 @@ const MonthlyPayment = () => {
             <div className="subbuttondiv">
               <button
                 className="planbutton"
-                onClick={() => handleChoosePlan(8000)}
+                onClick={() => handleChoosePlan(8000, "Lifetime Access")}
               >
                 Choose plan
               </button>
