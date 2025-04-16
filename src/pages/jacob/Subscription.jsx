@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "../../styles/dashboardCss/subscription.css";
 import MonthlyPayment from "../../components/MonthlyPayment";
 import YearlyPayment from "../../components/YearlyPayment";
+import { useDispatch, useSelector } from "react-redux";
+import { setToggle } from "../../global/slice";
 const Subscription = () => {
-  const [toggle, setToggle] = useState(false);
+  const toggle = useSelector((state) => state.toggle);
+  const dispatch = useDispatch();
 
   const handleToggle = (isYearly) => {
     if (toggle !== isYearly) {
-      setToggle(isYearly);
+      dispatch(setToggle(isYearly));
     }
   };
   return (
@@ -23,19 +26,19 @@ const Subscription = () => {
           <button
             className={`toggle-btn ${toggle ? "inactive" : "active"}`}
             onClick={() => handleToggle(false)}
-            style={{ marginRight: "auto" }} // Align to the left
+            style={{ marginRight: "auto" }}
           >
             Monthly
           </button>
           <button
             className={`toggle-btn ${toggle ? "active" : "inactive"}`}
             onClick={() => handleToggle(true)}
-            style={{ marginLeft: "auto" }} // Align to the right
+            style={{ marginLeft: "auto" }}
           >
             Yearly
           </button>
         </div>
-        {toggle ? <MonthlyPayment /> : <YearlyPayment />}
+        {toggle ? <YearlyPayment /> : <MonthlyPayment />}
 
         <div className="subfootercontainer">
           <div className="subfooter">

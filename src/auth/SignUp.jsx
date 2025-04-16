@@ -34,14 +34,9 @@ const SignUp = () => {
     if (name === "fullName") {
       if (!value.trim()) {
         error = "Full name is required";
-      } else {
-        const names = value.split(" ");
-        for (let i = 0; i < names.length; i++) {
-          if (names[i].charAt(0) !== names[i].charAt(0).toUpperCase()) {
-            error = "Each name must start with a capital letter";
-            break;
-          }
-        }
+      } else if (!value.trim().includes(" ")) {
+        error =
+          "Full name must include at least two names (e.g., Benjamin Jacob)";
       }
     }
     if (name === "email") {

@@ -4,6 +4,8 @@ import payment from "../../assets/public/payment.png";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const MakePayment = () => {
   const navigate = useNavigate();
@@ -11,7 +13,22 @@ const MakePayment = () => {
   console.log(user);
 
   const location = useLocation();
-  const { amount } = location.state || {};
+  const { amount, plan } = location.state || {};
+
+  const koraPayPaymentIntegration = async (e, amount, email, name) => {
+    e.preventDefault();
+    console.log(amount, email, name);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}api/v1/initializeKoraPay`,
+        { amount, email, name }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    }
+  };
 
   return (
     <main className="makepaymentmain">
@@ -31,7 +48,7 @@ const MakePayment = () => {
         </div>
         <div className="odercode">
           <span className="code">Plan</span>
-          <span className="code">{user?.plan}</span>
+          <span className="code">{plan}</span>
         </div>
         <div className="oderemail">
           <span className="oderemail1">Email</span>
@@ -52,7 +69,14 @@ const MakePayment = () => {
           </span>
         </div>
         <div className="makepaymentbtn">
-          <button className="korapayment">Pay with Kora</button>
+          <button
+            className="korapayment"
+            onClick={(e) =>
+              koraPayPaymentIntegration(e, amount, user?.email, user?.fullName)
+            }
+          >
+            Pay with Kora
+          </button>
         </div>
       </div>
       <div className="makerightdiv">

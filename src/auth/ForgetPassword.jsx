@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ForgetPassword = () => {
+  const navigate = useNavigate();
   const [disabled, setDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState({
@@ -76,7 +77,10 @@ const ForgetPassword = () => {
       <div className="goldsmallcircle"></div>
       <div className="goldsmallcircle1"></div>
       <div className="closeicondiv">
-        <IoMdArrowBack className="closeIcon" />
+        <IoMdArrowBack
+          className="closeIcon"
+          onClick={() => navigate("/login")}
+        />
       </div>
       <div className="signupForm">
         <div className="header">
