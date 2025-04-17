@@ -10,7 +10,8 @@ const VerifyPayment = () => {
 
     const verifyPayment = async()=>{
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/verifyKoraPay/${reference}`)
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/verifyKoraPay?reference=${reference}`)
+        console.log(res?.data?.data?.student)
         console.log(res)
       } catch (error) {
         toast.error(error?.response?.data?.message)
