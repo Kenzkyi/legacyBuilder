@@ -18,17 +18,17 @@ const MakePayment = () => {
  
   const koraPayPaymentIntegration = async (e, amount, email, name, plan) => {
     e.preventDefault();
-    console.log(amount, email, name, plan, user?._id);
+    console.log(amount, email, name, plan);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}api/v1/initializeKoraPay/${user?._id}`,
+        `${import.meta.env.VITE_BASE_URL}api/v1/initializeKoraPay`,
         { amount, email, name, plan }
       );
       if(response?.status === 200){
         setTimeout(() => {
           
           window.location.href = response?.data?.data?.checkout_url
-        }, 15000);
+        }, 5000);
       }
       console.log(response);
     } catch (error) {

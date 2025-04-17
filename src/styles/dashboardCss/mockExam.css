@@ -19,6 +19,18 @@
     font-weight: 400;
     font-family: "Montserrat", sans-serif;
   }
+
+  @media screen and (max-width:480px) {
+    h2{
+      font-size: 16px;
+      line-height: 35px;
+    }
+
+    h5{
+      font-size: 18px;
+    }
+
+  }
 }
 
 .mockExam-holder {
@@ -89,4 +101,14 @@
       font-family: "Montserrat", sans-serif;
     }
   }
+
+  @media screen and (max-width:480px) {
+    width: 100%;
+    .mockExam-holderSubject{
+      width: 100%;
+    }
+
+    
+  }
+
 }

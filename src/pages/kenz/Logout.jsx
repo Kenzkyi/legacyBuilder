@@ -32,10 +32,18 @@ const Logout = () => {
       return;
     } catch (error) {
       toast.dismiss(id)
-      setTimeout(() => {
-        toast.error(error?.response?.data?.message)
-      }, 500);
-      console.log(error)
+      if (error?.response?.data?.message === 'Session timed-out: Please login to continue') {
+        setTimeout(() => {
+          nav('/')
+        }, 500);
+        setTimeout(() => {
+          dispatch(logoutTheUser())
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          toast.error(error?.response?.data?.message)
+        }, 500);
+      }
     }
     
   }
