@@ -45,8 +45,8 @@ const routes = createBrowserRouter([
   { path: "/resetpassword/:token", element: <ResetPassword /> },
   { path: "/verify/:token", element: <Verify /> },
   { path: "/callback/:token/:userId", element: <Callback /> },
-  {path:'verifyingPayment/:reference', element: <VerifyPayment/>},
   {element:<PrivateRoute/>, children: [
+    {path:'verifyingPayment', element: <VerifyPayment/>},
     {
       element: <Dashboard />,
       children: [

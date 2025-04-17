@@ -1,9 +1,9 @@
 .logout{
     width: 100%;
     margin: 0 auto;
-    height: 110vh;
-    background: transparent;
-    z-index: 3;
+    height: 100vh;
+    background: rgba(211, 211, 211, 0.929);
+    z-index: 11;
     position: fixed;
     top: 0;
     left: 0;
@@ -87,6 +87,24 @@
                 font-family: "Montserrat", sans-serif;
                 font-weight: 500;
                 font-size: 13px;
+            }
+        }
+
+        @media screen and (max-width:480px) {
+            p{
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            nav{
+                gap: 10px;
+                .continue-btn{
+                    width: 130px;
+                    font-size: 10.5px;
+                }
+                .logout-btn{
+                    width: 110px;
+                }
             }
         }
     }

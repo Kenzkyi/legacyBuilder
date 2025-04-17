@@ -37,11 +37,11 @@ const responsive = {
     items: 3
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 1024, min: 769 },
     items: 2
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 769, min: 0 },
     items: 1
   }
 };
@@ -159,54 +159,6 @@ const Home = () => {
         <h3>Progress <span style={{color:'#804BF2'}}>Tracker</span></h3>
         <div className="home-sixthLayerHolder">
           <main>
-            <article>
-              <h5>Progress Tracker</h5>
-              <section>
-                <div>
-                  <img src={home9} alt="" />
-                </div>
-                <aside>
-                  <h6>Victoria Godwin</h6>
-                  <p>Mock Master 99.5%</p>
-                </aside>
-              </section>
-              <section>
-                <div>
-                  <img src={home10} alt="" />
-                </div>
-                <aside>
-                  <h6>Mr Kenneth</h6>
-                  <p>Mock Master 98.3%</p>
-                </aside>
-              </section>
-              <section>
-                <div>
-                  <img src={home11} alt="" />
-                </div>
-                <aside>
-                  <h6>Benjamin Jacob</h6>
-                  <p>Mock Master 96.7%</p>
-                </aside>
-              </section>
-              <section>
-                <div>
-                  <img src={home12} alt="" />
-                </div>
-                <aside>
-                  <h6>Augustine Okoye</h6>
-                  <p>Mock Master 95.9%</p>
-                </aside>
-              </section>
-              <section>
-                <div>
-                  <img src={home13} alt="" />
-                </div>
-                <aside>
-                  <h6>Lola Amos</h6>
-                  <p>Mock Master 95%</p>
-                </aside>
-              </section>
-            </article>
           </main>
           <nav>
             <h4>Feeling Overwhelmed?</h4>
