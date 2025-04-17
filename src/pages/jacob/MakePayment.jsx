@@ -16,13 +16,13 @@ const MakePayment = () => {
   const { amount, plan } = location.state || {};
   console.log(plan)
  
-  const koraPayPaymentIntegration = async (e, amount, email, name) => {
+  const koraPayPaymentIntegration = async (e, amount, email, name, plan) => {
     e.preventDefault();
-    console.log(amount, email, name,);
+    console.log(amount, email, name, plan);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}api/v1/initializeKoraPay`,
-        { amount, email, name }
+        { amount, email, name, plan }
       );
       if(response?.status === 200){
         setTimeout(() => {
@@ -79,7 +79,7 @@ const MakePayment = () => {
           <button
             className="korapayment"
             onClick={(e) =>
-              koraPayPaymentIntegration(e, amount, user?.email, user?.fullName)
+              koraPayPaymentIntegration(e, amount, user?.email, user?.fullName, plan)
             }
           >
             Pay with Kora

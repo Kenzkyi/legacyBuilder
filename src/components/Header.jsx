@@ -14,7 +14,7 @@ const Header = () => {
       <div className="header">
       <div className="header-holder">
         <div className="header-holderImg">
-          <img src={HeaderLogo} alt="Legacy Builders" />
+          <img src={HeaderLogo} alt="Legacy Builders" onClick={()=>nav('/')}/>
         </div>
         <div className="header-holderText">
           <ul>
@@ -50,7 +50,7 @@ const Header = () => {
     {
       showDropdown && <div className="header-dropDown">
       <div className="headerDropdown-holderImg">
-            <img src={HeaderLogo} alt="Legacy Builders" />
+            <img src={HeaderLogo} alt="Legacy Builders" onClick={()=>{nav('/'),setShowDropdown(!showDropdown)}}/>
       </div>
       <div className="headerDropdown-holderText">
             <>
