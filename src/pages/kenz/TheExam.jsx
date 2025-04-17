@@ -66,22 +66,22 @@ const TheExam = () => {
             <nav>
               <h4>A.</h4>
               <p>{currentQuestion?.options[0]}</p>
-              <input type="radio" checked={mockExamOptions.optionA} onChange={()=>dispatch(setMockExamOption({option:'A',answer:currentQuestion?.options[0]}))}/>
+              <input type="radio" checked={mockExamOptions.optionA} onChange={()=>dispatch(setMockExamOption({option:'A',answer:'A'}))}/>
             </nav>
             <nav>
               <h4>B.</h4>
               <p>{currentQuestion?.options[1]}</p>
-              <input type="radio" checked={mockExamOptions.optionB} onChange={()=>dispatch(setMockExamOption({option:'B',answer:currentQuestion?.options[1]}))}/>
+              <input type="radio" checked={mockExamOptions.optionB} onChange={()=>dispatch(setMockExamOption({option:'B',answer:'B'}))}/>
             </nav>
             <nav>
               <h4>C.</h4>
               <p>{currentQuestion?.options[2]} </p>
-              <input type="radio" checked={mockExamOptions.optionC} onChange={()=>dispatch(setMockExamOption({option:'C',answer:currentQuestion?.options[2]}))}/>
+              <input type="radio" checked={mockExamOptions.optionC} onChange={()=>dispatch(setMockExamOption({option:'C',answer:'C'}))}/>
             </nav>
             <nav>
               <h4>D.</h4>
               <p>{currentQuestion?.options[3]}</p>
-              <input type="radio" checked={mockExamOptions.optionD} onChange={()=>dispatch(setMockExamOption({option:'D',answer:currentQuestion?.options[3]}))}/>
+              <input type="radio" checked={mockExamOptions.optionD} onChange={()=>dispatch(setMockExamOption({option:'D',answer:'D'}))}/>
             </nav>
           </main>
         </div>
