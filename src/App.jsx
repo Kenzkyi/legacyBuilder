@@ -22,6 +22,8 @@ import ExamBody from "./pages/kenz/ExamBody";
 import MakePayment from "./pages/jacob/MakePayment";
 import ViewPastQuestion from "./pages/jacob/ViewPastQuestion";
 import Callback from "./components/Callback";
+import PrivateRoute from "./routes/PrivateRoute";
+import VerifyPayment from "./pages/kenz/VerifyPayment";
 import Facebookredirect from "./auth/Facebookredirect";
 
 const routes = createBrowserRouter([
@@ -44,23 +46,29 @@ const routes = createBrowserRouter([
   { path: "/resetpassword/:token", element: <ResetPassword /> },
   { path: "/verify/:token", element: <Verify /> },
   { path: "/callback/:token/:userId", element: <Callback /> },
-  { path: "/data-deletion", element: <Facebookredirect /> },
+  { path: "verifyingPayment/:reference", element: <VerifyPayment /> },
   {
-    element: <Dashboard />,
+    element: <PrivateRoute />,
     children: [
-      { path: "/dashboard/overview", element: <Overview />, index: true },
-      { path: "/dashboard/mock-exam", element: <Mockexam /> },
-      { path: "/dashboard/past-questions", element: <PastQuestion /> },
-      { path: "/dashboard/profile", element: <Profile /> },
-      { path: "/dashboard/subscription", element: <Subscription /> },
-      { path: "/dashboard/make-payment", element: <MakePayment /> },
+      { path: "/data-deletion", element: <Facebookredirect /> },
       {
-        path: "/dashboard/view-pastquestion",
-        element: <ViewPastQuestion />,
+        element: <Dashboard />,
+        children: [
+          { path: "/dashboard/overview", element: <Overview />, index: true },
+          { path: "/dashboard/mock-exam", element: <Mockexam /> },
+          { path: "/dashboard/past-questions", element: <PastQuestion /> },
+          { path: "/dashboard/profile", element: <Profile /> },
+          { path: "/dashboard/subscription", element: <Subscription /> },
+          { path: "/dashboard/make-payment", element: <MakePayment /> },
+          {
+            path: "/dashboard/view-pastquestion",
+            element: <ViewPastQuestion />,
+          },
+        ],
       },
+      { path: "mock-exam/:subject/:subjectId", element: <ExamBody /> },
     ],
   },
-  { path: "mock-exam/:subject/:subjectId", element: <ExamBody /> },
 ]);
 
 const App = () => {

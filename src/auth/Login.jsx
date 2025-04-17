@@ -77,7 +77,6 @@ const Login = () => {
           `${import.meta.env.VITE_BASE_URL}api/v1/student/login`,
           data
         );
-        console.log(res);
         dispatch(setUserToken(res?.data?.token));
         dispatch(setUser(res?.data?.data));
         if (res?.status === 200) {
