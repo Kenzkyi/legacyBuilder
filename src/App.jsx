@@ -47,10 +47,10 @@ const routes = createBrowserRouter([
   { path: "/verify/:token", element: <Verify /> },
   { path: "/callback/:token/:userId", element: <Callback /> },
   { path: "verifyingPayment/:reference", element: <VerifyPayment /> },
+  { path: "/data-deletion", element: <Facebookredirect /> },
   {
     element: <PrivateRoute />,
     children: [
-      { path: "/data-deletion", element: <Facebookredirect /> },
       {
         element: <Dashboard />,
         children: [
