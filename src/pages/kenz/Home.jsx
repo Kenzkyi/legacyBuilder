@@ -154,12 +154,6 @@ const Home = () => {
           </div>
           <p>Past Question</p>
         </nav>
-        <nav>
-          <div>
-            <img src={home8} alt="Leaderboard" />
-          </div>
-          <p>Leaderboard</p>
-        </nav>
       </div>
       <div className="home-sixthLayer">
         <h3>Progress <span style={{color:'#804BF2'}}>Tracker</span></h3>

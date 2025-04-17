@@ -36,7 +36,13 @@ const initialState = {
   logout: false,
   leavingNow: false,
   exam: [],
-  notEnrolledSubjects: []
+  notEnrolledSubjects: [],
+  examStatus: {
+    subject: '',
+    performance: '',
+    duration: '',
+    completed: ''
+  }
 };
 
 const slice = createSlice({
@@ -295,6 +301,9 @@ const slice = createSlice({
     },
     setNotEnrolledSubjects: (state,{payload})=> {
       state.notEnrolledSubjects = payload
+    },
+    submitExam: (state,{payload})=>{
+      state.examStatus = payload
     }
   },
 });
