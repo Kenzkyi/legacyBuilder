@@ -69,6 +69,7 @@ const routes = createBrowserRouter([
       { path: "mock-exam/:subject/:subjectId", element: <ExamBody /> },
     ],
   },
+]);
 
 const App = () => {
   return <RouterProvider router={routes} />;
