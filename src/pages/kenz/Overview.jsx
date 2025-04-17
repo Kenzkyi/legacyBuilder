@@ -6,7 +6,7 @@ import { PiExamFill } from 'react-icons/pi'
 import image2 from '../../assets/public/1st rating (1).svg'
 import SubjectSelected from './SubjectSelected'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsOverview, setUser } from '../../global/slice'
+import { setIsOverview, setNotEnrolledSubjects, setUser } from '../../global/slice'
 import { TbTrashX } from 'react-icons/tb'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -16,7 +16,6 @@ const Overview = () => {
   const user = useSelector((state)=>state.user)
   const userToken = useSelector((state)=>state.userToken)
   const [showBin,setShowBin] = useState('')
-  console.log(userToken)
   const dispatch = useDispatch()
   const randomCol = ()=>{
     let randomNum = Math.floor(Math.random() * 255)
@@ -123,11 +122,23 @@ const Overview = () => {
     },
   ]
 
-  const addMoreSubject = ()=>{
+  const addMoreSubject = async()=>{
     if (user?.plan === 'Freemium' && user?.enrolledSubjects?.length === 4) {
       toast.error('Upgrade Plan to add more subject')
     } else {
-      dispatch(setIsOverview())
+      const id = toast.loading('Please wait ...')
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/studentNotSubjects/${user?._id}`)
+        if (res?.status) {
+          dispatch(setNotEnrolledSubjects(res?.data?.data))
+          toast.dismiss(id)
+          dispatch(setIsOverview())
+        }
+      } catch (error) {
+        toast.error(error?.response?.data?.message)
+        toast.dismiss(id)
+        console.log(error)
+      }
     }
   }
 
@@ -200,7 +211,7 @@ const Overview = () => {
             <nav style={{color:'white'}}>
               <h6>
               {
-                  user?.plan === 'Freemium' ? '2' : '12'
+                  user?.plan === 'Freemium' ? '2' : 'All'
                 }
               </h6>
               <p>Years Pass Questions</p>
@@ -212,7 +223,7 @@ const Overview = () => {
       <div className="overview-secondLayer">
         <div className="overview-secondLayerLeft">
           <img src={image2} alt="" />
-          <p>60%</p>
+          <p>0%</p>
         </div>
         <div className="overview-secondLayerRight">
           <div className="overview-secondLayerRightHolder">

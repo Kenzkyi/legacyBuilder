@@ -38,7 +38,7 @@ const TheExam = () => {
 
     const nextExam = ()=>{
       dispatch(nextQuestion({answer:currentQuestion?.answer,subjectId}))
-      nav(`/mock-exam/${subject}/${parseInt(subjectId) + 1}`)
+      nav(`/mock-exam/${subject}/${num + 1}`)
       if (exam.length > subjectId) {
         dispatch(setMockExamOption({option:exam[num ]?.option,answer:exam[num ]?.answer}))
       }else{

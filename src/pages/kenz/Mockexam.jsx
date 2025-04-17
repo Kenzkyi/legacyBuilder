@@ -51,10 +51,10 @@ const Mockexam = () => {
         <>
         {
             user?.enrolledSubjects?.map((item,index)=>(
-                <div className="mockExam-holderSubject" key={index}>
+                <div className="mockExam-holderSubject" key={index} onClick={()=>dispatch(setMockSubject(item))}>
             <article>
             <p>{item}</p>
-            <h6 onClick={()=>dispatch(setMockSubject(item))}>{item === mySubject ? '-' : '+'}</h6>
+            <h6>{item === mySubject ? '-' : '+'}</h6>
             </article>
             <section style={{display:item === mySubject? 'flex' : 'none'}}>
                 <button style={{cursor:loading? 'not-allowed' : 'pointer',background:loading? '#804BF2CC' : '#804BF2'}} disabled={loading} onClick={()=>getExamQuestionPerSubject(item)}>Start Jamb CBT</button>
