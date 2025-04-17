@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/dashboardCss/pastquestion.css";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ const PastQuestion = () => {
   const [dropDownYear, setDropDownYear] = useState(false);
   const [selectedYear, setSelectedYear] = useState("All");
   const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const subjects = [
     "Accounting",
@@ -61,6 +62,7 @@ const PastQuestion = () => {
       return;
     }
     setLoading(true);
+
     const toastId = toast.loading("fecthing questions....");
     try {
       const response = await axios.get(
@@ -78,6 +80,7 @@ const PastQuestion = () => {
       dispatch(setPastQuestions(response.data.data));
       navigate("/dashboard/view-pastquestion");
       setLoading(false);
+      setDisabled(true);
     } catch (error) {
       toast.update(toastId, {
         render: "Failed to fetch questions.",
@@ -85,6 +88,7 @@ const PastQuestion = () => {
         isLoading: false,
         autoClose: 3000,
       });
+      setDisabled(false);
       setLoading(false);
       console.log(error);
     }
@@ -101,6 +105,15 @@ const PastQuestion = () => {
     setDropDownSubject(false);
     dispatch(setYear(year));
   };
+
+  useEffect(() => {
+    if (selectedYear === "All" || selectedSubjext === "All") {
+      setDisabled(true);
+      return;
+    } else {
+      setDisabled(false);
+    }
+  }, [selectedYear, selectedSubjext]);
   return (
     <div className="pastquestionmain">
       <div className="pastcontainer">
@@ -169,7 +182,11 @@ const PastQuestion = () => {
             onClick={() =>
               getPastQuestionForYearSubject(selectedYear, selectedSubjext)
             }
-            disabled={loading}
+            disabled={disabled}
+            style={{
+              backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
+              cursor: disabled ? "not-allowed" : "pointer",
+            }}
           >
             {loading ? "Loading" : "View Past question"}
           </button>

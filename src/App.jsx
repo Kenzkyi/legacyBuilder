@@ -22,6 +22,7 @@ import ExamBody from "./pages/kenz/ExamBody";
 import MakePayment from "./pages/jacob/MakePayment";
 import ViewPastQuestion from "./pages/jacob/ViewPastQuestion";
 import Callback from "./components/Callback";
+import Facebookredirect from "./auth/Facebookredirect";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -43,6 +44,7 @@ const routes = createBrowserRouter([
   { path: "/resetpassword/:token", element: <ResetPassword /> },
   { path: "/verify/:token", element: <Verify /> },
   { path: "/callback/:token/:userId", element: <Callback /> },
+  { path: "/data-deletion", element: <Facebookredirect /> },
   {
     element: <Dashboard />,
     children: [

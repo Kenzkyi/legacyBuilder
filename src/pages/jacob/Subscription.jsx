@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../../styles/dashboardCss/subscription.css";
-import MonthlyPayment from "../../components/MonthlyPayment";
-import YearlyPayment from "../../components/YearlyPayment";
+import MonthlyPayment from "../jacob/MonthlyPayment";
+import YearlyPayment from "../jacob/YearlyPayment";
 import { useDispatch, useSelector } from "react-redux";
 import { setToggle } from "../../global/slice";
 const Subscription = () => {
   const toggle = useSelector((state) => state.toggle);
+
   const dispatch = useDispatch();
 
   const handleToggle = (isYearly) => {
