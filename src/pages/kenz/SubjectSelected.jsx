@@ -11,10 +11,8 @@ import { toast } from 'react-toastify'
 const SubjectSelected = () => {
   const dispatch = useDispatch()
   const user = useSelector((state)=>state.user)
-  const randomCol = ()=>{
-    let randomNum = Math.floor(Math.random() * 255)
-    return randomNum
-  }
+  const notEnrolledSubjects = useSelector((state)=>state.notEnrolledSubjects)
+
   const allSubjectsData = [
     {
       subject:'Mathematics',
@@ -87,8 +85,6 @@ const SubjectSelected = () => {
       textColor:'#FFFFFF'
     },
   ]
-  const subjectArr = ['English','Mathematics','Physics','Chemistry','Biology','Literature in English','Economics','Geography','Government','History']
-
 
   const addSubject = async(subject)=>{
     const id = toast.loading('Adding Subject ...')
@@ -143,7 +139,7 @@ const SubjectSelected = () => {
             </main>
             <article>
            {
-              subjectArr.map((item,index)=>(
+              notEnrolledSubjects.map((item,index)=>(
                 <nav key={index} onClick={()=>addSubject(item)} style={{background:allSubjectsData.find((items)=>items.subject === item)?.cardColor}}>
                     <aside>
                       <section style={{background:allSubjectsData.find((items)=>items.subject === item)?.divColor}}><FaBook fontSize={35} color={allSubjectsData.find((items)=>items.subject === item)?.iconColor}/></section>

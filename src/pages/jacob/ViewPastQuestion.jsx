@@ -17,8 +17,6 @@ const ViewPastQuestion = () => {
 
   console.log("Questions from Redux:", questions);
 
-  // const duplicatedQuestions = Array.from({ length: 3 }, () => questions).flat();
-
   const [selectedOptions, setSelectedOptions] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const questionsPerPage = 5;
@@ -63,17 +61,20 @@ const ViewPastQuestion = () => {
           {subject} <em>Past Question</em>({year})
         </h1>
       </div>
-      {questions?.length > 0 ? (
-        questions?.map((item, index) => (
+      {currentQuestions?.length > 0 ? (
+        currentQuestions?.map((item, index) => (
           <div className="answerquestiondiv" key={index}>
-            <h1>{item.question}</h1>
+            <h1>
+              {index + 1}. {item.question}
+            </h1>
             <ul className="answeroption">
               {item.options.map((option, optionindex) => (
                 <li
                   key={optionindex}
                   className={
-                    selectedOptions[index]?.selected === option
-                      ? selectedOptions[index]?.isCorrect
+                    selectedOptions[indexOfFirstQuestion + index]?.selected ===
+                    option
+                      ? selectedOptions[indexOfFirstQuestion + index]?.isCorrect
                         ? "correct-option"
                         : "wrong-option"
                       : ""

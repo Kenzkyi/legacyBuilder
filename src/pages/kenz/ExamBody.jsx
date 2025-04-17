@@ -4,7 +4,6 @@ import TheExam from './TheExam'
 
 const ExamBody = () => {
   const leavingNow = useSelector((state)=>state.leavingNow)
-  console.log(leavingNow)
   return (
     <>
       {
