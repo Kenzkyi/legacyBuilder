@@ -400,6 +400,7 @@
 @media screen and (max-width:768px) {
     flex-direction: column-reverse;
     align-items: center;
+    margin-bottom: 0px;
     gap: 60px;
 
     .home-secondLayerLeft{
@@ -529,6 +530,8 @@
     article {
       height: 136px;
       width: 155px;
+      display: flex;
+      flex-direction: column;
 
       h6 {
         font-weight: 800;
@@ -555,6 +558,153 @@
     background: white;
     color: black;
   }
+
+  @media screen and (max-width:1024px) {
+
+    justify-content: space-between;
+    aside{
+      width: 20%;
+      left: 180px;
+
+      article{
+        width: 80%;
+        h6{
+          font-size: 40px;
+        }
+        p{
+          font-size: 23px;
+        }
+      }
+    }
+
+    .home-thirdLayerHolder{
+      h3{
+        margin-left: 30px;
+        font-size: 45px;
+      }
+      
+      div{
+        margin-right: 30px;
+        width: 20%;
+        justify-content: center;
+
+        h6{
+          font-weight: 600;
+          font-size: 40px;
+        }
+
+        p{
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    margin-bottom: 60px;
+    justify-content: space-between;
+    aside{
+      width: 20%;
+      height: 230px;
+      left: 135px;
+      top: 25px;
+      
+      article{
+        width: 80%;
+        h6{
+          font-size: 30px;
+        }
+        p{
+          font-size: 19px;
+        }
+      }
+    }
+    
+    .home-thirdLayerHolder{
+      height: 170px;
+      h3{
+        width: 20%;
+        margin-left: 20px;
+        font-size: 40px;
+      }
+
+      nav{
+        width: 20%;
+      }
+      
+      div{
+        margin-right: 20px;
+        width: 20%;
+        justify-content: center;
+
+        h6{
+          font-weight: 600;
+          font-size: 30px;
+        }
+
+        p{
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width:480px) {
+    width: 100%;
+    justify-content: space-between;
+    aside{
+      width: 20%;
+      height: 160px;
+      left: 95px;
+      top: 60px;
+      
+      article{
+        width: 80%;
+        justify-content: center;
+        h6{
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 30px;
+        }
+        p{
+          font-size: 10px;
+          line-height: 30px;
+        }
+      }
+    }
+    
+    .home-thirdLayerHolder{
+      height: 120px;
+      h3{
+        width: 20%;
+        margin-left: 15px;
+        font-size: 25px;
+        line-height: 40px;
+        margin-top: 20px;
+      }
+
+      nav{
+        width: 20%;
+      }
+      
+      div{
+        margin-right: 13px;
+        width: 20%;
+        justify-content: center;
+
+        h6{
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 30px;
+        }
+
+        p{
+          font-size: 8px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
 }
 
 .home-fourthLayer {
@@ -579,10 +729,24 @@
     line-height: 64px;
     text-align: center;
   }
+
+  @media screen and (max-width:480px) {
+    width: 90%;
+    margin-bottom: 40px;
+
+    h6{
+      font-size: 35px;
+      line-height: 30px;
+    }
+
+    p{
+      font-size: 18.5px;
+    }
+  }
 }
 
 .home-fifthLayer {
-  height: 294px;
+  min-height: 294px;
   width: 50%;
   display: flex;
   justify-content: space-between;
@@ -618,10 +782,23 @@
       text-align: center;
     }
   }
+
+  @media screen and (max-width:1024px) {
+    width: 70%;
+  }
+  @media screen and (max-width:768px) {
+    width: 80%;
+  }
+  @media screen and (max-width:480px) {
+    width: 80%;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
 }
 
 .home-sixthLayer {
-  height: 555.1px;
+  height: fit-content;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -638,23 +815,24 @@
   }
 
   .home-sixthLayerHolder {
-    height: 440px;
+    min-height: 440px;
     width: 100%;
     display: flex;
     gap: 58px;
+    justify-content: center;
     align-items: center;
 
     main {
       height: 550px;
-      width: 630px;
+      width: 300px;
       background: url("../assets/public/home-satisfaction.svg");
       background-repeat: no-repeat;
       /* background-color: aqua; */
-      display: flex;
+      /* display: flex;
       justify-content: flex-end;
-      align-items: center;
+      align-items: center; */
 
-      article {
+      /* article {
         width: 292px;
         height: 440px;
         border-radius: 6.58px;
@@ -718,7 +896,7 @@
             }
           }
         }
-      }
+      } */
     }
 
     nav {
@@ -759,12 +937,83 @@
       }
     }
   }
+
+  @media screen and (max-width:768px) {
+    .home-sixthLayerHolder{
+      justify-content: space-between;
+      gap: 0;
+      nav{
+        width: 450px;
+
+        h4{
+          font-size: 35px;
+          line-height: 30px;
+        }
+
+        h6{
+          font-size: 15px;
+        }
+
+        ul{
+          li{
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width:480px) {
+
+    h3{
+      font-size: 35px;
+    }
+    .home-sixthLayerHolder{
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+
+      
+      main{
+        width: 100%;
+      }
+      nav{
+        width: 90%;
+        gap: 20px;
+
+        h4{
+          font-size: 25px;
+          line-height: 20px;
+          text-align: center;
+        }
+
+        h6{
+          font-size: 14px;
+          text-align: center;
+        }
+
+        ul{
+          width: 100%;
+          li{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
 }
 .home-seventhLayerText {
   font-weight: 700;
   font-size: 56px;
-  line-height: 30spx;
+  line-height: 30px;
   font-family: "Sora", sans-serif;
+  display: block;
+
+  @media screen and (max-width:480px) {
+    font-size: 32px;
+    margin-top: 20px;
+    display: none;
+  }
 }
 
 .home-eightLayer {
@@ -793,16 +1042,24 @@
     line-height: 65px;
     font-family: "Sora", sans-serif;
   }
+
+  @media screen and (max-width:480px) {
+    h6{
+      width: 100%;
+      font-size: 35px;
+    }
+  }
 }
 
 .home-nineLayer {
   height: fit-content;
-  width: 1289px;
+  width: 90%;
   margin-bottom: 100px;
 }
 
 .home-nineLayerHolder {
   width: 95%;
+  margin: 0 auto;
   height: 300px;
   border-radius: 5px;
   background-color: #f2ae304d;
@@ -870,11 +1127,30 @@
       }
     }
   }
+
+  @media screen and (max-width:480px) {
+    p{
+      font-size: 10px;
+    }
+
+    nav{
+      h6{
+        font-size: 7px;
+        width: fit-content;
+        
+      }
+
+      article{
+        width: 130px;
+        gap: 4px;
+      }
+    }
+  }
 }
 
 .home-tenthLayer {
   height: fit-content;
-  width: 1310px;
+  width: 91%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -905,6 +1181,37 @@
         width: 100%;
         object-fit: cover;
       }
+    }
+  }
+  @media screen and (max-width:1024px) {
+    h5{
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    h5{
+      width: 90%;
+      font-size: 30px;
+    }
+
+    nav{
+      width: 90%;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+
+      div{
+        height: 170px;
+        width: 200px;
+      }
+    }
+  }
+
+  @media screen and (max-width:480px) {
+    h5{
+      font-size: 15px;
+      width: 95%;
     }
   }
 }

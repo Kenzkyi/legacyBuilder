@@ -86,14 +86,14 @@
     }
     
     aside{
-        height: 54px;
-        width: 250px;
+        height: 40px;
+        width: 192px;
         display: flex;
         justify-content: space-between;
 
         .header-signup{
-            width: 112px;
-            height: 54px;
+            width: 89px;
+            height: 40px;
             border-radius: 6px;
             padding: 10px;
             border: 1px solid #804BF2;
@@ -108,8 +108,8 @@
         }
 
         .header-login{
-            width: 112px;
-            height: 54px;
+            width: 89px;
+            height: 40px;
             border-radius: 6px;
             padding: 10px;
             background-color: #804BF2;

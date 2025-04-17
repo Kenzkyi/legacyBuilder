@@ -162,6 +162,39 @@ const Overview = () => {
             </main>
             <img src={image1} alt="" />
           </div>
+          <div className="overview-firstLayerMiddle">
+          <h5>My Performance Level</h5>
+          <main>
+            <div><FaBook color='#804BF2' fontSize={35}/></div>
+            <nav>
+              <h6>{user?.enrolledSubjects?.length}</h6>
+              <p>Subject
+              Selected</p>
+            </nav>
+          </main>
+          <main style={{backgroundColor:'#F2AE30'}}>
+            <div style={{backgroundColor:'black'}}><PiExamFill color='white' fontSize={35}/></div>
+            <nav>
+              <h6>
+                {
+                  user?.plan === 'Freemium' ? '10' : '30'
+                }
+              </h6>
+              <p>Minutes Mock Exam</p>
+            </nav>
+          </main>
+          <main style={{backgroundColor:'#804BF2'}}>
+            <div style={{backgroundColor:'white'}}><FaBook color='#F2AE30' fontSize={35}/></div>
+            <nav style={{color:'white'}}>
+              <h6>
+              {
+                  user?.plan === 'Freemium' ? '2' : 'All'
+                }
+              </h6>
+              <p>Years Pass Questions</p>
+            </nav>
+          </main>
+        </div>
           <div className="overview-firstLayerLeftDown">
             <h4>Subject Selected</h4>
             <main>
@@ -228,33 +261,29 @@ const Overview = () => {
         <div className="overview-secondLayerRight">
           <div className="overview-secondLayerRightHolder">
             <ul>
-              <h5>Subject</h5>
-              <li>English Lang</li>
-              <li>Mathematics</li>
-              <li>Physics</li>
-              <li>Chemistry</li>
+              <li>Subject</li>
+              <li>Performance</li>
+              <li>Duration</li>
+              <li>Completed?</li>
             </ul>
-            <ul>
-              <h5>Performance</h5>
-              <li>60%</li>
-              <li>70%</li>
+            <ol>
+              <li>biology</li>
               <li>80%</li>
-              <li>70%</li>
-            </ul>
-            <ul>
-              <h5>Duration</h5>
-              <li>4 Weeks</li>
-              <li>3 Weeks</li>
-              <li>4 Weeks</li>
-              <li>4 Weeks</li>
-            </ul>
-            <ul>
-              <h5>Completed?</h5>
-              <li>No</li>
-              <li>Yes</li>
-              <li>Yes</li>
-              <li>No</li>
-            </ul>
+              <li>120secs</li>
+              <li>yes</li>
+            </ol>
+            <ol>
+              <li>biology</li>
+              <li>80%</li>
+              <li>120secs</li>
+              <li>yes</li>
+            </ol>
+            <ol>
+              <li>biology</li>
+              <li>80%</li>
+              <li>120secs</li>
+              <li>yes</li>
+            </ol>
           </div>
         </div>
       </div>
