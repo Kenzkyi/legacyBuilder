@@ -36,6 +36,7 @@ const initialState = {
   logout: false,
   leavingNow: false,
   exam: [],
+  notEnrolledSubjects: []
 };
 
 const slice = createSlice({
@@ -292,6 +293,9 @@ const slice = createSlice({
     setLeavingNow: (state, { payload }) => {
       state.leavingNow = !state.leavingNow;
     },
+    setNotEnrolledSubjects: (state,{payload})=> {
+      state.notEnrolledSubjects = payload
+    }
   },
 });
 
@@ -316,6 +320,7 @@ export const {
   nextQuestion,
   setExamTimer,
   setToggle,
+  setNotEnrolledSubjects,
 } = slice.actions;
 
 export default slice.reducer;
