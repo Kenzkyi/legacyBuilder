@@ -272,6 +272,7 @@
   font-size: 20px;
   font-family: "Sora", sans-serif;
   cursor: pointer;
+  z-index: 1;
 }
 .alreadyhaveaccount {
   height: 10%;

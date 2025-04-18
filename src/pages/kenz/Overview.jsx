@@ -17,10 +17,7 @@ const Overview = () => {
   const userToken = useSelector((state)=>state.userToken)
   const [showBin,setShowBin] = useState('')
   const dispatch = useDispatch()
-  const randomCol = ()=>{
-    let randomNum = Math.floor(Math.random() * 255)
-    return randomNum
-  }
+console.log(user)
 
   const removeSubject = async(subject)=>{
     const id = toast.loading('Removing Subject ...')
@@ -256,7 +253,7 @@ const Overview = () => {
       <div className="overview-secondLayer">
         <div className="overview-secondLayerLeft">
           <img src={image2} alt="" />
-          <p>0%</p>
+          <p>{user?.totalRating}%</p>
         </div>
         <div className="overview-secondLayerRight">
           <div className="overview-secondLayerRightHolder">
@@ -266,24 +263,22 @@ const Overview = () => {
               <li>Duration</li>
               <li>Completed?</li>
             </ul>
-            <ol>
-              <li>biology</li>
-              <li>80%</li>
-              <li>120secs</li>
-              <li>yes</li>
+            {
+              user?.myRating.length <= 0 ? <p>No Performance yet !!!</p> : 
+              <>
+                {
+                  user?.myRating.map((item,index)=>(
+                    <ol key={index}>
+              
+              <li>{item?.subject}</li>
+              <li>{item?.performance}{' '}%</li>
+              <li>{item?.duration}{' '}secs</li>
+              <li>{item?.completed}</li>
             </ol>
-            <ol>
-              <li>biology</li>
-              <li>80%</li>
-              <li>120secs</li>
-              <li>yes</li>
-            </ol>
-            <ol>
-              <li>biology</li>
-              <li>80%</li>
-              <li>120secs</li>
-              <li>yes</li>
-            </ol>
+                  ))
+                }
+              </>
+            }
           </div>
         </div>
       </div>

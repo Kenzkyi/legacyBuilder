@@ -3,19 +3,22 @@
   width: 100%;
   display: flex;
   overflow: hidden;
-  /* justify-content: flex-end; */
   background-color: white;
-  overflow: hidden;
+
+  .dashboard-leftDropdown{
+    display: none;
+  }
+
 }
 .dashboard-left {
   width: 20%;
   position: sticky;
-  height: 100vh;
+  height: 90vh;
   background-color: white;
   display: flex;
-  left: 0;
   top: 0;
   flex-direction: column;
+  overflow: hidden;
   align-items: center;
 
   .dashboard-leftImg {
@@ -120,6 +123,8 @@
   }
 
   @media screen and (max-width:1024px) {
+    position: sticky;
+    top: 0;
     .dashboard-navBar{
       font-size: 16px;
     }
@@ -192,6 +197,8 @@
   }
 
   @media screen and (max-width:768px) {
+    position: sticky;
+    top: 0;
     h3{
       font-size: 20px;
     }
