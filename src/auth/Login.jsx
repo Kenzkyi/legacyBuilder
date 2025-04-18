@@ -107,13 +107,15 @@ const Login = () => {
     }
   }, [inputValue]);
 
-  const loginGoogleIcon = async()=>{
+  const loginGoogleIcon = async () => {
     window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`;
-  }
+  };
 
-  const loginFacebookIcon = async()=>{
-    window.location.href = `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`;
-  }
+  const loginFacebookIcon = async () => {
+    window.location.href = `${
+      import.meta.env.VITE_BASE_URL
+    }facebookAuthenticate`;
+  };
 
   return (
     <div className="signupMain">
@@ -129,7 +131,7 @@ const Login = () => {
         <img src={logo} onClick={() => navigate("/")} />
       </div>
       <div className="signupForm">
-        <div className="header">
+        <div className="signheader">
           <h1>MEMBER LOGIN</h1>
         </div>
         <form className="form" onSubmit={(e) => handleSubmit(e, inputValue)}>
@@ -194,8 +196,11 @@ const Login = () => {
           <div className="line"></div>
         </span>
         <article className="socials">
-          <FaFacebook className="facebookIcon" onClick={()=>loginFacebookIcon()}/>
-          <FcGoogle className="googleIcon" onClick={()=>loginGoogleIcon()}/>
+          <FaFacebook
+            className="facebookIcon"
+            onClick={() => loginFacebookIcon()}
+          />
+          <FcGoogle className="googleIcon" onClick={() => loginGoogleIcon()} />
         </article>
         <article className="forgotpassworddiv">
           <p
