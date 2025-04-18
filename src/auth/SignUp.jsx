@@ -141,7 +141,9 @@ const SignUp = () => {
   }
 
   const facebookIcon = async () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`;
+    window.location.href = `${
+      import.meta.env.VITE_BASE_URL
+    }facebookAuthenticate`;
   };
   return (
     <div className="signupMain">

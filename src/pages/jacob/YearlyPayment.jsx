@@ -1,12 +1,17 @@
-import React from "react";
-import "../styles/dashboardCss/subscription.css";
-import payment from "../assets/public/paymentsymbol.svg";
+import React, { useEffect } from "react";
+import "../../styles/dashboardCss/subscription.css";
+import payment from "../../assets/public/paymentsymbol.svg";
 import { FiCheckCircle } from "react-icons/fi";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const YearlyPayment = () => {
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.user);
+  const currentPlan = user?.plan;
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   const handleChoosePlan = (amount, plan) => {
     navigate("/dashboard/make-payment", { state: { amount, plan } });
   };
@@ -81,8 +86,9 @@ const YearlyPayment = () => {
                 <button
                   className="planbutton1"
                   onClick={() => handleChoosePlan(5000, "Premium")}
+                  disabled={currentPlan === "Premium"}
                 >
-                  Choose plan
+                  {currentPlan === "Premium" ? "Subcribed" : "Choose plan"}
                 </button>
               </div>
             </div>
@@ -114,7 +120,9 @@ const YearlyPayment = () => {
                 className="planbutton"
                 onClick={() => handleChoosePlan(8000, "Lifetime Access")}
               >
-                Choose plan
+                {currentPlan === "Lifetime Access"
+                  ? "Subscribed"
+                  : "Choose plan"}
               </button>
             </div>
           </div>
