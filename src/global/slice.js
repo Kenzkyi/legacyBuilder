@@ -224,6 +224,8 @@ const slice = createSlice({
         state.examTimerSecs = 59;
       }
       state.exam = []
+      state.FinishedExam = false
+      state.leavingNow = false
     },
     theExamTimer: (state, { payload }) => {
       if (state.examTimerSecs === 0) {
