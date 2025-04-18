@@ -83,7 +83,7 @@ const ForgetPassword = () => {
         />
       </div>
       <div className="signupForm">
-        <div className="header">
+        <div className="signheader">
           <h1>FORGET PASSWORD</h1>
         </div>
         <form className="form" onSubmit={(e) => handleSubmit(e, inputValue)}>

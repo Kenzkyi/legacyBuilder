@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/dashboardCss/pastquestion.css";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setExam, setYear, setPastQuestions } from "../../global/slice";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 const PastQuestion = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [dropDownSubject, setDropDownSubject] = useState(false);
   const [selectedSubjext, setSelectedSubject] = useState("All");
@@ -32,28 +33,30 @@ const PastQuestion = () => {
   ];
 
   const years = [
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018",
-    "2017",
-    "2016",
-    "2015",
-    "2014",
-    "2013",
-    "2012",
-    "2011",
-    "2010",
-    "2009",
-    "2008",
-    "2007",
-    "2006",
+    // "2023",
+    // "2022",
+    // "2021",
+    // "2020",
+    // "2019",
+    // "2018",
+    // "2017",
+    // "2016",
+    // "2015",
+    // "2014",
+    // "2013",
+    // "2012",
+    // "2011",
+    // "2010",
+    // "2009",
+    // "2008",
+    // "2007",
+    // "2006",
     "2005",
     "2004",
     "2003",
     "2002",
+    "2001",
+    "2000",
   ];
 
   const getPastQuestionForYearSubject = async (year, subject) => {
@@ -119,7 +122,7 @@ const PastQuestion = () => {
       <div className="pastcontainer">
         <span>Jamb UTME Question</span>
 
-        <h1 className="pastquestionheader">Select any subject</h1>
+        <h1 className="pastquestionheader">Select any subject & Anaswer</h1>
 
         <div className="selectpastquestion">
           <div className="pastleftdiv">
@@ -138,7 +141,7 @@ const PastQuestion = () => {
               )}
               {dropDownSubject && (
                 <ul className="dropdownmenu">
-                  {subjects.map((subject, index) => (
+                  {user?.enrolledSubjects.map((subject, index) => (
                     <li
                       key={index}
                       className="dropdownitem"
@@ -179,6 +182,7 @@ const PastQuestion = () => {
         </div>
         <div className="viewpastquestiondiv">
           <button
+            className="viewpastbutton"
             onClick={() =>
               getPastQuestionForYearSubject(selectedYear, selectedSubjext)
             }
