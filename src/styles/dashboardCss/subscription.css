@@ -197,26 +197,37 @@
     justify-content: center;
     align-items: center;
   }
-  .planbutton {
-    display: flex;
-    width: 100%;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 50px;
-    border: 3px solid #804bf2;
-    background: #fff;
-    color: #804bf2;
-    font-family: Sora;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 35px; /* 175% */
-    text-transform: capitalize;
-  }
+}
+.planbutton {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 3px solid #804bf2;
+  background: #fff;
+  color: #804bf2;
+  font-family: Sora;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 35px; /* 175% */
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
+.planbutton1:hover:not(:disabled) {
+  background-color: white;
+  transition: 350ms ease-out;
+  color: #804bf2;
+  border: 3px solid #804bf2;
+}
+.planbutton1:disabled {
+  background-color: #d6d4da;
+  cursor: not-allowed;
+}
 .monthlypremium {
   width: 31%;
   height: 100vh;
@@ -326,28 +337,39 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .planbutton1 {
-      display: flex;
-      width: 100%;
-      height: auto;
-      padding: 10px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-      border-radius: 50px;
-      background: rgba(128, 75, 242, 0.99);
-      color: #fff;
-      font-family: Sora;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 35px;
-      border: none;
-      text-transform: capitalize;
-    }
   }
+}
+
+.planbutton1 {
+  display: flex;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: rgba(128, 75, 242, 0.99);
+  color: #fff;
+  font-family: Sora;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 35px;
+  border: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.planbutton:hover:not(:disabled) {
+  background-color: #804bf2;
+  transition: 350ms ease-out;
+  color: white;
+}
+
+.planbutton1:disabled {
+  background-color: #d6d4da;
+  cursor: not-allowed;
 }
 .lifesub {
   width: 31%;

@@ -8,30 +8,32 @@ import { setUser, setUserToken } from "../global/slice";
 
 const Callback = () => {
   const [callback, setCallback] = useState(false);
-  const {token,userId} = useParams()
-  const dispatch = useDispatch()
-  const nav = useNavigate()
+  const { token, userId } = useParams();
+  const dispatch = useDispatch();
+  const nav = useNavigate();
 
-  const createUser = async()=>{
+  const createUser = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/v1/studentInfo/${userId}`)
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}api/v1/studentInfo/${userId}`
+      );
       if (res?.status === 200) {
-        dispatch(setUser(res?.data?.data))
-        dispatch(setUserToken(token))
+        dispatch(setUser(res?.data?.data));
+        dispatch(setUserToken(token));
         setTimeout(() => {
-          nav('/dashboard/overview')
+          nav("/dashboard/overview");
         }, 3000);
       }
-      console.log(res)
+      console.log(res);
     } catch (error) {
-      toast.error(error?.response?.data?.message)
-      console.log(error)
+      toast.error(error?.response?.data?.message);
+      console.log(error);
     }
-  }
+  };
 
-  useEffect(()=>{
-    createUser()
-  },[])
+  useEffect(() => {
+    createUser();
+  }, []);
 
   return <Loading />;
 };
