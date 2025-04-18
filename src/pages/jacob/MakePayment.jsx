@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import "../../styles/dashboardCss/makepayment.css";
 import payment from "../../assets/public/payment.png";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { setReference } from "../../global/slice";
 
 const MakePayment = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   console.log(user);
+  const dispatch = useDispatch()
 
   const location = useLocation();
   const { amount, plan } = location.state || {};
@@ -25,10 +27,10 @@ const MakePayment = () => {
         { amount, email, name, plan }
       );
       if(response?.status === 200){
+        dispatch(setReference(response?.data?.data?.reference))
         setTimeout(() => {
-          
           window.location.href = response?.data?.data?.checkout_url
-        }, 5000);
+        }, 500);
       }
       console.log(response);
     } catch (error) {
