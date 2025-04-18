@@ -4,7 +4,7 @@ import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6'
 import { LuClock2 } from 'react-icons/lu'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { cancelExam, nextQuestion, previousQuestion, setLeavingNow, setMockExamOption, theExamTimer } from '../../global/slice'
+import { cancelExam, nextQuestion, previousQuestion, setFinishedExam, setLeavingNow, setMockExamOption, theExamTimer } from '../../global/slice'
 
 const TheExam = () => {
     const mockExamQuestions = useSelector((state)=>state.mockExamQuestions)
@@ -94,7 +94,7 @@ const TheExam = () => {
           <h2>Next</h2>
           <article><FaArrowRightLong /></article>
           </button>
-          <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'flex' : 'none',background:'#804BF2',color:'white',borderColor:'#804BF2'}}>
+          <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'flex' : 'none',background:'#804BF2',color:'white',borderColor:'#804BF2'}} onClick={()=>dispatch(setFinishedExam())}>
           <h2>Finish</h2>
           </button>
         </div>
