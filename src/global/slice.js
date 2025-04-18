@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import PastQuestion from "../pages/jacob/PastQuestion";
+import FinishedExam from "../components/FinishedExam";
 
 const initialState = {
   userToken: "",
@@ -36,7 +37,9 @@ const initialState = {
   logout: false,
   leavingNow: false,
   exam: [],
-  notEnrolledSubjects: []
+  notEnrolledSubjects: [],
+  reference: '',
+  FinishedExam: false,
 };
 
 const slice = createSlice({
@@ -220,6 +223,9 @@ const slice = createSlice({
         state.examTimerMins = 29;
         state.examTimerSecs = 59;
       }
+      state.exam = []
+      state.FinishedExam = false
+      state.leavingNow = false
     },
     theExamTimer: (state, { payload }) => {
       if (state.examTimerSecs === 0) {
@@ -295,6 +301,12 @@ const slice = createSlice({
     },
     setNotEnrolledSubjects: (state,{payload})=> {
       state.notEnrolledSubjects = payload
+    },
+    setReference: (state,{payload})=>{
+      state.reference = payload
+    },
+    setFinishedExam: (state,{payload})=>{
+      state.FinishedExam = !state.FinishedExam
     }
   },
 });
@@ -321,6 +333,8 @@ export const {
   setExamTimer,
   setToggle,
   setNotEnrolledSubjects,
+  setReference,
+  setFinishedExam,
 } = slice.actions;
 
 export default slice.reducer;

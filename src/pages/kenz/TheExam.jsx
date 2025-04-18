@@ -4,7 +4,7 @@ import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6'
 import { LuClock2 } from 'react-icons/lu'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { cancelExam, nextQuestion, previousQuestion, setLeavingNow, setMockExamOption, theExamTimer } from '../../global/slice'
+import { cancelExam, nextQuestion, previousQuestion, setFinishedExam, setLeavingNow, setMockExamOption, theExamTimer } from '../../global/slice'
 
 const TheExam = () => {
     const mockExamQuestions = useSelector((state)=>state.mockExamQuestions)
@@ -66,22 +66,22 @@ const TheExam = () => {
             <nav>
               <h4>A.</h4>
               <p>{currentQuestion?.options[0]}</p>
-              <input type="radio" checked={mockExamOptions.optionA} onChange={()=>dispatch(setMockExamOption({option:'A',answer:currentQuestion?.options[0]}))}/>
+              <input type="radio" checked={mockExamOptions.optionA} onChange={()=>dispatch(setMockExamOption({option:'A',answer:'A'}))}/>
             </nav>
             <nav>
               <h4>B.</h4>
               <p>{currentQuestion?.options[1]}</p>
-              <input type="radio" checked={mockExamOptions.optionB} onChange={()=>dispatch(setMockExamOption({option:'B',answer:currentQuestion?.options[1]}))}/>
+              <input type="radio" checked={mockExamOptions.optionB} onChange={()=>dispatch(setMockExamOption({option:'B',answer:'B'}))}/>
             </nav>
             <nav>
               <h4>C.</h4>
               <p>{currentQuestion?.options[2]} </p>
-              <input type="radio" checked={mockExamOptions.optionC} onChange={()=>dispatch(setMockExamOption({option:'C',answer:currentQuestion?.options[2]}))}/>
+              <input type="radio" checked={mockExamOptions.optionC} onChange={()=>dispatch(setMockExamOption({option:'C',answer:'C'}))}/>
             </nav>
             <nav>
               <h4>D.</h4>
               <p>{currentQuestion?.options[3]}</p>
-              <input type="radio" checked={mockExamOptions.optionD} onChange={()=>dispatch(setMockExamOption({option:'D',answer:currentQuestion?.options[3]}))}/>
+              <input type="radio" checked={mockExamOptions.optionD} onChange={()=>dispatch(setMockExamOption({option:'D',answer:'D'}))}/>
             </nav>
           </main>
         </div>
@@ -94,7 +94,7 @@ const TheExam = () => {
           <h2>Next</h2>
           <article><FaArrowRightLong /></article>
           </button>
-          <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'flex' : 'none',background:'#804BF2',color:'white',borderColor:'#804BF2'}}>
+          <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'flex' : 'none',background:'#804BF2',color:'white',borderColor:'#804BF2'}} onClick={()=>dispatch(setFinishedExam())}>
           <h2>Finish</h2>
           </button>
         </div>

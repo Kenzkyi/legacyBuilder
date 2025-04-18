@@ -24,6 +24,8 @@ import ViewPastQuestion from "./pages/jacob/ViewPastQuestion";
 import Callback from "./components/Callback";
 import PrivateRoute from "./routes/PrivateRoute";
 import VerifyPayment from "./pages/kenz/VerifyPayment";
+import MockResult from "./pages/kenz/MockResult";
+import Facebookredirect from "./auth/Facebookredirect";
 
 const routes = createBrowserRouter([
   { path: "*", element: <div>404 error</div> },
@@ -45,8 +47,8 @@ const routes = createBrowserRouter([
   { path: "/resetpassword/:token", element: <ResetPassword /> },
   { path: "/verify/:token", element: <Verify /> },
   { path: "/callback/:token/:userId", element: <Callback /> },
-  {path:'verifyingPayment/:reference', element: <VerifyPayment/>},
   {element:<PrivateRoute/>, children: [
+    {path:'verifyingPayment', element: <VerifyPayment/>},
     {
       element: <Dashboard />,
       children: [
@@ -56,6 +58,7 @@ const routes = createBrowserRouter([
         { path: "/dashboard/profile", element: <Profile /> },
         { path: "/dashboard/subscription", element: <Subscription /> },
         { path: "/dashboard/make-payment", element: <MakePayment /> },
+        {path:'/dashboard/mock-exam/result', element:<MockResult/>},
         {
           path: "/dashboard/view-pastquestion",
           element: <ViewPastQuestion />,
@@ -63,7 +66,9 @@ const routes = createBrowserRouter([
       ],
     },
     { path: "mock-exam/:subject/:subjectId", element: <ExamBody /> },
-  ]}
+  ]},
+  { path: "/data-deletion", element: <Facebookredirect /> },
+            
 ]);
 
 const App = () => {

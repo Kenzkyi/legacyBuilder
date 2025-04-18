@@ -150,21 +150,22 @@
                 width: 100%;
 
                 .footer-contactUs{
-                    width: 22%;
+                    width: 24%;
                 }
 
                 .footer-handles{
-                    width: 29%;
+                    width: 32%;
                 }
 
                 .footer-aboutUs{
-                    width: 15%;
+                    width: 16%;
                 }
             }
 
             @media screen and (max-width:768px) {
                 flex-direction: column;
                 padding-left: 50px;
+                align-items: center;
 
                 .footer-iconHolder{
                     height: 160px;
@@ -196,7 +197,7 @@
                 }
             }
 
-            @media screen and (max-width:480px) {
+            @media screen and (max-width:768px) {
                 align-items: center;
                 padding-left: 0px;
 

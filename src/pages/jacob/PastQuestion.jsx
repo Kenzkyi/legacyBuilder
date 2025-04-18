@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/dashboardCss/pastquestion.css";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setExam, setYear, setPastQuestions } from "../../global/slice";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -10,12 +10,14 @@ import { toast } from "react-toastify";
 const PastQuestion = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [dropDownSubject, setDropDownSubject] = useState(false);
   const [selectedSubjext, setSelectedSubject] = useState("All");
   const [dropDownYear, setDropDownYear] = useState(false);
   const [selectedYear, setSelectedYear] = useState("All");
   const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const subjects = [
     "Accounting",
@@ -31,28 +33,30 @@ const PastQuestion = () => {
   ];
 
   const years = [
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018",
-    "2017",
-    "2016",
-    "2015",
-    "2014",
-    "2013",
-    "2012",
-    "2011",
-    "2010",
-    "2009",
-    "2008",
-    "2007",
-    "2006",
+    // "2023",
+    // "2022",
+    // "2021",
+    // "2020",
+    // "2019",
+    // "2018",
+    // "2017",
+    // "2016",
+    // "2015",
+    // "2014",
+    // "2013",
+    // "2012",
+    // "2011",
+    // "2010",
+    // "2009",
+    // "2008",
+    // "2007",
+    // "2006",
     "2005",
     "2004",
     "2003",
     "2002",
+    "2001",
+    "2000",
   ];
 
   const getPastQuestionForYearSubject = async (year, subject) => {
@@ -61,6 +65,7 @@ const PastQuestion = () => {
       return;
     }
     setLoading(true);
+
     const toastId = toast.loading("fecthing questions....");
     try {
       const response = await axios.get(
@@ -78,6 +83,7 @@ const PastQuestion = () => {
       dispatch(setPastQuestions(response.data.data));
       navigate("/dashboard/view-pastquestion");
       setLoading(false);
+      setDisabled(true);
     } catch (error) {
       toast.update(toastId, {
         render: "Failed to fetch questions.",
@@ -85,6 +91,7 @@ const PastQuestion = () => {
         isLoading: false,
         autoClose: 3000,
       });
+      setDisabled(false);
       setLoading(false);
       console.log(error);
     }
@@ -101,12 +108,21 @@ const PastQuestion = () => {
     setDropDownSubject(false);
     dispatch(setYear(year));
   };
+
+  useEffect(() => {
+    if (selectedYear === "All" || selectedSubjext === "All") {
+      setDisabled(true);
+      return;
+    } else {
+      setDisabled(false);
+    }
+  }, [selectedYear, selectedSubjext]);
   return (
     <div className="pastquestionmain">
       <div className="pastcontainer">
         <span>Jamb UTME Question</span>
 
-        <h1 className="pastquestionheader">Select any subject</h1>
+        <h1 className="pastquestionheader">Select any subject & Anaswer</h1>
 
         <div className="selectpastquestion">
           <div className="pastleftdiv">
@@ -125,7 +141,7 @@ const PastQuestion = () => {
               )}
               {dropDownSubject && (
                 <ul className="dropdownmenu">
-                  {subjects.map((subject, index) => (
+                  {user?.enrolledSubjects.map((subject, index) => (
                     <li
                       key={index}
                       className="dropdownitem"
@@ -166,10 +182,15 @@ const PastQuestion = () => {
         </div>
         <div className="viewpastquestiondiv">
           <button
+            className="viewpastbutton"
             onClick={() =>
               getPastQuestionForYearSubject(selectedYear, selectedSubjext)
             }
-            disabled={loading}
+            disabled={disabled}
+            style={{
+              backgroundColor: disabled ? "#dbd2f0d2" : "#804bf2",
+              cursor: disabled ? "not-allowed" : "pointer",
+            }}
           >
             {loading ? "Loading" : "View Past question"}
           </button>

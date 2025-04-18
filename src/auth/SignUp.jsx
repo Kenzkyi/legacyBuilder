@@ -141,7 +141,9 @@ const SignUp = () => {
   }
 
   const facebookIcon = async () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}facebookAuthenticate`;
+    window.location.href = `${
+      import.meta.env.VITE_BASE_URL
+    }facebookAuthenticate`;
   };
   return (
     <div className="signupMain">
@@ -157,7 +159,7 @@ const SignUp = () => {
         <img src={logo} onClick={() => navigate("/")} />
       </div>
       <div className="signupForm">
-        <div className="header">
+        <div className="signheader">
           <h1>Sign Up</h1>
           <p>Beat jamb with good grades at one sitting </p>
         </div>
