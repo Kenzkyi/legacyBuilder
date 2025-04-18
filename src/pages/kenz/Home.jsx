@@ -201,12 +201,9 @@ const Home = () => {
             </ul>
           </nav>
         </div>
-      </div>
-
-      {/* <div className="home-seventhLayerText">
-        our proven <span style={{ color: "#804BF2" }}>process</span>
-      </div>
-      <ProvenProcess/> */}
+      </div>  
+      {/* <div className="home-seventhLayerText">our proven <span style={{color:'#804BF2'}}>process</span></div> */}
+      {/* <ProvenProcess/> */}
       <div className="home-eightLayer">
         <h5>TESTIMONIES</h5>
         <h6>
