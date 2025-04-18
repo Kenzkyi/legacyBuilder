@@ -119,7 +119,7 @@ const PastQuestion = () => {
       <div className="pastcontainer">
         <span>Jamb UTME Question</span>
 
-        <h1 className="pastquestionheader">Select any subject</h1>
+        <h1 className="pastquestionheader">Select any subject & Anaswer</h1>
 
         <div className="selectpastquestion">
           <div className="pastleftdiv">
@@ -179,6 +179,7 @@ const PastQuestion = () => {
         </div>
         <div className="viewpastquestiondiv">
           <button
+            className="viewpastbutton"
             onClick={() =>
               getPastQuestionForYearSubject(selectedYear, selectedSubjext)
             }
