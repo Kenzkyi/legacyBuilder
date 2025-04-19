@@ -57,6 +57,8 @@ const SignUp = () => {
       } else if (!validatePassword(value)) {
         error =
           "Your password must contain an upper case, a lowercase, a special character and a number";
+      } else if(value === inputValue.confirmPassword){
+        setErrorMessage({...errorMessage,confirmPassword:''})
       }
     }
 
@@ -74,7 +76,6 @@ const SignUp = () => {
     setInputValue((prev) => ({ ...prev, [name]: value }));
     validateField(name, value);
   };
-  console.log(inputValue);
 
   const handleShowConfirmPassword = () =>
     setShowConfirmPassword((prev) => !prev);

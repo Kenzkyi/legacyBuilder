@@ -21,6 +21,7 @@
         top: 30px;
         font-size: 25px;
         cursor: pointer;
+        z-index: 2;
     }
 
 
@@ -183,6 +184,20 @@
         font-weight: 500;
         font-family: "Montserrat", sans-serif;
         margin-bottom: 30px;
+    }
+
+    .not-selected{
+        display: none;
+    }
+
+    @media screen and (max-width:480px) {
+        .not-selected{
+            font-size: 22px;
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-family: "Montserrat", sans-serif;
+        }
     }
 
     main{

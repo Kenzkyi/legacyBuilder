@@ -26,8 +26,10 @@ import PrivateRoute from "./routes/PrivateRoute";
 import VerifyPayment from "./pages/kenz/VerifyPayment";
 import MockResult from "./pages/kenz/MockResult";
 import Facebookredirect from "./auth/Facebookredirect";
+import AppWrapper from "./components/AppWrapper";
 
 const routes = createBrowserRouter([
+ {element:<AppWrapper/>,children:[
   { path: "*", element: <div>404 error</div> },
   {
     path: "",
@@ -68,6 +70,7 @@ const routes = createBrowserRouter([
     { path: "mock-exam/:subject/:subjectId", element: <ExamBody /> },
   ]},
   { path: "/data-deletion", element: <Facebookredirect /> },
+ ]}
             
 ]);
 
