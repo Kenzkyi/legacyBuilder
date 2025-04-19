@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/dashboardCss/viewpastquestion.css";
 import {
   IoIosArrowRoundBack,
@@ -6,7 +6,7 @@ import {
   IoIosArrowForward,
 } from "react-icons/io";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const ViewPastQuestion = () => {
   const navigate = useNavigate();
@@ -15,7 +15,6 @@ const ViewPastQuestion = () => {
   const subject = useSelector((state) => state.exam);
   const questions = useSelector((state) => state.pastQuestions) || [];
 
-  console.log("Questions from Redux:", questions);
 
   const [selectedOptions, setSelectedOptions] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,14 +40,22 @@ const ViewPastQuestion = () => {
   const handleNextPage = () => {
     if (currentPage < Math.ceil(questions.length / questionsPerPage)) {
       setCurrentPage((prev) => prev + 1);
+      window.scrollTo(0,0)
     }
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
+      window.scrollTo(0,0)
     }
   };
+
+  const {pathname} = useLocation()
+
+  useEffect(()=>{
+      window.scrollTo(0,0)
+  },[pathname])
 
   return (
     <main className="viewpastquestionmain">
