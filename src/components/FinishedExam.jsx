@@ -19,7 +19,14 @@ const FinishedExam = () => {
       const quitExam = async()=>{
         const timeLeft = (examTimerMins*60) + examTimerSecs
      let duration = 0
-     const completed = 'yes'
+     let completed = ''
+     for (let element of exam) {
+      if(element.option === 'none'){
+        completed = 'no'
+      }else{
+        completed = 'yes'
+      }
+     }
      if (user?.plan === 'Freemium') {
       duration = 600 - timeLeft
     }else{

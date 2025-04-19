@@ -111,8 +111,8 @@ const SubjectSelected = () => {
     <div className='subjectSelected'>
       <div className="subjectSelected-firstLayer">
         <aside><FaArrowLeftLong onClick={()=>dispatch(setIsOverview())}/></aside>
-        <img src={image1} alt="" />
         <div className="subjectSelected-firstLayerHolder">
+        <img src={image1} alt="" />
         <main>
               <nav>
                 <h5><span style={{color:'#F2AE30'}}>Hello,</span> {user?.fullName}</h5>

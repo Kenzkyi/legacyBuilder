@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../styles/dashboardCss/examBody.css'
 import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6'
 import { LuClock2 } from 'react-icons/lu'
@@ -13,6 +13,7 @@ const TheExam = () => {
     const examTimerMins = useSelector((state)=>state.examTimerMins)
     const examTimerSecs = useSelector((state)=>state.examTimerSecs)
     const exam = useSelector((state)=>state.exam)
+    const [isNext,setIsNext] = useState(false)
     // console.log(mockExamOptions,exam)
     
     
@@ -46,8 +47,27 @@ const TheExam = () => {
       }
     }
 
+    useEffect(()=>{
+      if(mockExamOptions.optionA || mockExamOptions.optionB || mockExamOptions.optionC || mockExamOptions.optionD){
+        setIsNext(true)
+      }else{
+        setIsNext(false)
+      }
+    },[mockExamOptions])
+
   return (
     <div className='examBody'>
+      <div className="examBody-mobile">
+      <button onClick={()=>dispatch(setLeavingNow())}>x</button>
+        <h5>Jamb Mock Exam</h5>
+        <article>
+        <aside>
+        <meter min={0} max={100} value={examMeter}></meter>
+        <p>{examMeter}%</p>
+        </aside>
+        <section><LuClock2 fontSize={30}/>{examTimerMins}:{examTimerSecs}</section>
+        </article>
+      </div>
       <div className="examBody-firstLayer">
         <h3>Jamb Mock Exam</h3>
         <aside>
@@ -91,7 +111,7 @@ const TheExam = () => {
             <h2>Previous</h2>
           </button>
           <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'none' : 'flex'}} onClick={()=>nextExam()}>
-          <h2>Next</h2>
+          <h2>{isNext? 'Next' : 'Skip'}</h2>
           <article><FaArrowRightLong /></article>
           </button>
           <button style={{display:mockExamQuestions.length === parseInt(subjectId) ? 'flex' : 'none',background:'#804BF2',color:'white',borderColor:'#804BF2'}} onClick={()=>dispatch(setFinishedExam())}>
