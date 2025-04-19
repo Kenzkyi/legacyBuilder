@@ -67,7 +67,6 @@ const Login = () => {
   };
 
   const dispatch = useDispatch();
-  console.log(inputValue);
   const handleSubmit = async (e, data) => {
     e.preventDefault();
     setLoading(true);
