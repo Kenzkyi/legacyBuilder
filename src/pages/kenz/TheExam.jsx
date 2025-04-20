@@ -77,7 +77,7 @@ const TheExam = () => {
         <section><LuClock2 fontSize={30}/>{examTimerMins}:{examTimerSecs}</section>
         <button onClick={()=>dispatch(setLeavingNow())}>x</button>
       </div>
-      <h1>QUESTIONS</h1>
+      <h1>{subject} QUESTIONS</h1>
       <div className="examBody-secondLayer">
         <div className="examBody-secondLayerHolder">
           <main>

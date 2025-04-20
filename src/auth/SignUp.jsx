@@ -29,8 +29,30 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
+
+  function validatePassword(inputValue) {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#])[A-Za-z\d@$!%*?&.#]{8,}$/;
+    return passwordRegex.test(inputValue);
+  }
+
   const validateField = (name, value) => {
     let error = "";
+
+    if (name === "password") {
+      if (!value.trim()) {
+        error = "Password is required";
+      } else if (value.length < 8 || value.length > 60) {
+        error = "Password should be between 8 and 60 characters";
+      }else if (!validatePassword(value)) {
+        error = "Your password must contain an upper case, a lowercase, a special character and a number";
+      } else if(value === inputValue.confirmPassword){
+        setErrorMessage({...errorMessage,confirmPassword:''})
+      }else{
+        error = ''
+      }
+    }
+
     if (name === "fullName") {
       if (!value.trim()) {
         error = "Full name is required";
@@ -49,18 +71,6 @@ const SignUp = () => {
       }
     }
 
-    if (name === "password") {
-      if (!value.trim()) {
-        error = "Password is required";
-      } else if (value.length < 6 || value.length > 60) {
-        error = "Password should be between 6 and 60 characters";
-      } else if (!validatePassword(value)) {
-        error =
-          "Your password must contain an upper case, a lowercase, a special character and a number";
-      } else if(value === inputValue.confirmPassword){
-        setErrorMessage({...errorMessage,confirmPassword:''})
-      }
-    }
 
     if (name === "confirmPassword") {
       if (value !== inputValue.password) {
@@ -85,11 +95,7 @@ const SignUp = () => {
     return emailRegex.test(inputValue);
   };
 
-  function validatePassword(inputValue) {
-    const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
-    return passwordRegex.test(inputValue);
-  }
+
   useEffect(() => {
     const { fullName, email, password, confirmPassword } = inputValue;
     if (
@@ -97,7 +103,7 @@ const SignUp = () => {
       validateEmail(email) &&
       validatePassword(password) &&
       password.trim() !== "" &&
-      password.length >= 6 &&
+      password.length >= 8 &&
       password.length <= 60 &&
       confirmPassword.trim() !== "" &&
       password === confirmPassword
@@ -135,11 +141,11 @@ const SignUp = () => {
     window.location.href = `${import.meta.env.VITE_BASE_URL}googleAuthenticate`;
   };
 
-  function validatePassword(password) {
-    const regex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
-    return regex.test(password);
-  }
+  // function validatePassword(password) {
+  //   const regex =
+  //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+  //   return regex.test(password);
+  // }
 
   const facebookIcon = async () => {
     window.location.href = `${

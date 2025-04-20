@@ -32,9 +32,11 @@ const Login = () => {
 
   function validatePassword(inputValue) {
     const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-+.]).{6,20}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#])[A-Za-z\d@$!%*?&.#]{8,}$/;
     return passwordRegex.test(inputValue);
   }
+
+  console.log(validatePassword('Benjaminufuomajacob9@gmail.com'))
   const validateField = (name, value) => {
     let error = "";
     if (name === "email") {

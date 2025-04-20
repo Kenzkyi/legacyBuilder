@@ -16,7 +16,6 @@ const LeavingNow = () => {
     const exam = useSelector((state)=>state.exam)
     const user = useSelector((state)=>state.user)
     const [loading,setLoading] = useState(false)
-    console.log(exam)
 
     const quitExam = async()=>{
       const timeLeft = (examTimerMins*60) + examTimerSecs
@@ -31,12 +30,10 @@ const LeavingNow = () => {
     acc = acc + item.score
     return acc
   },0) 
-  console.log(duration,completed,subject,performance)
   try {
     setLoading(true)
     const id = toast.loading('Please wait ...')
     const res = await axios.put(`${import.meta.env.VITE_BASE_URL}api/v1/myRating/${user._id}`,{duration,completed,subject,performance})
-    console.log(res)
     if(res?.status === 200){
       toast.dismiss(id)
       setTimeout(() => {
@@ -52,7 +49,6 @@ const LeavingNow = () => {
       toast.error(error?.response?.data?.message)
       setLoading(false)
     }, 500);
-    console.log(error)
   }
     }
 
